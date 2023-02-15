@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liolik.project.mapper.PillMapper">
+	<select id="getListPill" resultType="com.liolik.project.dto.PillDto">
+		SELECT * from PILL
+	</select>
+	<select id="readPill" resultType="com.liolik.project.dto.PillDto">
+		select * from PILL where PILLCODE = #{PILLCODE}
+	</select>
+	<insert id="writePill">
+		insert into PILL (PILLNAME, COMPANY, PRICE) value (#{PILLNAME}, #{COMPANY}, #{PRICE})
+	</insert>
+	<delete id="deletePill">
+		delete from PILL where PILLCODE = (#{PILLCODE})
+	</delete>
+	<update id="editPill">
+		update PILL set PILLNAME=#{PILLNAME}, COMPANY=#{COMPANY}, PRICE=#{PRICE} where PILLCODE = #{PILLCODE}
+	</update>
+	
+</mapper>
