@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liolik.project.mapper.CustomerMapper">
+	<select id="getListCustomer" resultType="com.liolik.project.dto.CustomerDto">
+		SELECT * from CUSTOMER
+	</select>
+	<select id="getListEmployee" resultType="com.liolik.project.dto.EmployeeDto">
+		SELECT * from EMPLOYEE where ETEAM = "영업팀"
+	</select>
+	<insert id="writeCustomer">
+		insert into CUSTOMER (STATE, CNAME, EMPLOYEE, ADRESS, ADRESS_DETAIL, TEL, MEMO, BALANCE) values (#{STATE},#{CNAME},#{EMPLOYEE},#{ADRESS},#{ADRESS_DETAIL},#{TEL},#{MEMO},#{BALANCE})
+	</insert>
+
+</mapper>

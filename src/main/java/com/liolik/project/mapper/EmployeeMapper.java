@@ -3,7 +3,6 @@ package com.liolik.project.mapper;
 import java.util.List;
 
 import com.liolik.project.dto.EmployeeDto;
-import com.liolik.project.dto.PillDto;
 
 public interface EmployeeMapper {
 	public List<EmployeeDto> getListEmployee();
