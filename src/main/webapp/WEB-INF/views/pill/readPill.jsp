@@ -8,23 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	PillDto read = (PillDto)request.getAttribute("pillCode");
 
-	String pillCode = read.getPILLCODE();
-	String pillName = read.getPILLNAME();
-	String company = read.getCOMPANY();
-	int price = read.getPRICE();
-	//String img = read.getIMG();
-%>	
+CODE: ${read.PILLCODE}<br>
+NAME: ${read.PILLNAME}<br>
+COMPANY: ${read.COMPANY}<br>
+PRICE: ${read.PRICE}<br>
 
-CODE: <%=pillCode %><br>
-NAME: <%=pillName %><br>
-COMPANY: <%=company %><br>
-PRICE: <%=price %><br>
-
-<a href="/pill/editPill?pillCode=<%=pillCode%>"> 수정 </a><br>
-<a href="/pill/deletePill?pillCode=<%=pillCode%>"> 삭제 </a><br>
+<a href="/pill/editPill?pillCode=${read.PILLCODE}"> 수정 </a><br>
+<a href="/pill/deletePill?pillCode=${read.PILLCODE}"> 삭제 </a><br>
 <a href="/pill/getListPill"> 조회 </a>
 
 </body>

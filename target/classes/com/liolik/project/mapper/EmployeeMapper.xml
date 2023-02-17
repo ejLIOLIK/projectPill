@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liolik.project.mapper.EmployeeMapper">
+	<select id="getListEmployee" resultType="com.liolik.project.dto.EmployeeDto">
+		SELECT * from EMPLOYEE
+	</select>
+	<select id="readEmployee" resultType="com.liolik.project.dto.EmployeeDto">
+		SELECT * from EMPLOYEE where ECODE = #{ECODE}
+	</select>
+	<insert id="writeEmployee">
+		insert into EMPLOYEE (ENAME, ERANK, ETEAM) value (#{ENAME}, #{ERANK}, #{ETEAM})
+	</insert>
+	<delete id="deleteEmployee">
+		delete from EMPLOYEE where ECODE = #{ECODE}
+	</delete>
+	<update id="editEmployee">
+		update EMPLOYEE set ENAME=#{ENAME}, ERANK=#{ERANK}, ETEAM=#{ETEAM} where ECODE = #{ECODE}
+	</update>
+	
+</mapper>

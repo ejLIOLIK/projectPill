@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,44 +12,32 @@
 <body>
 
 CODE / NAME / COMPANY / PRICE <br>
-<%
-	String pillCodeEdit = (String)request.getAttribute("pillCodeEdit");
-	Object o = request.getAttribute("list");
-	List<PillDto> list = (List<PillDto>)o; 
-	for(int i=0;i<list.size();i++){
-		
-		String pillCode = list.get(i).getPILLCODE();
-		String pillName = list.get(i).getPILLNAME();
-		String company = list.get(i).getCOMPANY();
-		int price = list.get(i).getPRICE();
 
-		// 수정 ////
-		if(pillCode.equals(pillCodeEdit)){
-%>
-			<form action="/pill/editPill" method="post">
-			<%=pillCode%>
-			<input type="hidden" name="PILLCODE" value="<%=pillCode %>">
-			<input type="text" name="PILLNAME" value="<%=pillName %>">
-			<input type="text" name="COMPANY" value="<%=company %>">
-			<input type="number" name="PRICE" value="<%=price %>">
-			<input type="submit" value="수정">
-			<button type="button" onclick="location.href='/pill/getListPill'">취소</button>
-		</form>
-<%
-		}
-		else{ 	// 일반출력 ////
-%>		
-		<%=pillCode %>	
-		<a href="/pill/readPill?pillCode=<%=pillCode %>"><%=pillName %></a>
-		<%=company %>	
-		<%=price %>	
-		<button type="button" onclick="location.href='/pill/getListPill?pillCodeEdit=<%=pillCode%>'">수정</button>
-		<button type="button" onclick="location.href='/pill/deletePill?pillCode=<%=pillCode%>'">삭제</button>
-		<br>
-<%		}
-	}
-		// 입력 ////
-%>
+	<c:forEach var="pillList" items="${list}"> 
+		<c:choose> 
+			<c:when test = "${pillCodeEdit eq pillList.PILLCODE}">
+				<form action="/pill/editPill" method="post">
+				${pillList.POLLCODE}
+				<input type="hidden" name="PILLCODE" value="${pillList.POLLCODE}">
+				<input type="text" name="PILLNAME" value="${pillList.PILLNAME}">
+				<input type="text" name="COMPANY" value="${pillList.COMPANY}">
+				<input type="number" name="PRICE" value="${pillList.PRICE}">
+				<input type="submit" value="수정">
+				<button type="button" onclick="location.href='/pill/getListPill'">취소</button>
+				</form>
+			</c:when>
+			<c:otherwise> 
+				${pillList.PILLCODE}
+				<a href="/pill/readPill?pillCode=${pillList.PILLCODE}">${pillList.PILLNAME}</a>
+				${pillList.COMPANY}	
+				${pillList.PRICE}	
+				<button type="button" onclick="location.href='/pill/getListPill?pillCodeEdit=${pillList.PILLCODE}'"> 수정 </button>
+				<button type="button" onclick="location.href='/pill/deletePill?pillCode=${pillList.PILLCODE}'"> 삭제 </button>
+				<br>
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
+<!-- 		입력 -->
 		<br>
 		NAME / COMPANY / PRICE
 		<form action="/pill/writePill" method="post">

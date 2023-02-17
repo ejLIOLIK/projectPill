@@ -21,16 +21,15 @@ public class PillController {
 	
 	private PillService service;
 	
-	@GetMapping("/getListPill")	// url 진입 경로 // pillCodeEdit
+	@GetMapping("/getListPill")
 	public void getListPill(@RequestParam(value = "pillCodeEdit", required = false) String pillCodeEdit, Model model) {	
 		model.addAttribute("list", service.getListPill());
-		if(pillCodeEdit!=null) {
-			model.addAttribute("pillCodeEdit", pillCodeEdit);}
+		model.addAttribute("pillCodeEdit", pillCodeEdit);
 	}	
 	
 	@GetMapping({"/readPill", "/editPill"})
 	public void readPill(@RequestParam("pillCode") String pillCode, Model model) {
-		model.addAttribute("pillCode", service.readPill(pillCode));
+		model.addAttribute("read", service.readPill(pillCode));
 	}
 	
 	@GetMapping("/deletePill")
@@ -38,14 +37,9 @@ public class PillController {
 		service.deletePill(pillCode);
 		return "redirect:/pill/getListPill";
 	}
-
-//	@GetMapping("/writePill")	// 책 p.239 /write 중복이지만 이건 글쓰기 화면을 위한 url 매핑
-//	public void write() {
-//		
-//	} // read 창으로 연결 ? 
 	
 	@PostMapping("/writePill")
-	public String write(PillDto pdto) {
+	public String writePill(PillDto pdto) {
 		service.writePill(pdto);
 		return "redirect:/pill/getListPill";
 	}

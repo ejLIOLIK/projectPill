@@ -8,7 +8,8 @@
 </head>
 <body>
 
-<a href="/pill/getListPill"> 조회 </a>
+<a href="/pill/getListPill"> 약품조회 </a> <br>
+<a href="/employee/getListEmployee"> 직원조회 </a> <br>
 
 </body>
 </html>

@@ -13,7 +13,7 @@
 		insert into PILL (PILLNAME, COMPANY, PRICE) value (#{PILLNAME}, #{COMPANY}, #{PRICE})
 	</insert>
 	<delete id="deletePill">
-		delete from PILL where PILLCODE = (#{PILLCODE})
+		delete from PILL where PILLCODE = #{PILLCODE}
 	</delete>
 	<update id="editPill">
 		update PILL set PILLNAME=#{PILLNAME}, COMPANY=#{COMPANY}, PRICE=#{PRICE} where PILLCODE = #{PILLCODE}

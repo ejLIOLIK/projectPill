@@ -9,23 +9,13 @@
 </head>
 <body>
 
-<%
-	PillDto read = (PillDto)request.getAttribute("pillCode");
-
-	String pillCode = read.getPILLCODE();
-	String pillName = read.getPILLNAME();
-	String company = read.getCOMPANY();
-	int price = read.getPRICE();
-	//String img = read.getIMG();
-%>	
-
 	CODE / NAME / COMPANY / PRICE
 	<form action="/pill/editPill" method="post">
-		<%=pillCode%>
-		<input type="hidden" name="PILLCODE" value="<%=pillCode %>">
-		<input type="text" name="PILLNAME" value="<%=pillName %>">
-		<input type="text" name="COMPANY" value="<%=company %>">
-		<input type="number" name="PRICE" value="<%=price %>">
+		${read.PILLCODE}
+		<input type="hidden" name="PILLCODE" value="${read.PILLCODE}">
+		<input type="text" name="PILLNAME" value="${read.PILLNAME}">
+		<input type="text" name="COMPANY" value="${read.COMPANY}">
+		<input type="number" name="PRICE" value="${read.PRICE}">
 		<input type="submit" value="수정">
 	</form>
 </body>
