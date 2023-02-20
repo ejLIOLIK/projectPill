@@ -16,7 +16,10 @@ CODE / NAME / EMPLOYEE / VALANCE / ADRESS / TEL / MEMO <br>
 	${customerList.STATE}
 	${customerList.CNAME}
 	${customerList.EMPLOYEE}
-	${customerList.ADRESS}
+<%-- 	${customerList.ADRESS} --%>
+<%-- 	${customerList.ADRESS_DETAIL} --%>
+	(${customerList.ADRESS_NUMBER})
+	${customerList.ADRESS_DORO}
 	${customerList.ADRESS_DETAIL}
 	${customerList.TEL}
 	${customerList.MEMO}
