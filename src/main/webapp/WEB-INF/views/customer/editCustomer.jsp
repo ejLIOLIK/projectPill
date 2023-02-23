@@ -46,7 +46,7 @@
 		<span id="guide" style="color:#999; display:none"></span>
 		<input type="text" name="ADRESS_DETAIL" id="idDetailAddress" placeholder="상세주소" value="${read.ADRESS_DETAIL}">
 		<input type="text" name="ADRESS_MEMO" id="idExtraAddress" placeholder="참고항목" value="${read.ADRESS_MEMO}">
-		<div id="idMap" style="width:300px;height:300px;margin-top:10px; display:none"></div>
+		<div id="MAP" style="width:300px;height:300px;margin-top:10px; display:none"></div>
 
 		<br>
 		TEL / MEMO / BALANCE
@@ -84,7 +84,7 @@
  	  	$('input[name=EMPLOYEE_RANK]').attr('value',dataSplit[2]);
     });
 	
-		var mapContainer = document.getElementById('idMap'), <%-- 지도 표시 DIV --%>
+		var mapContainer = document.getElementById('MAP'), <%-- 지도 표시 DIV --%>
 		mapOption = {
 		    center: new daum.maps.LatLng(37.537187, 127.005476), <%-- 지도 좌표 --%>
 		    level: 5 <%-- 지도 확대 레벨 --%>
@@ -98,14 +98,33 @@
 		position: new daum.maps.LatLng(37.537187, 127.005476),
 		map: map
 		});
+		
+		<%-- 기존 지도 출력 --%>
+		<%-- 주소, 이름 --%>
+		var mapAdress = document.querySelector('#idRoadAddress').value;
+	
+		<%-- 주소 정보 검색 --%>
+		geocoder.addressSearch(mapAdress, function(results, status) {
+			<%-- 정상처리 --%>
+	  	  	if (status === daum.maps.services.Status.OK) {
+				var result = results[0]; <%-- 첫번째 결과 값 --%>
+				
+				<%-- 좌표 받아서 --%>
+				var coords = new daum.maps.LatLng(result.y, result.x);
+				<%-- 지도 출력 --%>
+				mapContainer.style.display = "block";
+				map.relayout();
+				<%-- 지도 중심 이동 --%>
+				map.setCenter(coords);
+				<%-- 마커 위치 --%>
+				marker.setPosition(coords)
+			}
+		});
 	
 	    function DaumPostcode() {
 	        new daum.Postcode({
 	            oncomplete: function(data) {
 	            	<%-- 팝업 시 검색결과 --%>
-	
-	            	console.log("test : map");
-	            	
 	                var roadAddr = data.roadAddress; <%-- 도로명주소 --%>
 	                var extraRoadAddr = ''; <%-- 참고항목 --%>
 	
