@@ -9,8 +9,16 @@
 	<select id="getListEmployee" resultType="com.liolik.project.dto.EmployeeDto">
 		SELECT * from EMPLOYEE where ETEAM = "영업팀"
 	</select>
-	<insert id="writeCustomer">
-		insert into CUSTOMER (STATE, CNAME, EMPLOYEE, ADRESS_NUMBER, ADRESS_DORO, ADRESS_JIBEON, ADRESS_DETAIL, ADRESS_MEMO, TEL, MEMO, BALANCE) values (#{STATE},#{CNAME},#{EMPLOYEE},#{ADRESS_NUMBER},#{ADRESS_DORO},#{ADRESS_JIBEON},#{ADRESS_DETAIL},#{ADRESS_MEMO},#{TEL},#{MEMO},#{BALANCE})
+	<select id="readCustomer" resultType="com.liolik.project.dto.CustomerDto">
+		SELECT * from CUSTOMER where CCODE = #{CCODE}
+	</select>
+	<insert id="writeCustomer"> 
+		insert into CUSTOMER (STATE, CNAME, EMPLOYEE_CODE, EMPLOYEE_NAME, EMPLOYEE_RANK, ADRESS_NUMBER, ADRESS_DORO, ADRESS_JIBEON, ADRESS_DETAIL, ADRESS_MEMO, TEL, MEMO, BALANCE) values (#{STATE},#{CNAME},#{EMPLOYEE_CODE},#{EMPLOYEE_NAME},#{EMPLOYEE_RANK},#{ADRESS_NUMBER},#{ADRESS_DORO},#{ADRESS_JIBEON},#{ADRESS_DETAIL},#{ADRESS_MEMO},#{TEL},#{MEMO},#{BALANCE})
 	</insert>
-
+	<delete id="deleteCustomer">
+		delete from CUSTOMER where CCODE = #{CCODE}
+	</delete>
+	<update id="editCustomer">
+		update CUSTOMER set STATE=#{STATE}, CNAME=#{CNAME}, EMPLOYEE_CODE=#{EMPLOYEE_CODE}, EMPLOYEE_NAME=#{EMPLOYEE_NAME}, ADRESS_NUMBER=#{ADRESS_NUMBER}, ADRESS_DORO=#{ADRESS_DORO}, ADRESS_JIBEON=#{ADRESS_JIBEON}, ADRESS_DETAIL=#{ADRESS_DETAIL}, ADRESS_MEMO=#{ADRESS_MEMO}, TEL=#{TEL}, MEMO=#{MEMO}, BALANCE=#{BALANCE} where CCODE = #{CCODE}
+	</update>
 </mapper>

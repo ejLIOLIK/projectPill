@@ -30,7 +30,23 @@ public class CustomerServicelmpl implements CustomerService {
 	}
 
 	@Override
-	public List<EmployeeDto>getListEmployee() {
-		return mapper.getListEmployee();
+	public List<EmployeeDto>getListEmployee() { // 영업담당자 select창을 위해 Employee를 get
+		return mapper.getListEmployee(); 
 	}
+	
+	@Override
+	public CustomerDto readCustomer(String customerCode) {
+		return mapper.readCustomer(customerCode);
+	}
+	
+	@Override
+	public void deleteCustomer(String customerCode) {
+		mapper.deleteCustomer(customerCode);
+	}
+	
+	@Override
+	public void editCustomer(CustomerDto cdto) {
+		mapper.editCustomer(cdto);
+	}
+
 }

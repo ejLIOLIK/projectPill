@@ -15,10 +15,10 @@ CODE / NAME / COMPANY / PRICE <br>
 
 	<c:forEach var="pillList" items="${list}"> 
 		<c:choose> 
-			<c:when test = "${pillCodeEdit eq pillList.PILLCODE}">
+			<c:when test = "${pillCodeEdit eq pillList.PILLCODE}"> <%-- 수정 시 리스트와 같은 화면에서 수정 되도록 --%>
 				<form action="/pill/editPill" method="post">
-				${pillList.POLLCODE}
-				<input type="hidden" name="PILLCODE" value="${pillList.POLLCODE}">
+				${pillList.PILLCODE}
+				<input type="hidden" name="PILLCODE" value="${pillList.PILLCODE}">
 				<input type="text" name="PILLNAME" value="${pillList.PILLNAME}">
 				<input type="text" name="COMPANY" value="${pillList.COMPANY}">
 				<input type="number" name="PRICE" value="${pillList.PRICE}">

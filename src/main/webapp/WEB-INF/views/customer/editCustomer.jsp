@@ -10,17 +10,25 @@
 <body>
 
 	STATE / NAME / EMPLOYEE ADRESS
-	<form action="/customer/writeCustomer" method="post">
-	
+	<form action="/customer/editCustomer" method="post">
+		<input type="hidden" name="CCODE" value="${read.CCODE}">
+
 		<select name="STATE"> 
-			<option value="매입">매입</option>
-			<option value="매출">매출</option>
+			<option value="${read.STATE}" selected="selected">${read.STATE}</option>
+				<c:choose> <%-- select창 --%>
+				<c:when test="${read.STATE eq '매입'}"> <option value="매출">매출</option> </c:when> 
+				<c:when test="${read.STATE eq '매출'}"> <option value="매입">매입</option> </c:when>
+				</c:choose>
 		</select>
-		<input type="text" name="CNAME">
-		<select name="EMPLOYEE_NAME" id="EMPLOYEE_NAME"><%-- 영업담당자 select창을 위해 Employee를 get --%> 
-			<option selected="selected" value="">영업담당자</option>
+		<input type="text" name="CNAME" value="${read.CNAME}">
+		
+		<select name="EMPLOYEE_NAME" id="EMPLOYEE_NAME"> <%-- 영업담당자 select창을 위해 Employee를 get --%> 
+		<%-- selected 먼저 출력하고 나머지 조건문으로 출력 --%>
+			<option value="${read.EMPLOYEE_NAME}" selected="selected">${read.EMPLOYEE_CODE} ${read.EMPLOYEE_NAME} ${read.EMPLOYEE_RANK}</option>
 			<c:forEach var="employeeList" items="${list}"> 
-				<option value="${employeeList.ENAME}">${employeeList.ECODE} ${employeeList.ENAME} ${employeeList.ERANK}</option>
+				<c:if test="${read.EMPLOYEE_CODE ne employeeList.ECODE}"> 
+					<option value="${employeeList.ENAME}">${employeeList.ECODE} ${employeeList.ENAME} ${employeeList.ERANK}</option>
+				</c:if>
 			</c:forEach>
 		</select>
 		
@@ -31,32 +39,42 @@
 		<br>
 		ADRESS
 		<br>
-		<input type="text" name="ADRESS_NUMBER" id="idPostCode" placeholder="우편번호">
+		<input type="text" name="ADRESS_NUMBER" id="idPostCode" placeholder="우편번호" value="${read.ADRESS_NUMBER}">
 		<input type="button" onclick="DaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" name="ADRESS_DORO" id="idRoadAddress" placeholder="도로명주소">
-		<input type="text" name="ADRESS_JIBEON" id="idJibeonAdress" placeholder="지번주소">
+		<input type="text" name="ADRESS_DORO" id="idRoadAddress" placeholder="도로명주소" value="${read.ADRESS_DORO}">
+		<input type="text" name="ADRESS_JIBEON" id="idJibeonAdress" placeholder="지번주소" value="${read.ADRESS_JIBEON}">
 		<span id="guide" style="color:#999; display:none"></span>
-		<input type="text" name="ADRESS_DETAIL" id="idDetailAddress" placeholder="상세주소">
-		<input type="text" name="ADRESS_MEMO" id="idExtraAddress" placeholder="참고항목">
-		<div id="idMap" style="width:300px;height:300px;margin-top:10px;display:none"></div>
+		<input type="text" name="ADRESS_DETAIL" id="idDetailAddress" placeholder="상세주소" value="${read.ADRESS_DETAIL}">
+		<input type="text" name="ADRESS_MEMO" id="idExtraAddress" placeholder="참고항목" value="${read.ADRESS_MEMO}">
+		<div id="idMap" style="width:300px;height:300px;margin-top:10px; display:none"></div>
 
 		<br>
 		TEL / MEMO / BALANCE
 		<br>
 
-		<input type="text" name="TEL">
-		<input type="text" name="MEMO">
-		<input type="number" name="BALANCE" value="0">
-		<input type="submit" value="등록">
+		<input type="text" name="TEL" value="${read.TEL}">
+		<input type="text" name="MEMO" value="${read.MEMO}">
+		<input type="number" name="BALANCE"  value="${read.BALANCE}">
+		<input type="submit" value="수정">
 	</form>
-	
+
 	<%-- 카카오 주소검색 API --%>
 	<%-- 자바스크립트는 출력 속도를 위해 jsp 하단에 위치 시킴. --%>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6bfea434b034f9af2b5fce2524e795ea&libraries=services"></script>
 	<script src="http://code.jquery.com/jquery-latest.js"></script> 
 	<script>
-	
+		
+    $(document).ready(function(){
+    	
+    	var data = $("#EMPLOYEE_NAME option:checked").text(); <%-- ex)1 홍길동 사원 --%>
+    	var dataSplit = data.split(" "); <%-- 공백 잘라서 각각 input --%>
+    	
+    	$('input[name=EMPLOYEE_CODE]').attr('value',dataSplit[0]);
+ 	  	$('input[name=EMPLOYEE_RANK]').attr('value',dataSplit[2]);
+    	
+    });
+    
     $("select[id=EMPLOYEE_NAME]").change(function(){
     	
     	var data = $("select[id=EMPLOYEE_NAME] option:selected").text(); <%-- ex)1 홍길동 사원 --%>
@@ -86,6 +104,8 @@
 	            oncomplete: function(data) {
 	            	<%-- 팝업 시 검색결과 --%>
 	
+	            	console.log("test : map");
+	            	
 	                var roadAddr = data.roadAddress; <%-- 도로명주소 --%>
 	                var extraRoadAddr = ''; <%-- 참고항목 --%>
 	
@@ -152,6 +172,7 @@
 	            }
 	        }).open();
 	    }
+
 	</script>
 
 </body>
