@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<a href="/customer/setListCustomder">데이터 불러오기</a><br><br>
+
 <!--  담당직원 / 주소(API주소) / 연락처 / 메모 / 잔금 (디폴트 0) -->
 CODE / NAME / EMPLOYEE / VALANCE / ADRESS / TEL / MEMO <br>
 
@@ -29,7 +31,6 @@ CODE / NAME / EMPLOYEE / VALANCE / ADRESS / TEL / MEMO <br>
 	${customerList.BALANCE}
 	<br>
 	</c:forEach>
-	
 	
 	<a href="/customer/writeCustomer">등록</a>
 

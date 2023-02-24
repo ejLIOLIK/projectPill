@@ -15,6 +15,7 @@
 			<option value="사원">사원</option>
 			<option value="대리">대리</option>
 			<option value="과장">과장</option>
+			<option value="이사">이사</option>
 		</select>
 		<select name="ETEAM">  
 			<option value="영업팀">영업팀</option>

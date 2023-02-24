@@ -48,5 +48,12 @@ public class CustomerServicelmpl implements CustomerService {
 	public void editCustomer(CustomerDto cdto) {
 		mapper.editCustomer(cdto);
 	}
+	
+	@Override
+	public void setListCustomer(List<CustomerDto> cdto) {
+		for(CustomerDto c : cdto) {
+			mapper.setListCustomer(c);
+		}
+	}
 
 }

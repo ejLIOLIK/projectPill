@@ -18,7 +18,7 @@
 		</select>
 		<input type="text" name="CNAME">
 		<select name="EMPLOYEE_NAME" id="EMPLOYEE_NAME"><%-- 영업담당자 select창을 위해 Employee를 get --%> 
-			<option selected="selected" value="">영업담당자</option>
+			<option selected="selected" value="" >영업담당자</option>
 			<c:forEach var="employeeList" items="${list}"> 
 				<option value="${employeeList.ENAME}">${employeeList.ECODE} ${employeeList.ENAME} ${employeeList.ERANK}</option>
 			</c:forEach>
