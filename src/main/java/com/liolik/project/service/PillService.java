@@ -10,4 +10,5 @@ public interface PillService {
 	public void writePill(PillDto pdto);
 	public void deletePill(String pillCode);
 	public void editPill(PillDto pdto);
+	public void NameSetProduct(String PILLCODE);
 }

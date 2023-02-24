@@ -18,5 +18,4 @@
 	<update id="editEmployee">
 		update EMPLOYEE set ENAME=#{ENAME}, ERANK=#{ERANK}, ETEAM=#{ETEAM} where ECODE = #{ECODE}
 	</update>
-	
 </mapper>

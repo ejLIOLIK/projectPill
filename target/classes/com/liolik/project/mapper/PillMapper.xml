@@ -18,5 +18,7 @@
 	<update id="editPill">
 		update PILL set PILLNAME=#{PILLNAME}, COMPANY=#{COMPANY}, PRICE=#{PRICE} where PILLCODE = #{PILLCODE}
 	</update>
-	
+	<update id="NameSetProduct">
+		update PRODUCT inner join PILL on PRODUCT.PILLCODE = PILL.PILLCODE set PNAME=(select PILLNAME from PILL where PILLCODE = #{PILLCODE})
+	</update>
 </mapper>

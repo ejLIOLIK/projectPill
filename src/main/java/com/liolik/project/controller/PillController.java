@@ -47,6 +47,7 @@ public class PillController {
 	@PostMapping("/editPill")
 	public String editPill(PillDto pdto){
 		service.editPill(pdto);
+		service.NameSetProduct(pdto.getPILLCODE());
 		return "redirect:/pill/getListPill";
 	}
 	

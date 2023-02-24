@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liolik.project.mapper.ProductMapper">
+	<select id="getListProduct" resultType="com.liolik.project.dto.ProductDto">
+		select * from PRODUCT 
+	</select>
+	<select id="readProduct" resultType="com.liolik.project.dto.ProductDto">
+		select * from PRODUCT where PCODE = #{PCODE}
+	</select>
+	<select id="getListSamePill" resultType="com.liolik.project.dto.ProductDto">
+		select * from PRODUCT  inner join PILL on PRODUCT.PILLCODE = PILL.PILLCODE where PRODUCT.PILLCODE = (select PILLCODE from PRODUCT where PCODE = #{PCODE})
+	</select>
+<!-- 	<insert id="writePill"> -->
+<!-- 		insert into PILL (PILLNAME, COMPANY, PRICE) value (#{PILLNAME}, #{COMPANY}, #{PRICE}) -->
+<!-- 	</insert> -->
+	<delete id="deleteProduct">
+		delete from PRODUCT where PCODE = #{PCODE}
+	</delete>
+	<update id="editProduct">
+		update PRODUCT set CAPACITY=#{CAPACITY}, AMOUNT=#{AMOUNT}, STOCK=#{STOCK} where PCODE = #{PCODE}
+	</update>
+</mapper>

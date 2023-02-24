@@ -44,4 +44,9 @@ public class PillServiceImpl implements PillService{
 		mapper.editPill(pdto);
 	}
 	
+	@Override
+	public void NameSetProduct(String PILLCODE) {
+		mapper.NameSetProduct(PILLCODE);
+	}
+	
 }

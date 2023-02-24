@@ -9,6 +9,7 @@
 <body>
 
 <a href="/pill/getListPill"> 약품조회 </a> <br>
+<a href="/product/getListProduct"> 제품조회 </a> <br>
 <a href="/employee/getListEmployee"> 직원조회 </a> <br>
 <a href="/customer/getListCustomer"> 거래처조회 </a> <br>
 

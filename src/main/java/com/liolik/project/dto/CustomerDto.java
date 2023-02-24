@@ -18,5 +18,4 @@ public class CustomerDto {
 	private String TEL;
 	private String MEMO;
 	private int BALANCE;
-
 }
