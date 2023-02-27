@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.liolik.project.dto.PillDto;
 import com.liolik.project.dto.ProductDto;
 import com.liolik.project.service.ProductService;
 
@@ -27,6 +28,8 @@ public class ProductController {
 	public void getListProduct(@RequestParam(value = "ProductCodeEdit", required = false) String productCodeEdit, Model model) {	
 		model.addAttribute("list", service.getListProduct());
 		model.addAttribute("productCodeEdit", productCodeEdit);
+		if(productCodeEdit!=null) {
+			model.addAttribute("pillPrice", service.getPillPrice(productCodeEdit));}
 	}	
 	
 	@GetMapping({"/readProduct","/editProduct"})
@@ -44,6 +47,18 @@ public class ProductController {
 	@PostMapping("/editProduct")
 	public String editProduct(ProductDto pdto) {
 		service.editProduct(pdto);
+		return "redirect:/product/getListProduct";
+	}
+	
+	@GetMapping("/getProductName")
+	public void getProductName(@RequestParam(value = "productName", required = false) String productName, @RequestParam(value = "blEdit", required = false) String blEdit, Model model) {
+		model.addAttribute("list", service.getProductName(productName));
+		model.addAttribute("blEdit", blEdit);
+	}
+	
+	@PostMapping("/writeProduct")
+	public String writeProduct(ProductDto pdto) {
+		service.writeProduct(pdto);
 		return "redirect:/product/getListProduct";
 	}
 }

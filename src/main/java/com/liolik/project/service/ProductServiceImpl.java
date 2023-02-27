@@ -43,4 +43,20 @@ public class ProductServiceImpl implements ProductService {
 	public void editProduct(ProductDto pdto) {
 		mapper.editProduct(pdto);
 	}
+	
+	@Override
+	public List<PillDto> getProductName(String productName){
+		return mapper.getProductName(productName);
+	}
+	
+	@Override
+	public void writeProduct(ProductDto pdto) {
+		mapper.writeProduct(pdto);
+	}
+	
+	@Override
+	public String getPillPrice(String productCode) {
+		return mapper.getPillPrice(productCode);
+	}
+	
 }

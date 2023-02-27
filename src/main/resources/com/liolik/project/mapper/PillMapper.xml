@@ -9,16 +9,22 @@
 	<select id="readPill" resultType="com.liolik.project.dto.PillDto">
 		select * from PILL where PILLCODE = #{PILLCODE}
 	</select>
+	<select id="getListProduct" resultType="com.liolik.project.dto.ProductDto">
+		SELECT * from PRODUCT where PILLCODE = #{PILLCODE}
+	</select>
 	<insert id="writePill">
-		insert into PILL (PILLNAME, COMPANY, PRICE) value (#{PILLNAME}, #{COMPANY}, #{PRICE})
+		insert into PILL (PILLNAME, CAPACITY, COMPANY, PRICE) value (#{PILLNAME}, #{CAPACITY}, #{COMPANY}, #{PRICE})
 	</insert>
 	<delete id="deletePill">
 		delete from PILL where PILLCODE = #{PILLCODE}
 	</delete>
 	<update id="editPill">
-		update PILL set PILLNAME=#{PILLNAME}, COMPANY=#{COMPANY}, PRICE=#{PRICE} where PILLCODE = #{PILLCODE}
+		update PILL set PILLNAME=#{PILLNAME}, CAPACITY=#{CAPACITY}, COMPANY=#{COMPANY}, PRICE=#{PRICE} where PILLCODE = #{PILLCODE}
 	</update>
 	<update id="NameSetProduct">
 		update PRODUCT inner join PILL on PRODUCT.PILLCODE = PILL.PILLCODE set PNAME=(select PILLNAME from PILL where PILLCODE = #{PILLCODE})
 	</update>
+	<delete id="deleteSetProduct">
+		delete from PRODUCT where PILLCODE = #{PILLCODE}
+	</delete>
 </mapper>

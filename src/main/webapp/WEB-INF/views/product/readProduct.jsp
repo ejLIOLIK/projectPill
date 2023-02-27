@@ -10,7 +10,7 @@
 <body>
 
 CODE: ${read.PCODE}<br>
-NAME: ${read.PNAME} ${read.CAPACITY} ${read.AMOUNT}<br>
+NAME: ${read.PNAME} ${read.CAPACITY} ${read.AMOUNT} (${read.UNIT})<br>
 PILLNAME: ${read.PNAME}<br>
 PRICE: ${read.PRICE}<br>
 STOCK: ${read.STOCK}<br><br>
@@ -23,6 +23,7 @@ STOCK: ${read.STOCK}<br><br>
 	${productList.PNAME}
 	${productList.CAPACITY}	
 	${productList.AMOUNT}	
+	${productList.UNIT}	
 	${productList.PRICE}	
 	${productList.STOCK}
 	<br>

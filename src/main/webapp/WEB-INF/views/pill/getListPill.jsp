@@ -20,6 +20,7 @@ CODE / NAME / COMPANY / PRICE <br>
 				${pillList.PILLCODE}
 				<input type="hidden" name="PILLCODE" value="${pillList.PILLCODE}">
 				<input type="text" name="PILLNAME" value="${pillList.PILLNAME}">
+				<input type="text" name="CAPACITY" value="${pillList.CAPACITY}">
 				<input type="text" name="COMPANY" value="${pillList.COMPANY}">
 				<input type="number" name="PRICE" value="${pillList.PRICE}">
 				<input type="submit" value="수정">
@@ -29,6 +30,7 @@ CODE / NAME / COMPANY / PRICE <br>
 			<c:otherwise> 
 				${pillList.PILLCODE}
 				<a href="/pill/readPill?pillCode=${pillList.PILLCODE}">${pillList.PILLNAME}</a>
+				${pillList.CAPACITY}	
 				${pillList.COMPANY}	
 				${pillList.PRICE}	
 				<button type="button" onclick="location.href='/pill/getListPill?pillCodeEdit=${pillList.PILLCODE}'"> 수정 </button>
@@ -42,6 +44,7 @@ CODE / NAME / COMPANY / PRICE <br>
 		NAME / COMPANY / PRICE
 		<form action="/pill/writePill" method="post">
 		<input type="text" name="PILLNAME">
+		<input type="text" name="CAPACITY">
 		<input type="text" name="COMPANY">
 		<input type="number" name="PRICE">
 		<input type="submit" value="등록">

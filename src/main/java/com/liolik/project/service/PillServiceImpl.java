@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.liolik.project.dto.PillDto;
+import com.liolik.project.dto.ProductDto;
 import com.liolik.project.mapper.PillMapper;
 
 import lombok.Setter;
@@ -30,6 +31,11 @@ public class PillServiceImpl implements PillService{
 	}
 	
 	@Override
+	public List<ProductDto> getListProduct(String pillCode){
+		return mapper.getListProduct(pillCode);
+	}
+	
+	@Override
 	public void writePill(PillDto pdto) {
 		mapper.writePill(pdto);
 	}
@@ -37,6 +43,11 @@ public class PillServiceImpl implements PillService{
 	@Override
 	public void deletePill(String pillCode) {
 		mapper.deletePill(pillCode);
+	}
+	
+	@Override
+	public void deleteSetProduct(String pillCode) {
+		mapper.deleteSetProduct(pillCode);
 	}
 	
 	@Override

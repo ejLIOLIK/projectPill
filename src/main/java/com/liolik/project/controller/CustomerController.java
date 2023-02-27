@@ -70,4 +70,5 @@ public class CustomerController {
 		service.setListCustomer(ApiExplorer.getAPIData());
 		return "redirect:/customer/getListCustomer";
 	}
+	
 }

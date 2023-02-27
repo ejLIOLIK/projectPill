@@ -12,13 +12,19 @@
 	<select id="getListSamePill" resultType="com.liolik.project.dto.ProductDto">
 		select * from PRODUCT  inner join PILL on PRODUCT.PILLCODE = PILL.PILLCODE where PRODUCT.PILLCODE = (select PILLCODE from PRODUCT where PCODE = #{PCODE})
 	</select>
-<!-- 	<insert id="writePill"> -->
-<!-- 		insert into PILL (PILLNAME, COMPANY, PRICE) value (#{PILLNAME}, #{COMPANY}, #{PRICE}) -->
-<!-- 	</insert> -->
+	<select id="getProductName" resultType="com.liolik.project.dto.PillDto">
+		SELECT * from PILL where PILLNAME like CONCAT('%',#{PILLNAME},'%')
+	</select>
+	<select id="getPillPrice" resultType="string">
+		select PILL.PRICE from PILL inner join PRODUCT on PILL.PILLCODE = PRODUCT.PILLCODE where PRODUCT.PILLCODE = (select PILLCODE from PRODUCT where PCODE = #{PCODE}) limit 0,1	
+	</select>
+	<insert id="writeProduct">
+		insert into PRODUCT (PILLCODE, PNAME, CAPACITY, AMOUNT, UNIT, PRICE, STOCK) value (#{PILLCODE}, #{PNAME}, #{CAPACITY}, #{AMOUNT}, #{UNIT}, #{PRICE}, #{STOCK})
+	</insert>
 	<delete id="deleteProduct">
 		delete from PRODUCT where PCODE = #{PCODE}
 	</delete>
 	<update id="editProduct">
-		update PRODUCT set CAPACITY=#{CAPACITY}, AMOUNT=#{AMOUNT}, STOCK=#{STOCK} where PCODE = #{PCODE}
+		update PRODUCT set PILLCODE=#{PILLCODE}, PNAME=#{PNAME}, CAPACITY=#{CAPACITY}, AMOUNT=#{AMOUNT}, UNIT=#{UNIT}, PRICE=#{PRICE}, STOCK=#{STOCK} where PCODE = #{PCODE}
 	</update>
 </mapper>

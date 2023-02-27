@@ -30,11 +30,13 @@ public class PillController {
 	@GetMapping({"/readPill", "/editPill"})
 	public void readPill(@RequestParam("pillCode") String pillCode, Model model) {
 		model.addAttribute("read", service.readPill(pillCode));
+		model.addAttribute("list", service.getListProduct(pillCode));
 	}
 	
 	@GetMapping("/deletePill")
 	public String deletePill(@RequestParam("pillCode") String pillCode) {
 		service.deletePill(pillCode);
+		service.deleteSetProduct(pillCode);
 		return "redirect:/pill/getListPill";
 	}
 	

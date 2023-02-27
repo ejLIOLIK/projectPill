@@ -11,7 +11,7 @@
 STATE: ${read.STATE} <br> 
 NAME: ${read.CNAME} <br> 
 EMPLOYEE: ${read.EMPLOYEE_NAME} <br> 
-STATE: (${read.ADRESS_NUMBER}) 
+ADRESS: (${read.ADRESS_NUMBER}) 
  ${read.ADRESS_DORO} ${read.ADRESS_DETAIL} <br> 
  ${read.ADRESS_JIBEON} <br> 
  ${read.ADRESS_MEMO} <br> 

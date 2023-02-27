@@ -8,7 +8,8 @@ public class ProductDto {
 	private String PCODE;
 	private String PNAME;
 	private String CAPACITY;
-	private String AMOUNT;
+	private int AMOUNT;
+	private String UNIT;
 	private int PRICE;
     private int STOCK;
 }
