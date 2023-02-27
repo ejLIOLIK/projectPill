@@ -36,7 +36,6 @@ public class PillController {
 	@GetMapping("/deletePill")
 	public String deletePill(@RequestParam("pillCode") String pillCode) {
 		service.deletePill(pillCode);
-		service.deleteSetProduct(pillCode);
 		return "redirect:/pill/getListPill";
 	}
 	
@@ -49,7 +48,6 @@ public class PillController {
 	@PostMapping("/editPill")
 	public String editPill(PillDto pdto){
 		service.editPill(pdto);
-		service.NameSetProduct(pdto.getPILLCODE());
 		return "redirect:/pill/getListPill";
 	}
 	

@@ -43,21 +43,13 @@ public class PillServiceImpl implements PillService{
 	@Override
 	public void deletePill(String pillCode) {
 		mapper.deletePill(pillCode);
+		mapper.deleteSetProduct(pillCode); // 관련된 PRODUCT도 삭제
 	}
-	
-	@Override
-	public void deleteSetProduct(String pillCode) {
-		mapper.deleteSetProduct(pillCode);
-	}
-	
+
 	@Override
 	public void editPill(PillDto pdto) {
 		mapper.editPill(pdto);
-	}
-	
-	@Override
-	public void NameSetProduct(String PILLCODE) {
-		mapper.NameSetProduct(PILLCODE);
-	}
-	
+		mapper.EditSetProduct(pdto.getPILLCODE()); // 이름, 용량 등 PILL과 PRODUCT 정보 맞춰서 수정
+		mapper.EditSetProductPrice(pdto.getPILLCODE()); // 약가 당 제품 단가 계산해서 수정
+	}	
 }

@@ -21,8 +21,11 @@
 	<update id="editPill">
 		update PILL set PILLNAME=#{PILLNAME}, CAPACITY=#{CAPACITY}, COMPANY=#{COMPANY}, PRICE=#{PRICE} where PILLCODE = #{PILLCODE}
 	</update>
-	<update id="NameSetProduct">
-		update PRODUCT inner join PILL on PRODUCT.PILLCODE = PILL.PILLCODE set PNAME=(select PILLNAME from PILL where PILLCODE = #{PILLCODE})
+	<update id="EditSetProduct">
+		update PRODUCT inner join PILL on PRODUCT.PILLCODE = PILL.PILLCODE set PNAME=(select PILLNAME from PILL where PILL.PILLCODE = #{PILLCODE}), PRODUCT.CAPACITY=(select PILL.CAPACITY from PILL where PILL.PILLCODE = #{PILLCODE}) where PRODUCT.PILLCODE = #{PILLCODE}
+	</update>
+	<update id="EditSetProductPrice">
+		update PRODUCT inner join PILL on PRODUCT.PILLCODE = PILL.PILLCODE set PRODUCT.PRICE = ((select PILL.PRICE from PILL where PILL.PILLCODE = #{PILLCODE}))*PRODUCT.AMOUNT where PRODUCT.PILLCODE = #{PILLCODE}
 	</update>
 	<delete id="deleteSetProduct">
 		delete from PRODUCT where PILLCODE = #{PILLCODE}

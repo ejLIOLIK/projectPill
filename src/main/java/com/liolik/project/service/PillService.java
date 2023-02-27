@@ -11,7 +11,5 @@ public interface PillService {
 	public List<ProductDto> getListProduct(String pillCode);
 	public void writePill(PillDto pdto);
 	public void deletePill(String pillCode);
-	public void deleteSetProduct(String pillCode);
 	public void editPill(PillDto pdto);
-	public void NameSetProduct(String PILLCODE);
 }

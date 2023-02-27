@@ -13,6 +13,7 @@ public interface PillMapper {
 	public void deletePill(String PILLCODE);
 	public void deleteSetProduct(String PILLCODE);
 	public void editPill(PillDto pdto);
-	public void NameSetProduct(String PILLCODE);
+	public void EditSetProduct(String PILLCODE);
+	public void EditSetProductPrice(String PILLCODE);
 }
 
