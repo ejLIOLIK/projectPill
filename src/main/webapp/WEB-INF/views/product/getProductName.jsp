@@ -23,29 +23,33 @@ ${pillList.PILLCODE} ${pillList.PILLNAME} ${pillList.CAPACITY} ${pillList.COMPAN
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
+	
 	function setProductData(PILLCODE, PNAME, CAPACITY, PRICE) {
 		
+		<%--차후 가독성을 위해 제이쿼리로 수정--%>
 		if("${blEdit}"!="" && "${blEdit}"=="true"){
 			opener.document.getElementById("PILLCODE_EDIT").value = PILLCODE;
 			opener.document.getElementById("PNAME_EDIT").value = PNAME;
 			opener.document.getElementById("PILL_PRICE_EDIT").value = PRICE;
 			opener.document.getElementById("CAPACITY_EDIT").value = CAPACITY;
-			opener.document.getElementById("AMOUNT_EDIT").focus();
+			opener.document.getElementById("PRODUCT_PRICE_EDIT").value = PRICE * opener.document.getElementById("AMOUNT_EDIT").value;
+			$(opener.document).find("#AMOUNT_EDIT").focus();
 		}
 		else{	
 			opener.document.getElementById("PILLCODE").value = PILLCODE;
 			opener.document.getElementById("PNAME").value = PNAME;
 			opener.document.getElementById("PILL_PRICE").value = PRICE;
 			opener.document.getElementById("CAPACITY").value = CAPACITY;
-			opener.document.getElementById("AMOUNT").focus();
+			opener.document.getElementById("PRODUCT_PRICE").value = PRICE * opener.document.getElementById("AMOUNT").value;
+			$(opener.document).find("#AMOUNT").focus();
 		}
 		window.close();
 	};
 	
 	<%-- 포커싱이 유지되는 경우 팝업창 브라우저를 닫았을 경우 계속해서 팝업이 발생함. 이에 대한 처리. --%>
 	$(window).on("beforeunload", function() { 
-		opener.document.getElementById("PILLCODE").focus(); 
-	}) 
+		$(opener.document).find("#PILLCODE").focus(); 
+	});
 	
 	
 	</script>

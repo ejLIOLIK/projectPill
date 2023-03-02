@@ -12,8 +12,8 @@
 <a href="/product/getListProduct"> 제품조회 </a> <br>
 <a href="/employee/getListEmployee"> 직원조회 </a> <br>
 <a href="/customer/getListCustomer"> 거래처조회 </a> <br>
-
-
+<a href="/register/login"> 로그인(X) </a> <br>
+<a href="/register/sign"> 회원가입 </a> <br>
 
 
 </body>

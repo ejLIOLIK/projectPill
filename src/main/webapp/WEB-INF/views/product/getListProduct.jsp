@@ -66,11 +66,13 @@ PILLCODE / NAME / CAPACITY / AMOUNT / UNIT / PRICE / STOCK
 	$(document).ready(function() {
 		$("input[id='PNAME']").on("focusin", function() {
 			window.open("/product/getProductName","getProductName","width=400,height=500");
+			openWin.document.getElementById("AMOUNT").value = document.getElementById("AMOUNT").value;
 	 	});
 	
 		$("input[id='PNAME_EDIT']").on("focusin", function() {
 			var productName = document.getElementById("PNAME_EDIT").value;
 			window.open("/product/getProductName?blEdit=true&productName="+productName,"getProductName","width=400,height=500");
+			openWin.document.getElementById("AMOUNT").value = document.getElementById("AMOUNT_EDIT").value;
 	 	});
 		
 		$("input[id='AMOUNT'], input[id='PILL_PRICE']").on("change", function() {

@@ -1,7 +1,5 @@
 package com.liolik.project.controller;
 
-import java.lang.ProcessBuilder.Redirect;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.liolik.project.dto.PillDto;
 import com.liolik.project.dto.ProductDto;
 import com.liolik.project.service.ProductService;
 

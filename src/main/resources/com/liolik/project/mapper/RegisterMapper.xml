@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liolik.project.mapper.RegisterMapper">
+	<select id="getEmployeeCode" resultType="com.liolik.project.dto.EmployeeDto">
+		select * from EMPLOYEE
+<!-- 		select * from EMPLOYEE where PW is null -->
+	</select>
+	<select id="getEmploySearch" resultType="com.liolik.project.dto.EmployeeDto">
+		select * from EMPLOYEE where PW is null AND ENAME like CONCAT('%',#{ENAME},'%')
+	</select>
+	<update id="sign">
+		update EMPLOYEE set PW=#{PW} where ECODE=#{ECODE}
+	</update>
+</mapper>
