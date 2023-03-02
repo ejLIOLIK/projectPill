@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.liolik.project.dto.CustomerDto;
 import com.liolik.project.dto.EmployeeDto;
 import com.liolik.project.mapper.EmployeeMapper;
 
@@ -41,5 +42,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public void editEmployee(EmployeeDto edto) {
 		mapper.editEmployee(edto);
+	}
+	
+	@Override
+	public List<CustomerDto> salesEmployee(String employeeCode) {
+		return mapper.salesEmployee(employeeCode);
 	}
 }

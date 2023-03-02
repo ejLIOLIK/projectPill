@@ -5,6 +5,7 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.SecureRandom;
 import java.security.spec.RSAPublicKeySpec;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,9 +21,10 @@ public class pwEncryptModule {
     public final String PUBLIC_KEY_EXPONENT = "publicKeyExponent" ;
 
 	public KeyPair setKeyPair() throws Exception { // 2048비트 키 쌍 생성
+		SecureRandom secureRandom = new SecureRandom();
 		KeyPair keyPair = null;
 		KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
-		generator.initialize(2048); // RSA 크키. 권장 2048 이상.
+		generator.initialize(2048, secureRandom); // RSA 크키. 권장 2048 이상.
 		keyPair = generator.generateKeyPair();
 		return keyPair;
 	}

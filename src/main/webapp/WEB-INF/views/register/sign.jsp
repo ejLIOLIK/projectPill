@@ -57,15 +57,21 @@ $(document).ready(function() {
 			$.ajax({
 				url:'/register/sign',
 				type:'post',
-				dataType:'json',
+// 				dataType:'json',
 				data:{
 					ECODE : $("#ECODE").val(),
 					<%-- 암호화한 패스워드 넘김 --%>
-					PW : encryptRSA($('#EPW').val()), 
-					success: function(data){
-						<%-- ajax 비동기방식이므로 성공시 경로 지정 필요함 --%>
-						location.replace("/register/login");
-					}
+					PW : encryptRSA($('#EPW').val())},
+				success: function(data){
+					<%-- ajax 비동기방식이므로 성공시 경로 지정 필요함 --%>
+					alert("sign.");
+					location.replace("/register/login");
+				},
+				error : function( jqXHR, textStatus, errorThrown ) {
+					alert( jqXHR.status ); // 200
+					alert( jqXHR.statusText ); // parsererror
+					alert( jqXHR.responseText );
+					alert( jqXHR.readyState ); // 4
 				}
 			});
 		}

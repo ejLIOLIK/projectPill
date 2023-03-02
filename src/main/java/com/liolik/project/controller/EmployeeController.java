@@ -1,5 +1,7 @@
 package com.liolik.project.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.liolik.project.dto.CustomerDto;
 import com.liolik.project.dto.EmployeeDto;
 import com.liolik.project.service.EmployeeService;
 
@@ -29,6 +32,9 @@ public class EmployeeController {
 	@GetMapping({"/readEmployee", "/editEmployee"})
 	public void readEmployee(@RequestParam("employeeCode") String employeeCode, Model model) {	
 		model.addAttribute("read", service.readEmployee(employeeCode));
+		if(service.readEmployee(employeeCode).getETEAM().equals("영업팀")) {
+			model.addAttribute("list", service.salesEmployee(employeeCode)); 
+		}
 	}
 
 	@GetMapping("/deleteEmployee")

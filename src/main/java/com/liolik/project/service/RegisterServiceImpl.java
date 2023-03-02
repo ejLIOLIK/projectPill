@@ -34,4 +34,17 @@ public class RegisterServiceImpl implements RegisterService {
 		edto.setPW(registerData.get("PW"));
 		mapper.sign(edto);
 	}
+	
+	@Override
+	public EmployeeDto login(Map<String, String> loginData) {
+		EmployeeDto edto = new EmployeeDto(); 
+		edto = mapper.login(loginData.get("ECODE"));
+		if(edto.getPW().equals(loginData.get("PW"))) {
+			edto.setPW(null);
+			return edto;
+		}
+		else {
+			return null;
+		}
+	}
 }

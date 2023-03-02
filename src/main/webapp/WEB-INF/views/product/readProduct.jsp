@@ -31,7 +31,6 @@ STOCK: ${read.STOCK}<br><br>
 </c:forEach>
 <br>
 
-<a href="#"> 수정 </a><br>
 <a href="/product/deleteProduct?productCode=${read.PCODE}"> 삭제 </a><br>
 <a href="/product/getListProduct"> 조회 </a>
 

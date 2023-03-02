@@ -2,6 +2,7 @@ package com.liolik.project.mapper;
 
 import java.util.List;
 
+import com.liolik.project.dto.CustomerDto;
 import com.liolik.project.dto.EmployeeDto;
 
 public interface EmployeeMapper {
@@ -10,4 +11,5 @@ public interface EmployeeMapper {
 	public void writeEmployee(EmployeeDto edto);
 	public void deleteEmployee(String ECODE);
 	public void editEmployee(EmployeeDto edto);
+	public List<CustomerDto> salesEmployee(String ECODE);
 }
