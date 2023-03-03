@@ -12,4 +12,5 @@ public interface EmployeeMapper {
 	public void deleteEmployee(String ECODE);
 	public void editEmployee(EmployeeDto edto);
 	public List<CustomerDto> salesEmployee(String ECODE);
+	public int getListCount();
 }

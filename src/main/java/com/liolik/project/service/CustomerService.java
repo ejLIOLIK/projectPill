@@ -13,4 +13,5 @@ public interface CustomerService {
 	public void deleteCustomer(String customerCode);
 	public void editCustomer(CustomerDto cdto);	
 	public void setListCustomer(List<CustomerDto> cdto);
+	public int getListCount();
 }

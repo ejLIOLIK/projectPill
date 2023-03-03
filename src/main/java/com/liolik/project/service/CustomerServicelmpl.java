@@ -55,5 +55,10 @@ public class CustomerServicelmpl implements CustomerService {
 			mapper.setListCustomer(c);
 		}
 	}
+	
+	@Override
+	public int getListCount() {
+		return mapper.getListCount();
+	}
 
 }

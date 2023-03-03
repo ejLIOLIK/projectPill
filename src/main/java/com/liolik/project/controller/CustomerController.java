@@ -1,8 +1,5 @@
 package com.liolik.project.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.liolik.project.ApiExplorer;
 import com.liolik.project.dto.CustomerDto;
+import com.liolik.project.dto.PagingDto;
+import com.liolik.project.module.pagingModule;
 import com.liolik.project.service.CustomerService;
 
 import lombok.AllArgsConstructor;
@@ -26,9 +25,23 @@ public class CustomerController {
 	private CustomerService service;
 	
 	@GetMapping("/getListCustomer")
-	public void getListCustomer(Model model) {	
+	public void getListCustomer(Model model,
+			@RequestParam(value = "curPage", required = false)Integer curPage,
+			@RequestParam(value = "curPageBlock", required = false)Integer curPageBlock) {	
+		
+		if(curPage==null) { curPage = 1;}
+		if(curPageBlock==null) { curPageBlock = 1;}
+		
+		/* 총데이터수, 현재페이지, 현재페이지블럭 */
+		PagingDto pdto = new PagingDto(service.getListCount(), curPage, curPageBlock);
+		
+		/* 페이지수, 페이지블럭수 */
+		pdto.setTotalPage(pagingModule.setTotalPage(pdto.getTotalData()));
+		pdto.setTotalPageBlock(pagingModule.setTotalPageBlock(pdto.getTotalPage()));
+		
 		model.addAttribute("list", service.getListCustomer());
 		model.addAttribute("employee", service.getListEmployee());
+		model.addAttribute("page", pagingModule.setPaging(pdto));
 	}
 	
 	@GetMapping("/writeCustomer")

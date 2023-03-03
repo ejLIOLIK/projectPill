@@ -13,4 +13,5 @@ public interface CustomerMapper {
 	public CustomerDto readCustomer(String CCODE);
 	public void deleteCustomer(String CCODE);
 	public void setListCustomer(CustomerDto cdto);
+	public int getListCount();
 }

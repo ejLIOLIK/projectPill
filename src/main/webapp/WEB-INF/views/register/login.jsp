@@ -52,12 +52,15 @@ $(document).ready(function() {
 			$.ajax({
 				url:'/register/login',
 				type:'post',
+				dataType : 'json',
 				data:{
 					ECODE : $("#ECODE").val(),
 					<%-- 암호화한 패스워드 넘김 --%>
 					PW : encryptRSA($('#EPW').val())},
 				success: function(data){
-					alert("Login");
+					var message = data.message;
+					alert(message);
+					
 					location.replace("/register/loginGate");
 				},
 				error : function( jqXHR, textStatus, errorThrown ) {

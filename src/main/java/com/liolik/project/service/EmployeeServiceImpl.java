@@ -48,4 +48,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<CustomerDto> salesEmployee(String employeeCode) {
 		return mapper.salesEmployee(employeeCode);
 	}
+	
+	@Override
+	public int getListCount() {
+		return mapper.getListCount();
+	}
 }

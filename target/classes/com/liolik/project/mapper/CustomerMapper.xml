@@ -4,13 +4,16 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.liolik.project.mapper.CustomerMapper">
 	<select id="getListCustomer" resultType="com.liolik.project.dto.CustomerDto">
-		SELECT * from CUSTOMER limit 0, 20
+		SELECT * from CUSTOMER
 	</select>
 	<select id="getListEmployee" resultType="com.liolik.project.dto.EmployeeDto">
 		SELECT * from EMPLOYEE where ETEAM = "영업팀"
 	</select>
 	<select id="readCustomer" resultType="com.liolik.project.dto.CustomerDto">
 		SELECT * from CUSTOMER where CCODE = #{CCODE}
+	</select>
+	<select id="getListCount" resultType="int">
+		SELECT count(*) from CUSTOMER 
 	</select>
 	<insert id="writeCustomer"> 
 		insert into CUSTOMER (STATE, CNAME, EMPLOYEE_CODE, EMPLOYEE_NAME, EMPLOYEE_RANK, ADRESS_NUMBER, ADRESS_DORO, ADRESS_JIBEON, ADRESS_DETAIL, ADRESS_MEMO, TEL, MEMO, BALANCE) values (#{STATE},#{CNAME},#{EMPLOYEE_CODE},#{EMPLOYEE_NAME},#{EMPLOYEE_RANK},#{ADRESS_NUMBER},#{ADRESS_DORO},#{ADRESS_JIBEON},#{ADRESS_DETAIL},#{ADRESS_MEMO},#{TEL},#{MEMO},#{BALANCE})

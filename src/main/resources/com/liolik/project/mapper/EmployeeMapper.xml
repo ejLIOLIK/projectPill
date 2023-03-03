@@ -12,6 +12,9 @@
 	<select id="salesEmployee" resultType="com.liolik.project.dto.CustomerDto">
 		SELECT * from CUSTOMER where EMPLOYEE_CODE = (select ECODE from EMPLOYEE where ECODE = #{ECODE})
 	</select>
+	<select id="getListCount" resultType="int">
+		SELECT count(*) from EMPLOYEE
+	</select>
 	<insert id="writeEmployee">
 		insert into EMPLOYEE (ENAME, ERANK, ETEAM) value (#{ENAME}, #{ERANK}, #{ETEAM})
 	</insert>

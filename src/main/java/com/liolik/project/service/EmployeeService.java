@@ -12,4 +12,5 @@ public interface EmployeeService {
 	public void deleteEmployee(String employeeCode);
 	public void editEmployee(EmployeeDto edto);
 	public List<CustomerDto> salesEmployee(String employeeCode);
+	public int getListCount();
 }

@@ -1,8 +1,8 @@
 package com.liolik.project.controller;
 
-import java.io.Console;
 import java.security.KeyPair;
 import java.security.PrivateKey;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.liolik.project.dto.EmployeeDto;
 import com.liolik.project.module.pwEncryptModule;
@@ -52,20 +53,18 @@ public class RegisterController {
 	}
 	
 	@PostMapping("/sign")
-	public void sign(@RequestParam Map<String, String> registerData, HttpSession session) throws Exception {
+	@ResponseBody // Ajax 사용을 위한 어노테이션
+	public Map<String, Object> sign(@RequestParam Map<String, String> registerData, HttpSession session) throws Exception {
 		
+		Map<String, Object> result = new HashMap<>();
 		pwEncryptModule pwEmcrypt = new pwEncryptModule(); // RSA 객체 생성
-		
-		if(session.getAttribute(pwEmcrypt.PRIVATE_KEY)==null) {
-			System.out.println(" POST null. session.getAttribute(pwEmcrypt.PRIVATE_KEY) == null");
-		}
-		else {
-			System.out.println(" POST not null. ");
-		}
 		
 		String inputPW = pwEmcrypt.pwDecrypt(registerData.get("PW"), (PrivateKey)session.getAttribute(pwEmcrypt.PRIVATE_KEY));
 		registerData.put("PW", inputPW); // PW 값을 변경
 		service.sign(registerData);
+		
+		result.put("message", "Register success");
+		return result;
 	}
 	
 	@GetMapping("/getEmployeeCode")
@@ -74,21 +73,28 @@ public class RegisterController {
 	}
 	
 	@PostMapping("/login")
-	public void login(@RequestParam Map<String, String> loginData, HttpSession session) throws Exception {
-		System.out.println("location : /login");
+	@ResponseBody // Ajax 사용을 위한 어노테이션
+	public Map<String, Object> login(@RequestParam Map<String, String> loginData, HttpSession session) throws Exception {
+
+		Map<String, Object> result = new HashMap<>();
 		
 		pwEncryptModule pwEmcrypt = new pwEncryptModule(); // RSA 객체 생성
-		String inputPW = pwEmcrypt.pwDecrypt(loginData.get("PW"), 
-				(PrivateKey)session.getAttribute(pwEmcrypt.PRIVATE_KEY));
+		String inputPW = pwEmcrypt.pwDecrypt(loginData.get("PW"), (PrivateKey)session.getAttribute(pwEmcrypt.PRIVATE_KEY));
 		loginData.put("PW", inputPW); // PW 값을 변경
 		
 		EmployeeDto edto = new EmployeeDto();
 		edto = service.login(loginData);
 		if(edto!=null) {
-			System.out.println("location : get session, edto");
 			session.setAttribute("ID", edto.getECODE());
 			session.setAttribute("TEAM", edto.getETEAM());
+			
+			result.put("message", "Login success");
 		}
+		else {
+			result.put("message", "Login fail");
+		}
+		
+		return result;
 	}
 	
 	@GetMapping("/loginGate")

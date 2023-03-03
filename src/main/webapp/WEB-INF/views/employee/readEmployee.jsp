@@ -17,6 +17,7 @@ TEAM: ${read.ETEAM} <br>
 
 <c:if test="${read.ETEAM eq '영업팀'}">
 <br>
+
 <c:forEach var="customerList" items="${list}">
 ${customerList.STATE}
 ${customerList.CCODE}
@@ -28,6 +29,7 @@ ${customerList.BALANCE}
 ${customerList.MEMO} <br>
 </c:forEach>
 </c:if>
+
 
 <a href="/employee/editEmployee?employeeCode=${read.ECODE}"> 수정 </a><br>
 <a href="/employee/deleteEmployee?employeeCode=${read.ECODE}"> 삭제 </a><br>
