@@ -22,9 +22,12 @@ public class PillController {
 	private PillService service;
 	
 	@GetMapping("/getListPill")
-	public void getListPill(@RequestParam(value = "pillCodeEdit", required = false) String pillCodeEdit, Model model) {	
+	public void getListPill(@RequestParam(value = "pillCodeEdit", required = false) String pillCodeEdit, Model model,
+			@RequestParam(value = "curPage", required = false)Integer curPage,
+			@RequestParam(value = "curPageBlock", required = false)Integer curPageBlock) {	
 		model.addAttribute("list", service.getListPill());
 		model.addAttribute("pillCodeEdit", pillCodeEdit);
+		model.addAttribute("page", service.settingPage(curPage, curPageBlock));
 	}	
 	
 	@GetMapping({"/readPill", "/editPill"})

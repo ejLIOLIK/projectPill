@@ -11,9 +11,15 @@
 </head>
 <body>
 
+<%-- 페이지 정보 날리기 --%>
+<form id="pageInfo" method="get" action="/product/getListProduct">
+  <input type="hidden" name="curPage" value="${page.curPage}" id="curPage">
+  <input type="hidden" name="curPageBlock" value="${page.curPageBlock}" id="curPageBlock">
+</form>
+
 CODE / NAME / CAPACITY / AMOUNT / UNIT / PRICE / STOCK <br>
 
-	<c:forEach var="productList" items="${list}"> 
+	<c:forEach var="productList" items="${list}" begin="${page.begin}" end="${page.end}"> 
 		<c:choose> 
 			<c:when test = "${productCodeEdit eq productList.PCODE}"> <%-- 수정 시 리스트와 같은 화면에서 수정 되도록 --%>
 				<!-- 		수정 -->
@@ -47,6 +53,32 @@ CODE / NAME / CAPACITY / AMOUNT / UNIT / PRICE / STOCK <br>
 		</c:choose>
 	</c:forEach>
 		<br>
+		
+		<%-- 페이징 --%>
+	<c:choose>
+		<c:when test="${page.blBeforeBlock}">
+			<button type="button" id="buttonbefore">이전</button>
+		</c:when>
+		<c:otherwise> <button type="button" disabled>이전</button>	</c:otherwise>
+	</c:choose>
+	<c:forEach var="pagenum" begin="${page.beginBlock}" end="${page.endBlock}">
+		<c:choose>
+	    	<c:when test="${pagenum eq page.curPage}">
+	   		${pagenum}
+	    	</c:when>
+	    	<c:otherwise>
+			 <a href="/product/getListProduct?curPage=${pagenum}&curPageBlock=${page.curPageBlock}"> ${pagenum} </a>
+	  		</c:otherwise>
+		</c:choose>
+	</c:forEach>
+	<c:choose>
+		<c:when test="${page.blAfterBlock}">
+			<button type="button" id="buttonAfter">다음</button>
+		</c:when>
+		<c:otherwise> <button type="button" disabled>다음</button>	</c:otherwise>
+	</c:choose>
+	<br>
+		
 <!-- 		입력 -->
 PILLCODE / NAME / CAPACITY / AMOUNT / UNIT / PRICE / STOCK 
 		<form action="/product/writeProduct" method="post">
@@ -82,6 +114,20 @@ PILLCODE / NAME / CAPACITY / AMOUNT / UNIT / PRICE / STOCK
 		$("input[id='AMOUNT_EDIT'], input[id='PILL_PRICE_EDIT']").on("change", function() {
 			document.getElementById("PRODUCT_PRICE_EDIT").value = document.getElementById("PILL_PRICE_EDIT").value * document.getElementById("AMOUNT_EDIT").value;	
 	  	});
+		
+		<%-- 페이징블락 버튼 함수 --%>
+		$("#buttonbefore").on("click",function(){
+			var curPageBlock = parseInt($('#curPageBlock').val()) - 1;
+	        $('#curPageBlock').val(curPageBlock);
+		    $('#pageInfo').submit();
+			console.log("function : buttonbefore");
+		});
+		$("#buttonAfter").on("click",function(){
+			var curPageBlock = parseInt($('#curPageBlock').val()) + 1;
+	        $('#curPageBlock').val(curPageBlock);
+		    $('#pageInfo').submit();
+			console.log("function : buttonAfter");
+		});
 	});
 	
 	</script>

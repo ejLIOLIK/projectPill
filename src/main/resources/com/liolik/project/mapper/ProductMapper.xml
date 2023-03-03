@@ -18,6 +18,12 @@
 	<select id="getPillPrice" resultType="string">
 		select PILL.PRICE from PILL inner join PRODUCT on PILL.PILLCODE = PRODUCT.PILLCODE where PRODUCT.PILLCODE = (select PILLCODE from PRODUCT where PCODE = #{PCODE}) limit 0,1	
 	</select>
+	<select id="getListCount" resultType="int">
+		SELECT count(*) from PRODUCT
+	</select>
+	<select id="getPillListCount" resultType="int">
+		SELECT count(*) from PILL where PILLNAME like CONCAT('%',#{PILLNAME},'%')
+	</select>
 	<insert id="writeProduct">
 		insert into PRODUCT (PILLCODE, PNAME, CAPACITY, AMOUNT, UNIT, PRICE, STOCK) value (#{PILLCODE}, #{PNAME}, #{CAPACITY}, #{AMOUNT}, #{UNIT}, #{PRICE}, #{STOCK})
 	</insert>

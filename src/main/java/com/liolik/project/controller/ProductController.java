@@ -22,9 +22,14 @@ public class ProductController {
 	private ProductService service;
 	
 	@GetMapping("/getListProduct")
-	public void getListProduct(@RequestParam(value = "ProductCodeEdit", required = false) String productCodeEdit, Model model) {	
+	public void getListProduct(@RequestParam(value = "ProductCodeEdit", required = false) String productCodeEdit, Model model,
+			@RequestParam(value = "curPage", required = false)Integer curPage,
+			@RequestParam(value = "curPageBlock", required = false)Integer curPageBlock) {
+		
 		model.addAttribute("list", service.getListProduct());
 		model.addAttribute("productCodeEdit", productCodeEdit);
+		model.addAttribute("page", service.settingPage(curPage, curPageBlock));
+		
 		if(productCodeEdit!=null) {
 			model.addAttribute("pillPrice", service.getPillPrice(productCodeEdit));}
 	}	
@@ -48,9 +53,14 @@ public class ProductController {
 	}
 	
 	@GetMapping("/getProductName")
-	public void getProductName(@RequestParam(value = "productName", required = false) String productName, @RequestParam(value = "blEdit", required = false) String blEdit, Model model) {
+	public void getProductName(@RequestParam(value = "productName", required = false) String productName, 
+			@RequestParam(value = "blEdit", required = false) String blEdit, Model model,
+			@RequestParam(value = "curPage", required = false)Integer curPage,
+			@RequestParam(value = "curPageBlock", required = false)Integer curPageBlock) {
+	
 		model.addAttribute("list", service.getProductName(productName));
 		model.addAttribute("blEdit", blEdit);
+		model.addAttribute("page", service.settingPage(curPage, curPageBlock, productName));
 	}
 	
 	@PostMapping("/writeProduct")

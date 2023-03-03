@@ -29,19 +29,9 @@ public class CustomerController {
 			@RequestParam(value = "curPage", required = false)Integer curPage,
 			@RequestParam(value = "curPageBlock", required = false)Integer curPageBlock) {	
 		
-		if(curPage==null) { curPage = 1;}
-		if(curPageBlock==null) { curPageBlock = 1;}
-		
-		/* 총데이터수, 현재페이지, 현재페이지블럭 */
-		PagingDto pdto = new PagingDto(service.getListCount(), curPage, curPageBlock);
-		
-		/* 페이지수, 페이지블럭수 */
-		pdto.setTotalPage(pagingModule.setTotalPage(pdto.getTotalData()));
-		pdto.setTotalPageBlock(pagingModule.setTotalPageBlock(pdto.getTotalPage()));
-		
 		model.addAttribute("list", service.getListCustomer());
 		model.addAttribute("employee", service.getListEmployee());
-		model.addAttribute("page", pagingModule.setPaging(pdto));
+		model.addAttribute("page", service.settingPage(curPage, curPageBlock));
 	}
 	
 	@GetMapping("/writeCustomer")

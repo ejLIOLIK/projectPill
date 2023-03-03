@@ -9,4 +9,5 @@ public interface RegisterMapper {
 	public List<EmployeeDto> getEmploySearch(String ENAME);
 	public void sign(EmployeeDto edto);
 	public EmployeeDto login(String ECODE);
+	public int getListCount();
 }

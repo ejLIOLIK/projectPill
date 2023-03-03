@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.liolik.project.dto.CustomerDto;
 import com.liolik.project.dto.EmployeeDto;
+import com.liolik.project.dto.PagingDto;
 import com.liolik.project.mapper.EmployeeMapper;
+import com.liolik.project.module.pagingModule;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -50,7 +52,28 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	
 	@Override
-	public int getListCount() {
-		return mapper.getListCount();
+	public PagingDto settingPage(Integer curPage, Integer curPageBlock) {
+		if(curPage==null) { curPage = 1;}
+		if(curPageBlock==null) { curPageBlock = 1;}
+		
+		PagingDto pdto = new PagingDto(mapper.getListCount(), curPage, curPageBlock);
+		
+		pdto.setTotalPage(pagingModule.setTotalPage(pdto.getTotalData()));
+		pdto.setTotalPageBlock(pagingModule.setTotalPageBlock(pdto.getTotalPage()));
+		
+		return pagingModule.setPaging(pdto);
+	}
+	
+	@Override
+	public PagingDto settingSalesPage(Integer curPage, Integer curPageBlock, String employeeCode) {
+		if(curPage==null) { curPage = 1;}
+		if(curPageBlock==null) { curPageBlock = 1;}
+		
+		PagingDto pdto = new PagingDto(mapper.getSalesListCount(employeeCode), curPage, curPageBlock);
+		
+		pdto.setTotalPage(pagingModule.setTotalPage(pdto.getTotalData()));
+		pdto.setTotalPageBlock(pagingModule.setTotalPageBlock(pdto.getTotalPage()));
+		
+		return pagingModule.setPaging(pdto);
 	}
 }

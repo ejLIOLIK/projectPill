@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.liolik.project.dto.CustomerDto;
 import com.liolik.project.dto.EmployeeDto;
+import com.liolik.project.dto.PagingDto;
 
 public interface CustomerService {
 	public List<CustomerDto> getListCustomer();
@@ -13,5 +14,5 @@ public interface CustomerService {
 	public void deleteCustomer(String customerCode);
 	public void editCustomer(CustomerDto cdto);	
 	public void setListCustomer(List<CustomerDto> cdto);
-	public int getListCount();
+	public PagingDto settingPage(Integer curPage, Integer curPageBlock);
 }

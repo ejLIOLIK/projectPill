@@ -12,6 +12,9 @@
 	<select id="getListProduct" resultType="com.liolik.project.dto.ProductDto">
 		SELECT * from PRODUCT where PILLCODE = #{PILLCODE}
 	</select>
+	<select id="getListCount" resultType="int">
+		SELECT count(*) from PILL
+	</select>
 	<insert id="writePill">
 		insert into PILL (PILLNAME, CAPACITY, COMPANY, PRICE) value (#{PILLNAME}, #{CAPACITY}, #{COMPANY}, #{PRICE})
 	</insert>

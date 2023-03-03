@@ -68,8 +68,12 @@ public class RegisterController {
 	}
 	
 	@GetMapping("/getEmployeeCode")
-	public void getEmployeeCode(@RequestParam(value = "employeeName", required = false) String employeeName, Model model) {
+	public void getEmployeeCode(@RequestParam(value = "employeeName", required = false) String employeeName, Model model,
+			@RequestParam(value = "curPage", required = false)Integer curPage,
+			@RequestParam(value = "curPageBlock", required = false)Integer curPageBlock) {
+
 		model.addAttribute("list", service.getEmployeeCode(employeeName));
+		model.addAttribute("page", service.settingPage(curPage, curPageBlock));
 	}
 	
 	@PostMapping("/login")

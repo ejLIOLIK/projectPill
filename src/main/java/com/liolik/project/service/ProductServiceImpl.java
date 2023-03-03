@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.liolik.project.dto.PagingDto;
 import com.liolik.project.dto.PillDto;
 import com.liolik.project.dto.ProductDto;
 import com.liolik.project.mapper.ProductMapper;
+import com.liolik.project.module.pagingModule;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -57,6 +59,33 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public String getPillPrice(String productCode) {
 		return mapper.getPillPrice(productCode);
+	}
+	
+	@Override
+	public PagingDto settingPage(Integer curPage, Integer curPageBlock) {
+		if(curPage==null) { curPage = 1;}
+		if(curPageBlock==null) { curPageBlock = 1;}
+		
+		PagingDto pdto = new PagingDto(mapper.getListCount(), curPage, curPageBlock);
+		
+		pdto.setTotalPage(pagingModule.setTotalPage(pdto.getTotalData()));
+		pdto.setTotalPageBlock(pagingModule.setTotalPageBlock(pdto.getTotalPage()));
+		
+		return pagingModule.setPaging(pdto);
+	}
+	
+	@Override
+	public PagingDto settingPage(Integer curPage, Integer curPageBlock, String productName) {
+
+		if(curPage==null) { curPage = 1;}
+		if(curPageBlock==null) { curPageBlock = 1;}
+
+		PagingDto pdto = new PagingDto(mapper.getPillListCount(productName), curPage, curPageBlock);
+
+		pdto.setTotalPage(pagingModule.setTotalPage(pdto.getTotalData()));
+		pdto.setTotalPageBlock(pagingModule.setTotalPageBlock(pdto.getTotalPage()));
+		
+		return pagingModule.setPaging(pdto);
 	}
 	
 }

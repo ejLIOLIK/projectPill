@@ -9,23 +9,67 @@
 </head>
 <body>
 
+<%-- 페이지 정보 날리기 --%>
+<form id="pageInfo" method="get" action="/product/getProductName">
+  <input type="hidden" name="curPage" value="${page.curPage}" id="curPage">
+  <input type="hidden" name="curPageBlock" value="${page.curPageBlock}" id="curPageBlock">
+  <input type="hidden" name="blEdit" id="blEdit" value="${blEdit}">
+</form>
+
 <form action="/product/getProductName" method="get">
 <input type="hidden" name="blEdit" id="blEdit" value="${blEdit}">
 <input type="search" name="productName" value="${productName}">
 <input type="submit" name="searchSubmit" value="검색">
 </form>
 
+<br> totalData; =${page.totalData}
+<br> totalPage =${page.totalPage}
+<br> curPage =${page.curPage}
+<br> begin =${page.begin}
+<br> end =${page.end}
+<br> totalPageBlock =${page.totalPageBlock}
+<br> curPageBlock =${page.curPageBlock}
+<br> beginBlock =${page.beginBlock}
+<br> endBlock =${page.endBlock}
+<br> blBeforeBlock; =${page.blBeforeBlock} 
+<br> blAfterBlock; =${page.blAfterBlock}
+<br> 
+
 CODE / NAME / CAPACITY / COMPANY / PRICE <br>
-<c:forEach var="pillList" items="${list}"> 
+<c:forEach var="pillList" items="${list}" begin="${page.begin}" end="${page.end}"> 
 <a href="#" onclick="javascript:setProductData('${pillList.PILLCODE}', '${pillList.PILLNAME}', '${pillList.CAPACITY}', '${pillList.PRICE}')"> 
 ${pillList.PILLCODE} ${pillList.PILLNAME} ${pillList.CAPACITY} ${pillList.COMPANY} ${pillList.PRICE} </a><br>
 </c:forEach>
 
+	<%-- 페이징 --%>
+	<c:choose>
+		<c:when test="${page.blBeforeBlock}">
+			<button type="button" id="buttonbefore">이전</button>
+		</c:when>
+		<c:otherwise> <button type="button" disabled>이전</button>	</c:otherwise>
+	</c:choose>
+	<c:forEach var="pagenum" begin="${page.beginBlock}" end="${page.endBlock}">
+		<c:choose>
+	    	<c:when test="${pagenum eq page.curPage}">
+	   		${pagenum}
+	    	</c:when>
+	    	<c:otherwise>
+			 <a href="/product/getProductName?curPage=${pagenum}&curPageBlock=${page.curPageBlock}&blEdit=${blEdit}&productName=${productName}"> ${pagenum} </a>
+	  		</c:otherwise>
+		</c:choose>
+	</c:forEach>
+	<c:choose>
+		<c:when test="${page.blAfterBlock}">
+			<button type="button" id="buttonAfter">다음</button>
+		</c:when>
+		<c:otherwise> <button type="button" disabled>다음</button>	</c:otherwise>
+	</c:choose>
+	<br>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
+<script type="text/javascript">
 	
 	function setProductData(PILLCODE, PNAME, CAPACITY, PRICE) {
-		
 		<%--차후 가독성을 위해 제이쿼리로 수정--%>
 		if("${blEdit}"!="" && "${blEdit}"=="true"){
 			opener.document.getElementById("PILLCODE_EDIT").value = PILLCODE;
@@ -51,7 +95,20 @@ ${pillList.PILLCODE} ${pillList.PILLNAME} ${pillList.CAPACITY} ${pillList.COMPAN
 		$(opener.document).find("#PILLCODE").focus(); 
 	});
 	
-	
+	$(document).ready(function() {
+		$("#buttonbefore").on("click",function(){
+			var curPageBlock = parseInt($('#curPageBlock').val()) - 1;
+	        $('#curPageBlock').val(curPageBlock);
+		    $('#pageInfo').submit();
+			console.log("function : buttonbefore");
+		});
+		$("#buttonAfter").on("click",function(){
+			var curPageBlock = parseInt($('#curPageBlock').val()) + 1;
+	        $('#curPageBlock').val(curPageBlock);
+		    $('#pageInfo').submit();
+			console.log("function : buttonAfter");
+		});
+	});
 	</script>
 
 </body>

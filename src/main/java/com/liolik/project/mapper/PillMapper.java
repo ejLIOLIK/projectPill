@@ -15,5 +15,6 @@ public interface PillMapper {
 	public void editPill(PillDto pdto);
 	public void EditSetProduct(String PILLCODE);
 	public void EditSetProductPrice(String PILLCODE);
+	public int getListCount();
 }
 

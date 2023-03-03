@@ -14,4 +14,6 @@ public interface ProductMapper {
 	public void editProduct(ProductDto pdto);
 	public List<PillDto> getProductName(String PILLNAME);
 	public void writeProduct(ProductDto pdto);
+	public int getListCount();
+	public int getPillListCount(String PILLNAME);	
 }

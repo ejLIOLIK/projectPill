@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.liolik.project.dto.PagingDto;
 import com.liolik.project.dto.PillDto;
 import com.liolik.project.dto.ProductDto;
 import com.liolik.project.mapper.PillMapper;
+import com.liolik.project.module.pagingModule;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -51,5 +53,18 @@ public class PillServiceImpl implements PillService{
 		mapper.editPill(pdto);
 		mapper.EditSetProduct(pdto.getPILLCODE()); // 이름, 용량 등 PILL과 PRODUCT 정보 맞춰서 수정
 		mapper.EditSetProductPrice(pdto.getPILLCODE()); // 약가 당 제품 단가 계산해서 수정
-	}	
+	}
+	
+	@Override
+	public PagingDto settingPage(Integer curPage, Integer curPageBlock) {
+		if(curPage==null) { curPage = 1;}
+		if(curPageBlock==null) { curPageBlock = 1;}
+		
+		PagingDto pdto = new PagingDto(mapper.getListCount(), curPage, curPageBlock);
+		
+		pdto.setTotalPage(pagingModule.setTotalPage(pdto.getTotalData()));
+		pdto.setTotalPageBlock(pagingModule.setTotalPageBlock(pdto.getTotalPage()));
+		
+		return pagingModule.setPaging(pdto);
+	}
 }

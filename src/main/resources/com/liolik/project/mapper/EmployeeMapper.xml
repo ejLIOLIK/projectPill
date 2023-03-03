@@ -15,6 +15,9 @@
 	<select id="getListCount" resultType="int">
 		SELECT count(*) from EMPLOYEE
 	</select>
+	<select id="getSalesListCount" resultType="int">
+		SELECT count(*) from CUSTOMER where EMPLOYEE_CODE = (select ECODE from EMPLOYEE where ECODE = #{ECODE})
+	</select>
 	<insert id="writeEmployee">
 		insert into EMPLOYEE (ENAME, ERANK, ETEAM) value (#{ENAME}, #{ERANK}, #{ETEAM})
 	</insert>

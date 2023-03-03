@@ -13,6 +13,9 @@
 	<select id="login" resultType="com.liolik.project.dto.EmployeeDto">
 		select * from EMPLOYEE where ECODE=#{ECODE}
 	</select>
+	<select id="getListCount" resultType="int">
+		SELECT count(*) from EMPLOYEE
+	</select>
 	<update id="sign">
 		update EMPLOYEE set PW=#{PW} where ECODE=#{ECODE}
 	</update>

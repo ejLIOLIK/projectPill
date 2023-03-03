@@ -19,7 +19,7 @@
 
 CODE / NAME / COMPANY / PRICE <br>
 
-	<c:forEach var="employeeList" items="${list}"> 
+	<c:forEach var="employeeList" items="${list}" begin="${page.begin}" end="${page.end}"> 
 		${employeeList.ECODE}
 		<a href="/employee/readEmployee?employeeCode=${employeeList.ECODE}">${employeeList.ENAME} </a>
 		${employeeList.ERANK}
@@ -27,7 +27,7 @@ CODE / NAME / COMPANY / PRICE <br>
 		<br>
 	</c:forEach>
 	
-		<%-- 페이징 --%>
+	<%-- 페이징 --%>
 	<c:choose>
 		<c:when test="${page.blBeforeBlock}">
 			<button type="button" id="buttonbefore">이전</button>
