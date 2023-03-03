@@ -22,19 +22,6 @@
 <input type="submit" name="searchSubmit" value="검색">
 </form>
 
-<br> totalData; =${page.totalData}
-<br> totalPage =${page.totalPage}
-<br> curPage =${page.curPage}
-<br> begin =${page.begin}
-<br> end =${page.end}
-<br> totalPageBlock =${page.totalPageBlock}
-<br> curPageBlock =${page.curPageBlock}
-<br> beginBlock =${page.beginBlock}
-<br> endBlock =${page.endBlock}
-<br> blBeforeBlock; =${page.blBeforeBlock} 
-<br> blAfterBlock; =${page.blAfterBlock}
-<br> 
-
 CODE / NAME / CAPACITY / COMPANY / PRICE <br>
 <c:forEach var="pillList" items="${list}" begin="${page.begin}" end="${page.end}"> 
 <a href="#" onclick="javascript:setProductData('${pillList.PILLCODE}', '${pillList.PILLNAME}', '${pillList.CAPACITY}', '${pillList.PRICE}')"> 
