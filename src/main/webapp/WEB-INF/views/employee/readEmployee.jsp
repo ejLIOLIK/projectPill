@@ -7,8 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css?version=${System.currentTimeMillis()}" />
+		<link rel="stylesheet" href="/resources/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="/resources/assets/css/noscript.css" /></noscript>
 </head>
-<body>
+<body class="is-preload">
+
+	<%@include file ="../TopHeader.jsp" %>
 
 <%-- 페이지 정보 날리기 --%>
 <form id="pageInfo" method="get" action="/employee/readEmployee">
@@ -37,11 +44,12 @@ ${customerList.MEMO} <br>
 </c:forEach>
 
 	<%-- 페이징 --%>
+	<div style="text-align:center">
 	<c:choose>
 		<c:when test="${page.blBeforeBlock}">
-			<button type="button" id="buttonbefore">이전</button>
+			<button type="button" id="buttonbefore" class="button small" >이전</button>
 		</c:when>
-		<c:otherwise> <button type="button" disabled>이전</button>	</c:otherwise>
+		<c:otherwise> <button type="button" disabled class="button small" >이전</button>	</c:otherwise>
 	</c:choose>
 	<c:forEach var="pagenum" begin="${page.beginBlock}" end="${page.endBlock}">
 		<c:choose>
@@ -49,17 +57,18 @@ ${customerList.MEMO} <br>
 	   		${pagenum}
 	    	</c:when>
 	    	<c:otherwise>
-			 <a href="/employee/readEmployee?curPage=${pagenum}&curPageBlock=${page.curPageBlock}&employeeCode=${read.ECODE}"> ${pagenum} </a>
+			 <span><a href="/register/getEmployeeCode?curPage=${pagenum}&curPageBlock=${page.curPageBlock}"> ${pagenum} </a></span>
 	  		</c:otherwise>
 		</c:choose>
 	</c:forEach>
 	<c:choose>
 		<c:when test="${page.blAfterBlock}">
-			<button type="button" id="buttonAfter">다음</button>
+			<button type="button" id="buttonAfter" class="button small" >다음</button>
 		</c:when>
-		<c:otherwise> <button type="button" disabled>다음</button>	</c:otherwise>
+		<c:otherwise> <button type="button" class="button small" disabled>다음</button>	</c:otherwise>
 	</c:choose>
 	<br>
+	</div>
 
 </c:if>
 

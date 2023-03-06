@@ -8,7 +8,8 @@
 <!-- 		select * from EMPLOYEE where PW is null -->
 	</select>
 	<select id="getEmploySearch" resultType="com.liolik.project.dto.EmployeeDto">
-		select * from EMPLOYEE where PW is null AND ENAME like CONCAT('%',#{ENAME},'%')
+		select * from EMPLOYEE where ENAME like CONCAT('%',#{ENAME},'%')
+<!-- 		select * from EMPLOYEE where PW is null AND ENAME like CONCAT('%',#{ENAME},'%') -->
 	</select>
 	<select id="login" resultType="com.liolik.project.dto.EmployeeDto">
 		select * from EMPLOYEE where ECODE=#{ECODE}

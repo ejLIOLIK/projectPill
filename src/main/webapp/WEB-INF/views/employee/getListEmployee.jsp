@@ -8,51 +8,96 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css?version=${System.currentTimeMillis()}" />
+		<link rel="stylesheet" href="/resources/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="/resources/assets/css/noscript.css" /></noscript>
 </head>
-<body>
+<body class="is-preload">
 
-<%-- 페이지 정보 날리기 --%>
-<form id="pageInfo" method="get" action="/customer/getListCustomer">
-  <input type="hidden" name="curPage" value="${page.curPage}" id="curPage">
-  <input type="hidden" name="curPageBlock" value="${page.curPageBlock}" id="curPageBlock">
-</form>
+	<%@include file ="../TopHeader.jsp" %>
 
-CODE / NAME / COMPANY / PRICE <br>
+<!-- Wrapper -->
+	<div id="wrapper">
 
-	<c:forEach var="employeeList" items="${list}" begin="${page.begin}" end="${page.end}"> 
-		${employeeList.ECODE}
-		<a href="/employee/readEmployee?employeeCode=${employeeList.ECODE}">${employeeList.ENAME} </a>
-		${employeeList.ERANK}
-		${employeeList.ETEAM}
-		<br>
-	</c:forEach>
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+
+				<%-- 페이지 정보 날리기 --%>
+				<form id="pageInfo" method="get" action="/customer/getListCustomer">
+				  <input type="hidden" name="curPage" value="${page.curPage}" id="curPage">
+				  <input type="hidden" name="curPageBlock" value="${page.curPageBlock}" id="curPageBlock">
+				</form>
+				
+					<h1 class="major">직원 목록</h1>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>CODE</th>
+									<th>NAME</th>
+									<th>COMPANY</th>
+									<th>PRICE</th>
+								</tr>
+							</thead>
+							<tbody>
+							<c:forEach var="employeeList" items="${list}" begin="${page.begin}" end="${page.end}"> 
+								<tr>
+									<td>${employeeList.ECODE}</td>
+									<td><a href="/employee/readEmployee?employeeCode=${employeeList.ECODE}">${employeeList.ENAME} </a></td>
+									<td>${employeeList.ERANK}</td>
+									<td>${employeeList.ETEAM}</td>
+								</tr>
+							</c:forEach>
+							</tbody>
+							<tfoot>
+								<td colspan="3"></td>
+								<td><div style="text-align:right"><button id="buttonWrite">등록</button></div></td>
+							</tfoot>
+						</table>
+					</div>
 	
-	<%-- 페이징 --%>
-	<c:choose>
-		<c:when test="${page.blBeforeBlock}">
-			<button type="button" id="buttonbefore">이전</button>
-		</c:when>
-		<c:otherwise> <button type="button" disabled>이전</button>	</c:otherwise>
-	</c:choose>
-	<c:forEach var="pagenum" begin="${page.beginBlock}" end="${page.endBlock}">
-		<c:choose>
-	    	<c:when test="${pagenum eq page.curPage}">
-	   		${pagenum}
-	    	</c:when>
-	    	<c:otherwise>
-			 <a href="/customer/getListCustomer?curPage=${pagenum}&curPageBlock=${page.curPageBlock}"> ${pagenum} </a>
-	  		</c:otherwise>
-		</c:choose>
-	</c:forEach>
-	<c:choose>
-		<c:when test="${page.blAfterBlock}">
-			<button type="button" id="buttonAfter">다음</button>
-		</c:when>
-		<c:otherwise> <button type="button" disabled>다음</button>	</c:otherwise>
-	</c:choose>
-	<br>
+			<%-- 페이징 --%>
+			<div style="text-align:center">
+			<c:choose>
+				<c:when test="${page.blBeforeBlock}">
+					<button type="button" id="buttonbefore" class="button primary small" >이전</button>
+				</c:when>
+				<c:otherwise> <button type="button" class="button primary small" disabled>이전</button>	</c:otherwise>
+			</c:choose>
+			<c:forEach var="pagenum" begin="${page.beginBlock}" end="${page.endBlock}">
+				<c:choose>
+			    	<c:when test="${pagenum eq page.curPage}">
+			   		${pagenum}
+			    	</c:when>
+			    	<c:otherwise>
+					 <span><a href="/employee/getListEmployee?curPage=${pagenum}&curPageBlock=${page.curPageBlock}"> ${pagenum} </a></span>
+			  		</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:choose>
+				<c:when test="${page.blAfterBlock}">
+					<button type="button" id="buttonAfter" class="button primary small" >다음</button>
+				</c:when>
+				<c:otherwise> <button type="button" class="button primary small" disabled>다음</button>	</c:otherwise>
+			</c:choose>
+			<br>
+			</div>
+				
+			</div>
+		</section>
+	</div>
 	
-	<a href="/employee/writeEmployee"> 등록 </a><br>
+	<!-- Footer -->
+	<footer id="footer" class="wrapper alt">
+		<div class="inner">
+			<ul class="menu">
+				<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</div>
+	</footer>
 	
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -69,6 +114,9 @@ $(document).ready(function() {
         $('#curPageBlock').val(curPageBlock);
 	    $('#pageInfo').submit();
 		console.log("function : buttonAfter");
+	});
+	$("#buttonWrite").on("click",function(){
+		location.replace("/employee/writeEmployee");
 	});
 });
 </script>
