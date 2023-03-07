@@ -16,81 +16,79 @@
 <body class="is-preload">
 
 	<%@include file ="../TopHeader.jsp" %>
+	
+	<%-- 페이지 정보 날리기 --%>
+	<form id="pageInfo" method="get" action="/employee/readEmployee">
+	  <input type="hidden" name="curPage" value="${page.curPage}" id="curPage">
+	  <input type="hidden" name="curPageBlock" value="${page.curPageBlock}" id="curPageBlock">
+	  <input type="hidden" name="employeeCode" value="${read.ECODE}" id="curPageBlock">
+	</form>
 
-<%-- 페이지 정보 날리기 --%>
-<form id="pageInfo" method="get" action="/employee/readEmployee">
-  <input type="hidden" name="curPage" value="${page.curPage}" id="curPage">
-  <input type="hidden" name="curPageBlock" value="${page.curPageBlock}" id="curPageBlock">
-  <input type="hidden" name="employeeCode" value="${read.ECODE}" id="curPageBlock">
-</form>
-
-CODE: ${read.ECODE} <br> 
-NAME: ${read.ENAME} <br> 
-RANK: ${read.ERANK} <br> 
-TEAM: ${read.ETEAM} <br> 
-
-<c:if test="${read.ETEAM eq '영업팀'}">
-<br>
-
-<c:forEach var="customerList" items="${list}" begin="${page.begin}" end="${page.end}">
-${customerList.STATE}
-${customerList.CCODE}
-${customerList.CNAME}
-${customerList.TEL}
-(${customerList.ADRESS_NUMBER})
-${customerList.ADRESS_DORO}
-${customerList.BALANCE}
-${customerList.MEMO} <br>
-</c:forEach>
-
-	<%-- 페이징 --%>
-	<div style="text-align:center">
-	<c:choose>
-		<c:when test="${page.blBeforeBlock}">
-			<button type="button" id="buttonbefore" class="button small" >이전</button>
-		</c:when>
-		<c:otherwise> <button type="button" disabled class="button small" >이전</button>	</c:otherwise>
-	</c:choose>
-	<c:forEach var="pagenum" begin="${page.beginBlock}" end="${page.endBlock}">
-		<c:choose>
-	    	<c:when test="${pagenum eq page.curPage}">
-	   		${pagenum}
-	    	</c:when>
-	    	<c:otherwise>
-			 <span><a href="/register/getEmployeeCode?curPage=${pagenum}&curPageBlock=${page.curPageBlock}"> ${pagenum} </a></span>
-	  		</c:otherwise>
-		</c:choose>
-	</c:forEach>
-	<c:choose>
-		<c:when test="${page.blAfterBlock}">
-			<button type="button" id="buttonAfter" class="button small" >다음</button>
-		</c:when>
-		<c:otherwise> <button type="button" class="button small" disabled>다음</button>	</c:otherwise>
-	</c:choose>
-	<br>
+	<ul>
+	<li>CODE: ${read.ECODE} </li> 
+	<li>NAME: ${read.ENAME} </li>
+	<li>RANK: ${read.ERANK} </li> 
+	<li>TEAM: ${read.ETEAM} </li>
+	</ul>
+	
+	<div style="text-align:right">
+		<button class="button primary" id="buttonEdit">수정</button>
+		<button class="button primary" id="buttonDelete">삭제</button> 
+		<button class="button primary" id="buttonList">목록</button>
 	</div>
+	
 
-</c:if>
+	<c:if test="${read.ETEAM eq '영업팀'}">
+	
+		<br>
+		<div class="table-wrapper">
+			<table>
+				<thead>
+					<tr>
+						<th>STATE</th>
+						<th>CODE</th>
+						<th>NAME</th>
+						<th>TEL</th>
+						<th>ADRESS</th>
+						<th>BALANCE</th>
+						<th>MEMO</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="customerList" items="${list}" begin="${page.begin}" end="${page.end}">
+					<tr>
+						<td>${customerList.STATE}</td>
+						<td>${customerList.CCODE}</td>
+						<td>${customerList.CNAME}</td>
+						<td>${customerList.TEL}</td>
+						<td>(${customerList.ADRESS_NUMBER})${customerList.ADRESS_DORO}
+						<td>${customerList.BALANCE}</td>
+						<td>${customerList.MEMO}</td>
+					</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 
-<a href="/employee/editEmployee?employeeCode=${read.ECODE}"> 수정 </a><br>
-<a href="/employee/deleteEmployee?employeeCode=${read.ECODE}"> 삭제 </a><br>
-<a href="/employee/getListEmployee"> 조회 </a>
+		<jsp:include page="../Paging.jsp">
+			<jsp:param name="pageUrlParam" value="/employee/readEmployee?curPageBlock=${page.curPageBlock}&employeeCode=${read.ECODE}&curPage="/>
+		</jsp:include>
+
+	</c:if>
+
+	<%@include file = "../BottomFooter.jsp" %>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-<%-- 페이지 정보 수정해서 form submit --%>
 $(document).ready(function() {
-	$("#buttonbefore").on("click",function(){
-		var curPageBlock = parseInt($('#curPageBlock').val()) - 1;
-        $('#curPageBlock').val(curPageBlock);
-	    $('#pageInfo').submit();
-		console.log("function : buttonbefore");
+	$("#buttonEdit").on("click",function(){
+		location.replace("/employee/editEmployee?employeeCode=${read.ECODE}");
 	});
-	$("#buttonAfter").on("click",function(){
-		var curPageBlock = parseInt($('#curPageBlock').val()) + 1;
-        $('#curPageBlock').val(curPageBlock);
-	    $('#pageInfo').submit();
-		console.log("function : buttonAfter");
+	$("#buttonDelete").on("click",function(){
+		location.replace("/employee/deleteEmployee?employeeCode=${read.ECODE}");
+	});
+	$("#buttonList").on("click",function(){
+		location.replace("/employee/getListEmployee");
 	});
 });
 </script>

@@ -40,36 +40,12 @@ ${pillList.PILLCODE} ${pillList.PILLNAME} ${pillList.CAPACITY} ${pillList.COMPAN
 	</c:forEach>
 </ul>
 
-	<%-- 페이징 --%>
-	<div style="text-align:center">
-	<c:choose>
-		<c:when test="${page.blBeforeBlock}">
-			<button type="button" id="buttonbefore" class="button small" >이전</button>
-		</c:when>
-		<c:otherwise> <button type="button" disabled class="button small" >이전</button>	</c:otherwise>
-	</c:choose>
-	<c:forEach var="pagenum" begin="${page.beginBlock}" end="${page.endBlock}">
-		<c:choose>
-	    	<c:when test="${pagenum eq page.curPage}">
-	   		${pagenum}
-	    	</c:when>
-	    	<c:otherwise>
-			 <span><a href="/product/getProductName?curPage=${pagenum}&curPageBlock=${page.curPageBlock}&blEdit=${blEdit}&productName=${productName}"> ${pagenum} </a></span>
-	  		</c:otherwise>
-		</c:choose>
-	</c:forEach>
-	<c:choose>
-		<c:when test="${page.blAfterBlock}">
-			<button type="button" id="buttonAfter" class="button small" >다음</button>
-		</c:when>
-		<c:otherwise> <button type="button" class="button small" disabled>다음</button>	</c:otherwise>
-	</c:choose>
-	<br>
-	</div>
+<jsp:include page="../Paging.jsp">
+		<jsp:param name="pageUrlParam" value="/product/getProductName?curPageBlock=${page.curPageBlock}&blEdit=${blEdit}&productName=${productName}&curPage="/>
+	</jsp:include>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	
 	function setProductData(PILLCODE, PNAME, CAPACITY, PRICE) {
 		<%--차후 가독성을 위해 제이쿼리로 수정--%>
 		if("${blEdit}"!="" && "${blEdit}"=="true"){
@@ -94,23 +70,16 @@ ${pillList.PILLCODE} ${pillList.PILLNAME} ${pillList.CAPACITY} ${pillList.COMPAN
 	<%-- 포커싱이 유지되는 경우 팝업창 브라우저를 닫았을 경우 계속해서 팝업이 발생함. 이에 대한 처리. --%>
 	$(window).on("beforeunload", function() { 
 		$(opener.document).find("#PILLCODE").focus(); 
-	});
+	});	
 	
-	$(document).ready(function() {
-		$("#buttonbefore").on("click",function(){
-			var curPageBlock = parseInt($('#curPageBlock').val()) - 1;
-	        $('#curPageBlock').val(curPageBlock);
-		    $('#pageInfo').submit();
-			console.log("function : buttonbefore");
-		});
-		$("#buttonAfter").on("click",function(){
-			var curPageBlock = parseInt($('#curPageBlock').val()) + 1;
-	        $('#curPageBlock').val(curPageBlock);
-		    $('#pageInfo').submit();
-			console.log("function : buttonAfter");
-		});
-	});
 	</script>
-
+<%-- 템플릿 assets --%>
+<script src="/resources/assets/js/jquery.min.js"></script>
+<script src="/resources/assets/js/jquery.scrollex.min.js"></script>
+<script src="/resources/assets/js/jquery.scrolly.min.js"></script>
+<script src="/resources/assets/js/browser.min.js"></script>
+<script src="/resources/assets/js/breakpoints.min.js"></script>
+<script src="/resources/assets/js/util.js"></script>
+<script src="/resources/assets/js/main.js"></script>
 </body>
 </html>

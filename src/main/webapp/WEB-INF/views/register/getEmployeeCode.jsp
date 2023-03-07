@@ -36,32 +36,9 @@
 	</c:forEach>
 </ul>
 
-	<%-- 페이징 --%>
-	<div style="text-align:center">
-	<c:choose>
-		<c:when test="${page.blBeforeBlock}">
-			<button type="button" id="buttonbefore" class="button small" >이전</button>
-		</c:when>
-		<c:otherwise> <button type="button" disabled class="button small" >이전</button>	</c:otherwise>
-	</c:choose>
-	<c:forEach var="pagenum" begin="${page.beginBlock}" end="${page.endBlock}">
-		<c:choose>
-	    	<c:when test="${pagenum eq page.curPage}">
-	   		${pagenum}
-	    	</c:when>
-	    	<c:otherwise>
-			 <span><a href="/register/getEmployeeCode?curPage=${pagenum}&curPageBlock=${page.curPageBlock}"> ${pagenum} </a></span>
-	  		</c:otherwise>
-		</c:choose>
-	</c:forEach>
-	<c:choose>
-		<c:when test="${page.blAfterBlock}">
-			<button type="button" id="buttonAfter" class="button small" >다음</button>
-		</c:when>
-		<c:otherwise> <button type="button" class="button small" disabled>다음</button>	</c:otherwise>
-	</c:choose>
-	<br>
-	</div>
+	<jsp:include page="../Paging.jsp">
+		<jsp:param name="pageUrlParam" value="/register/getEmployeeCode?curPageBlock=${page.curPageBlock}&curPage="/>
+	</jsp:include>
 	
 </div>
 </section>
@@ -79,25 +56,10 @@ $(document).ready(function() {
 	$(window).on("beforeunload", function() { 
 		$(opener.document).find("#EPW").focus();
 	});
-	
-	<%-- 페이징블락 버튼 함수 --%>
-	$("#buttonbefore").on("click",function(){
-		var curPageBlock = parseInt($('#curPageBlock').val()) - 1;
-        $('#curPageBlock').val(curPageBlock);
-	    $('#pageInfo').submit();
-		console.log("function : buttonbefore");
-	});
-	$("#buttonAfter").on("click",function(){
-		var curPageBlock = parseInt($('#curPageBlock').val()) + 1;
-        $('#curPageBlock').val(curPageBlock);
-	    $('#pageInfo').submit();
-		console.log("function : buttonAfter");
-	});
 });
 
 </script>
 <%-- 템플릿 assets --%>
-	
 <script src="/resources/assets/js/jquery.min.js"></script>
 <script src="/resources/assets/js/jquery.scrollex.min.js"></script>
 <script src="/resources/assets/js/jquery.scrolly.min.js"></script>

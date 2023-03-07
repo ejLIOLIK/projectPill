@@ -13,25 +13,31 @@
 </head>
 <body class="is-preload">
 
-	<%@include file ="../TopHeader.jsp" %>
+<%@include file ="../TopHeader.jsp" %>
 
-STATE: ${read.STATE} <br> 
-NAME: ${read.CNAME} <br> 
-EMPLOYEE: ${read.EMPLOYEE_NAME} <br> 
-ADRESS: (${read.ADRESS_NUMBER}) 
+<ul>
+<li>STATE: ${read.STATE}</li>
+<li>NAME: ${read.CNAME}</li>
+<li>EMPLOYEE: ${read.EMPLOYEE_NAME}</li>
+<li>ADRESS: (${read.ADRESS_NUMBER}) 
  ${read.ADRESS_DORO} ${read.ADRESS_DETAIL} <br> 
  ${read.ADRESS_JIBEON} <br> 
  ${read.ADRESS_MEMO} <br> 
 <input type="hidden" id="MAP_NAME" value="${read.CNAME}">
 <input type="hidden" id="MAP_ADRESS" value="${read.ADRESS_DORO}">
-<div id="MAP" style="width:350px;height:350px;"></div>
-TEL: ${read.TEL} <br> 
-MEMO: ${read.MEMO} <br> 
-BALANCE: ${read.BALANCE} <br> 
+<div id="MAP" style="width:350px;height:350px;"></div> </li>
+<li>TEL: ${read.TEL}</li> 
+<li>MEMO: ${read.MEMO}</li>
+<li>BALANCE: ${read.BALANCE}</li> 
+</ul>
 
-<a href="/customer/editCustomer?customerCode=${read.CCODE}"> 수정 </a><br>
-<a href="/customer/deleteCustomer?customerCode=${read.CCODE}"> 삭제 </a><br>
-<a href="/customer/getListCustomer"> 조회 </a>
+<div style="text-align:right">
+	<button class="button primary" id="buttonEdit">수정</button>
+	<button class="button primary" id="buttonDelete">삭제</button> 
+	<button class="button primary" id="buttonList">목록</button>
+</div>
+
+	<%@include file = "../BottomFooter.jsp" %>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6bfea434b034f9af2b5fce2524e795ea&libraries=services"></script>
 <script>
@@ -64,7 +70,7 @@ var mapContainer = document.getElementById('MAP'), <%-- 지도 표시 DIV --%>
     	
         <%-- 인포윈도우 : 장소 이름 표시함 (거래처명) --%>
         var infowindow = new kakao.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+mapName+'</div>'
+            content: '<div style="width:150px;text-align:center;padding:6px 0;color:purple;">'+mapName+'</div>'
         });
         infowindow.open(map, marker);
 
@@ -73,6 +79,19 @@ var mapContainer = document.getElementById('MAP'), <%-- 지도 표시 DIV --%>
     } 
 });    
 </script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#buttonEdit").on("click",function(){
+		location.replace("/customer/editCustomer?customerCode=${read.CCODE}");
+	});
+	$("#buttonDelete").on("click",function(){
+		location.replace("/customer/deleteCustomer?customerCode=${read.CCODE}");
+	});
+	$("#buttonList").on("click",function(){
+		location.replace("/customer/getListCustomer");
+	});
+});
+</script>
 </body>
 </html>

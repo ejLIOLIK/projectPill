@@ -41,15 +41,19 @@ public class ProductController {
 	}
 	
 	@GetMapping("/deleteProduct")
-	public String deleteProduct(@RequestParam("productCode") String productCode) {
+	public String deleteProduct(@RequestParam("productCode") String productCode,
+			@RequestParam(value = "curPage", required = false)Integer curPage,
+			@RequestParam(value = "curPageBlock", required = false)Integer curPageBlock) {
 		service.deleteProduct(productCode);
-		return "redirect:/product/getListProduct";
+		return "redirect:/product/getListProduct?curPage="+curPage+"&curPageBlock="+curPageBlock;
 	}
 	
 	@PostMapping("/editProduct")
-	public String editProduct(ProductDto pdto) {
+	public String editProduct(ProductDto pdto,
+			@RequestParam(value = "curPage", required = false)Integer curPage,
+			@RequestParam(value = "curPageBlock", required = false)Integer curPageBlock) {
 		service.editProduct(pdto);
-		return "redirect:/product/getListProduct";
+		return "redirect:/product/getListProduct?curPage="+curPage+"&curPageBlock="+curPageBlock;
 	}
 	
 	@GetMapping("/getProductName")

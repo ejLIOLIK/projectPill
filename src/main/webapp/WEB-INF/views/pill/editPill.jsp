@@ -15,16 +15,44 @@
 <body class="is-preload">
 
 	<%@include file ="../TopHeader.jsp" %>
-
-	CODE / NAME / COMPANY / PRICE
-	<form action="/pill/editPill" method="post">
-		${read.PILLCODE}
-		<input type="hidden" name="PILLCODE" value="${read.PILLCODE}">
-		<input type="text" name="PILLNAME" value="${read.PILLNAME}">
-		<input type="text" name="CAPACITY" value="${read.CAPACITY}">
-		<input type="text" name="COMPANY" value="${read.COMPANY}">
-		<input type="number" name="PRICE" value="${read.PRICE}">
-		<input type="submit" value="수정">
-	</form>
+	
+	<div class="split style1">
+		<section>
+			<form action="/pill/editPill" method="post">
+			<div class="fields">
+				<input type="hidden" name="PILLCODE" value="${read.PILLCODE}">
+				<div class="field">
+					<label for="message">NAME</label>
+					<input type="text" name="PILLNAME" value="${read.PILLNAME}">
+				</div>
+				<div class="field">
+					<label for="message">CAPACITY</label>
+					<input type="text" name="CAPACITY" value="${read.CAPACITY}">
+				</div>
+				<div class="field">
+					<label for="message">COMPANY</label>
+					<input type="text" name="COMPANY" value="${read.COMPANY}">
+				</div>
+				<div class="field">
+					<label for="message">PRICE</label>
+					<input type="text" pattern="[0-9]+" name="PRICE" value="${read.PRICE}">
+				</div>
+				<div class="field">
+					<input type="submit" class="button primary" value="수정">
+				</div>
+			</div>		
+		</form>
+		</section>
+		<section>
+			<ul class="contact">
+				<li>
+				<h3>※ 주의</h3>
+				<span>수정시 동일 제품 데이터가<br>함께 수정됩니다.</span>
+				</li>
+			</ul>							
+		</section>
+	</div>
+	
+	<%@include file = "../BottomFooter.jsp" %>
 </body>
 </html>

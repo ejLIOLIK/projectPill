@@ -128,7 +128,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 								</section>
 							</div>
 							<ul class="actions">
-								<li><a href="generic.html" class="button">Learn more</a></li>
+								<li><a href="#" class="button">Learn more</a></li>
+								<%-- 링크 수정 예정 --%>
 							</ul>
 						</div>
 					</section>
@@ -162,7 +163,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 									<ul class="contact">
 										<li>
 											<h3>GitHub</h3>
-											<a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a>
+											<a href="https://github.com/ejLIOLIK" class="icon brands fa-github"><span class="label">GitHub</span></a>
 										</li>
 										<li>
 											<h3>Email</h3>
@@ -181,28 +182,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 									</ul>
 								</section>
 							</div>
-						</div>
-					</section>
 
-			</div>
-
-		<!-- Footer -->
-			<footer id="footer" class="wrapper style1-alt">
-				<div class="inner">
-					<ul class="menu">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
-				</div>
-			</footer>	
-			
-<%-- 템플릿 assets --%>
+	<%@include file = "BottomFooter.jsp" %>
 	
-<script src="/resources/assets/js/jquery.min.js"></script>
-<script src="/resources/assets/js/jquery.scrollex.min.js"></script>
-<script src="/resources/assets/js/jquery.scrolly.min.js"></script>
-<script src="/resources/assets/js/browser.min.js"></script>
-<script src="/resources/assets/js/breakpoints.min.js"></script>
-<script src="/resources/assets/js/util.js"></script>
-<script src="/resources/assets/js/main.js"></script>
 </body>
 </html>

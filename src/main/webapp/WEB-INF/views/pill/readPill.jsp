@@ -16,30 +16,70 @@
 <body class="is-preload">
 
 	<%@include file ="../TopHeader.jsp" %>
+	
+	<ul>
+	<li>CODE: ${read.PILLCODE}</li>
+	<li>NAME: ${read.PILLNAME}</li>
+	<li>CAPACITY: ${read.CAPACITY}</li>
+	<li>COMPANY: ${read.COMPANY}</li>
+	<li>PRICE: ${read.PRICE}</li>
+	</ul>
 
-CODE: ${read.PILLCODE}<br>
-NAME: ${read.PILLNAME}<br>
-CAPACITY: ${read.CAPACITY}<br>
-COMPANY: ${read.COMPANY}<br>
-PRICE: ${read.PRICE}<br>
+	<div style="text-align:right">
+		<button class="button primary" id="buttonEdit">수정</button>
+		<button class="button primary" id="buttonDelete">삭제</button> 
+		<button class="button primary" id="buttonList">목록</button>
+	</div>
 
-<br>
-<a href="/pill/editPill?pillCode=${read.PILLCODE}"> 수정 </a><br>
-<a href="/pill/deletePill?pillCode=${read.PILLCODE}"> 삭제 </a><br>
-<a href="/pill/getListPill"> 조회 </a>
+<hr>
+제품
 
-<br><br>
-<c:forEach var="productList" items="${list}"> 
-${productList.PCODE}
-<a href="/product/readProduct?productCode=${productList.PCODE}">${productList.PNAME}</a>
-${productList.CAPACITY}	
-${productList.AMOUNT}	
-${productList.UNIT}	
-${read.PRICE}
-${productList.PRICE}	
-${productList.STOCK}
-<br>
-</c:forEach>
+<pre><div class="table-wrapper">
+	<table>
+		<thead>
+			<tr>
+				<th>CODE</th>
+				<th>NAME</th>
+				<th>CAPACITY</th>
+				<th>AMOUNT</th>
+				<th>UNIT</th>
+				<th>PILL PRICE</th>
+				<th>PRODUCT PRICE</th>
+				<th>STOCK</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="productList" items="${list}">
+			<tr>
+				<td>${productList.PCODE}</td>
+				<td><a href="/product/readProduct?productCode=${productList.PCODE}">${productList.PNAME}</a></td>
+				<td>${productList.CAPACITY}	</td>
+				<td>${productList.AMOUNT}</td>
+				<td>${productList.UNIT}	</td>
+				<td>${read.PRICE}</td>
+				<td>${productList.PRICE}</td>
+				<td>${productList.STOCK}</td>
+			</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+</div></pre>
 
+	<%@include file = "../BottomFooter.jsp" %>
+	
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+	$("#buttonEdit").on("click",function(){
+		location.replace("/pill/editPill?pillCode=${read.PILLCODE}");
+	});
+	$("#buttonDelete").on("click",function(){
+		location.replace("/pill/deletePill?pillCode=${read.PILLCODE}");
+	});
+	$("#buttonList").on("click",function(){
+		location.replace("/pill/getListPill");
+	});
+});
+</script>
 </body>
 </html>

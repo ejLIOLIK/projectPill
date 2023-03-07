@@ -14,56 +14,75 @@
 </head>
 <body class="is-preload">
 
-	<%@include file ="../TopHeader.jsp" %>
-
-	STATE / NAME / EMPLOYEE ADRESS
-	<form action="/customer/editCustomer" method="post">
-		<input type="hidden" name="CCODE" value="${read.CCODE}">
-
-		<select name="STATE"> 
-			<option value="${read.STATE}" selected="selected">${read.STATE}</option>
-				<c:choose> <%-- select창 --%>
-				<c:when test="${read.STATE eq '매입'}"> <option value="매출">매출</option> </c:when> 
-				<c:when test="${read.STATE eq '매출'}"> <option value="매입">매입</option> </c:when>
-				</c:choose>
-		</select>
-		<input type="text" name="CNAME" value="${read.CNAME}">
-		
-		<select name="EMPLOYEE_NAME" id="EMPLOYEE_NAME"> <%-- 영업담당자 select창을 위해 Employee를 get --%> 
-		<%-- selected 먼저 출력하고 나머지 조건문으로 출력 --%>
-			<option value="${read.EMPLOYEE_NAME}" selected="selected">${read.EMPLOYEE_CODE} ${read.EMPLOYEE_NAME} ${read.EMPLOYEE_RANK}</option>
-			<c:forEach var="employeeList" items="${list}"> 
-				<c:if test="${read.EMPLOYEE_CODE ne employeeList.ECODE}"> 
-					<option value="${employeeList.ENAME}">${employeeList.ECODE} ${employeeList.ENAME} ${employeeList.ERANK}</option>
-				</c:if>
-			</c:forEach>
-		</select>
-		
-		<%-- 제이쿼리에서 데이터 전송 처리 --%>
-		<input type="hidden" name="EMPLOYEE_CODE" value ="">
-		<input type="hidden" name="EMPLOYEE_RANK" valse ="">
-		
-		<br>
-		ADRESS
-		<br>
-		<input type="text" name="ADRESS_NUMBER" id="idPostCode" placeholder="우편번호" value="${read.ADRESS_NUMBER}">
-		<input type="button" onclick="DaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" name="ADRESS_DORO" id="idRoadAddress" placeholder="도로명주소" value="${read.ADRESS_DORO}">
-		<input type="text" name="ADRESS_JIBEON" id="idJibeonAdress" placeholder="지번주소" value="${read.ADRESS_JIBEON}">
-		<span id="guide" style="color:#999; display:none"></span>
-		<input type="text" name="ADRESS_DETAIL" id="idDetailAddress" placeholder="상세주소" value="${read.ADRESS_DETAIL}">
-		<input type="text" name="ADRESS_MEMO" id="idExtraAddress" placeholder="참고항목" value="${read.ADRESS_MEMO}">
-		<div id="MAP" style="width:300px;height:300px;margin-top:10px; display:none"></div>
-
-		<br>
-		TEL / MEMO / BALANCE
-		<br>
-
-		<input type="text" name="TEL" value="${read.TEL}">
-		<input type="text" name="MEMO" value="${read.MEMO}">
-		<input type="number" name="BALANCE"  value="${read.BALANCE}">
-		<input type="submit" value="수정">
-	</form>
+<%@include file ="../TopHeader.jsp" %>
+	
+<div class="split style1">
+	<section>
+		<div class="fields">
+			<form action="/customer/editCustomer" method="post">
+			<input type="hidden" name="CCODE" value="${read.CCODE}">
+			<div class="field">
+				<label for="message">STATE</label>
+				<select name="STATE" id="STATE"> 
+						<option value="매입">매입</option>
+						<option value="매출">매출</option>
+				</select>
+			</div>
+			<div class="field">
+				<label for="message">NAME</label>
+				<input type="text" name="CNAME" value="${read.CNAME}">
+			</div>
+			<div class="field">
+				<label for="message">EMPLOYEE</label>
+				<select name="EMPLOYEE_NAME" id="EMPLOYEE_NAME"> <%-- 영업담당자 select창을 위해 Employee를 get --%> 
+					<c:forEach var="employeeList" items="${list}"> 
+						<option value="${employeeList.ENAME}">${employeeList.ECODE} ${employeeList.ENAME} ${employeeList.ERANK}</option>
+					</c:forEach>
+				</select>
+				<%-- 제이쿼리에서 데이터 전송 처리 --%>
+				<input type="hidden" name="EMPLOYEE_CODE" value ="">
+				<input type="hidden" name="EMPLOYEE_RANK" valse ="">
+			</div>
+			<div class="field">
+				<label for="message">ADRESS </label>
+				<input type="text" name="ADRESS_NUMBER" id="idPostCode" placeholder="우편번호" value="${read.ADRESS_NUMBER}">
+				<div style="text-align:right"><input type="button" class="button primary small" onclick="DaumPostcode()" value="우편번호 찾기"></div>
+				<input type="text" name="ADRESS_DORO" id="idRoadAddress" placeholder="도로명주소" value="${read.ADRESS_DORO}">
+				<input type="text" name="ADRESS_JIBEON" id="idJibeonAdress" placeholder="지번주소" value="${read.ADRESS_JIBEON}">
+				<span id="guide" style="color:#999; display:none"></span>
+				<input type="text" name="ADRESS_DETAIL" id="idDetailAddress" placeholder="상세주소" value="${read.ADRESS_DETAIL}">
+				<input type="text" name="ADRESS_MEMO" id="idExtraAddress" placeholder="참고항목" value="${read.ADRESS_MEMO}">
+				<div id="MAP" style="width:300px;height:300px;margin-top:10px; display:none"></div>
+			</div>
+			<div class="field">
+				<label for="message">TEL</label>
+				<input type="text" name="TEL" value="${read.TEL}">
+			</div>
+			<div class="field">
+				<label for="message">MEMO</label>
+				<input type="text" name="MEMO" value="${read.MEMO}">
+			</div>
+			<div class="field">
+				<label for="message">BALANCE</label>
+				<input type="text" pattern="[0-9]+" name="BALANCE"  value="${read.BALANCE}">
+			</div>
+			<div class="field">
+				<div style="text-align:right"><input type="submit" class="button primary" value="수정"></div>
+			</div>
+			</form>
+		</div>
+	</section>
+	<section>
+		<ul class="contact">
+			<li>
+			<h3>※ 주의</h3>
+			<span>거래처 등록 시 영업담당자 문의 필<br></span>
+			</li>
+		</ul>
+	</section>
+</div>
+	
+	<%@include file = "../BottomFooter.jsp" %>
 
 	<%-- 카카오 주소검색 API --%>
 	<%-- 자바스크립트는 출력 속도를 위해 jsp 하단에 위치 시킴. --%>
@@ -79,17 +98,17 @@
     	
     	$('input[name=EMPLOYEE_CODE]').attr('value',dataSplit[0]);
  	  	$('input[name=EMPLOYEE_RANK]').attr('value',dataSplit[2]);
-    	
-    });
-    
-    $("select[id=EMPLOYEE_NAME]").change(function(){
-    	
-    	var data = $("select[id=EMPLOYEE_NAME] option:selected").text(); <%-- ex)1 홍길동 사원 --%>
-    	var dataSplit = data.split(" "); <%-- 공백 잘라서 각각 input --%>
- 	  	
- 	  	$('input[name=EMPLOYEE_CODE]').attr('value',dataSplit[0]);
- 	  	$('input[name=EMPLOYEE_RANK]').attr('value',dataSplit[2]);
-    });
+ 	  	$('#STATE option[value="${read.CCODE}"]').prop('selected', true);
+ 	  	$('#EMPLOYEE_NAME option[value="${employeeList.ENAME}"]').prop('selected', true);
+ 	  	$("select[id=EMPLOYEE_NAME]").change(function(){
+ 	    	
+ 	    	var data = $("select[id=EMPLOYEE_NAME] option:selected").text(); <%-- ex)1 홍길동 사원 --%>
+ 	    	var dataSplit = data.split(" "); <%-- 공백 잘라서 각각 input --%>
+ 	 	  	
+ 	 	  	$('input[name=EMPLOYEE_CODE]').attr('value',dataSplit[0]);
+ 	 	  	$('input[name=EMPLOYEE_RANK]').attr('value',dataSplit[2]);
+ 	    });
+    });    
 	
 		var mapContainer = document.getElementById('MAP'), <%-- 지도 표시 DIV --%>
 		mapOption = {

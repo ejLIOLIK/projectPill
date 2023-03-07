@@ -17,13 +17,6 @@
 <body class="is-preload">
 
 	<%@include file ="../TopHeader.jsp" %>
-
-<!-- Wrapper -->
-	<div id="wrapper">
-
-		<!-- Main -->
-			<section id="main" class="wrapper">
-				<div class="inner">
 				
 				<%-- 페이지 정보 날리기 --%>
 				<form id="pageInfo" method="get" action="/product/getListProduct">
@@ -55,6 +48,8 @@
 									<form action="/product/editProduct" method="post">
 									<tr>
 										<input type="hidden" name="PILLCODE" value="${productList.PILLCODE}" id="PILLCODE_EDIT">
+										<input type="hidden" name="curPage" value="${page.curPage}" id="curPage">
+										<input type="hidden" name="curPageBlock" value="${page.curPageBlock}" id="curPageBlock">										
 										<td><input type="text" name="PCODE" value="${productList.PCODE}" readonly></td>
 										<td><input type="text" name="PNAME" value="${productList.PNAME}" readonly id="PNAME_EDIT"></td>
 										<td><input type="text" name="CAPACITY" value="${productList.CAPACITY}" readonly id="CAPACITY_EDIT"></td>
@@ -78,8 +73,8 @@
 										<td>${pillPrice}</td>
 										<td>${productList.PRICE}</td>
 										<td>${productList.STOCK}</td>
-										<td><button type="button" class="button small" onclick="location.href='/product/getListProduct?ProductCodeEdit=${productList.PCODE}'"> 수정 </button></td>
-										<td><button type="button" class="button small" onclick="location.href='/product/deleteProduct?productCode=${productList.PCODE}'"> 삭제 </button></td>
+										<td><button type="button" class="button small" onclick="location.href='/product/getListProduct?ProductCodeEdit=${productList.PCODE}&curPage=${page.curPage}&curPageBlock=${page.curPageBlock}'"> 수정 </button></td>
+										<td><button type="button" class="button small" onclick="location.href='/product/deleteProduct?productCode=${productList.PCODE}&curPage=${page.curPage}&curPageBlock=${page.curPageBlock}'"> 삭제 </button></td>
 									</tr>
 									</c:otherwise>
 									</c:choose>
@@ -104,45 +99,11 @@
 							</table>
 						</div>		
 
-				<%-- 페이징 --%>
-				<div style="text-align:center">
-				<c:choose>
-					<c:when test="${page.blBeforeBlock}">
-						<button type="button" id="buttonbefore" class="button primary small" >이전</button>
-					</c:when>
-					<c:otherwise> <button type="button" class="button primary small" disabled>이전</button>	</c:otherwise>
-				</c:choose>
-				<c:forEach var="pagenum" begin="${page.beginBlock}" end="${page.endBlock}">
-					<c:choose>
-				    	<c:when test="${pagenum eq page.curPage}">
-				   		${pagenum}
-				    	</c:when>
-				    	<c:otherwise>
-						 <span><a href="/product/getListProduct?curPage=${pagenum}&curPageBlock=${page.curPageBlock}"> ${pagenum} </a></span>
-				  		</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				<c:choose>
-					<c:when test="${page.blAfterBlock}">
-						<button type="button" id="buttonAfter" class="button primary small" >다음</button>
-					</c:when>
-					<c:otherwise> <button type="button" class="button primary small" disabled>다음</button>	</c:otherwise>
-				</c:choose>
-				<br>
-				</div>		
+	<jsp:include page="../Paging.jsp">
+		<jsp:param name="pageUrlParam" value="/product/getListProduct?curPageBlock=${page.curPageBlock}&curPage="/>
+	</jsp:include>
 	
-			</div>
-		</section>
-	</div>
-	
-	<!-- Footer -->
-	<footer id="footer" class="wrapper alt">
-		<div class="inner">
-			<ul class="menu">
-				<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-			</ul>
-		</div>
-	</footer>
+	<%@include file = "../BottomFooter.jsp" %>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
@@ -165,23 +126,8 @@
 		$("input[id='AMOUNT_EDIT'], input[id='PILL_PRICE_EDIT']").on("change", function() {
 			document.getElementById("PRODUCT_PRICE_EDIT").value = document.getElementById("PILL_PRICE_EDIT").value * document.getElementById("AMOUNT_EDIT").value;	
 	  	});
-		
-		<%-- 페이징블락 버튼 함수 --%>
-		$("#buttonbefore").on("click",function(){
-			var curPageBlock = parseInt($('#curPageBlock').val()) - 1;
-	        $('#curPageBlock').val(curPageBlock);
-		    $('#pageInfo').submit();
-			console.log("function : buttonbefore");
-		});
-		$("#buttonAfter").on("click",function(){
-			var curPageBlock = parseInt($('#curPageBlock').val()) + 1;
-	        $('#curPageBlock').val(curPageBlock);
-		    $('#pageInfo').submit();
-			console.log("function : buttonAfter");
-		});
 	});
 	
 	</script>
-
 </body>
 </html>

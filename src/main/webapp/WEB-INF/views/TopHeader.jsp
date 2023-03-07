@@ -10,7 +10,7 @@
 
 	<!-- Header -->
 	<header id="header">
-		<a href="/index.jsp" class="title">Pill Project</a>
+		<a href="/" class="title">Pill Project</a>
 
 		<nav>
 			<ul>
@@ -23,6 +23,13 @@
 			</ul>
 		</nav>
 	</header>
+	
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
 
 </body>
 </html>

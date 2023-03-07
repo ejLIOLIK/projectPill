@@ -37,9 +37,11 @@ public class PillController {
 	}
 	
 	@GetMapping("/deletePill")
-	public String deletePill(@RequestParam("pillCode") String pillCode) {
+	public String deletePill(@RequestParam("pillCode") String pillCode,
+			@RequestParam(value = "curPage", required = false)Integer curPage,
+			@RequestParam(value = "curPageBlock", required = false)Integer curPageBlock) {
 		service.deletePill(pillCode);
-		return "redirect:/pill/getListPill";
+		return "redirect:/pill/getListPill?curPage="+curPage+"&curPageBlock="+curPageBlock;
 	}
 	
 	@PostMapping("/writePill")
@@ -49,9 +51,11 @@ public class PillController {
 	}
 	
 	@PostMapping("/editPill")
-	public String editPill(PillDto pdto){
+	public String editPill(PillDto pdto,
+			@RequestParam(value = "curPage", required = false)Integer curPage,
+			@RequestParam(value = "curPageBlock", required = false)Integer curPageBlock){
 		service.editPill(pdto);
-		return "redirect:/pill/getListPill";
+		return "redirect:/pill/getListPill?curPage="+curPage+"&curPageBlock="+curPageBlock;
 	}
 	
 }
