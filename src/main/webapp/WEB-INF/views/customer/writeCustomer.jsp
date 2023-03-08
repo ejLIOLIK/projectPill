@@ -16,6 +16,10 @@
 
 	<%@include file ="../TopHeader.jsp" %>
 	
+	<button id="getCustomerAPI" class="button primary small">약국정보 가져오기</button>
+	<br>
+	<br>
+	
 	<div class="split style1">
 		<section>
 			<form action="/customer/writeCustomer" method="post">
@@ -92,7 +96,13 @@
 	<script src="http://code.jquery.com/jquery-latest.js"></script> 
 	<script>
 	
-    $("select[id=EMPLOYEE_NAME]").change(function(){
+	$(document).ready(function() {
+	
+	  	$('#getCustomerAPI').click(function() {
+			window.open("/customer/getCustomerApiData","getCustomerApiData","width=400,height=550")
+		});
+	
+    	$("select[id=EMPLOYEE_NAME]").change(function(){
     	
     	var data = $("select[id=EMPLOYEE_NAME] option:selected").text(); <%-- ex)1 홍길동 사원 --%>
     	var dataSplit = data.split(" "); <%-- 공백 잘라서 각각 input --%>
@@ -186,6 +196,7 @@
 	            }
 	        }).open();
 	    }
+	});
 	</script>
 
 </body>

@@ -22,8 +22,9 @@
 	  <input type="hidden" name="curPageBlock" value="${page.curPageBlock}" id="curPageBlock">
 	</form>
 				
-<a href="/customer/setListCustomder">데이터 불러오기</a><br><br>
-				<h1 class="major">A Generic Page</h1>
+<!-- 	<a href="/customer/setListCustomer">데이터 불러오기</a><br><br> -->
+
+				<h1 class="major">거래처 목록</h1>
 				
 				<div class="table-wrapper">
 					<table>

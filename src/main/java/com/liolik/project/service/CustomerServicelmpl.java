@@ -1,5 +1,6 @@
 package com.liolik.project.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import com.liolik.project.dto.CustomerDto;
 import com.liolik.project.dto.EmployeeDto;
 import com.liolik.project.dto.PagingDto;
 import com.liolik.project.mapper.CustomerMapper;
+import com.liolik.project.module.getApiDateModule;
 import com.liolik.project.module.pagingModule;
 
 import lombok.Setter;
@@ -71,4 +73,14 @@ public class CustomerServicelmpl implements CustomerService {
 		return pagingModule.setPaging(pdto);
 	}
 
+	@Override
+	public List<CustomerDto> getCustomerApiData(String sido, String sigungu, String name){
+		List<CustomerDto> cList = new ArrayList<>();
+		getApiDateModule apiMd = new getApiDateModule();
+		
+		String search = apiMd.endodingSearch(sido, sigungu, name);
+		cList = apiMd.getApiDataList(search);
+		
+		return cList;
+	}
 }

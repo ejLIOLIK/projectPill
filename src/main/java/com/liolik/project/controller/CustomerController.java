@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.liolik.project.ApiExplorer;
 import com.liolik.project.dto.CustomerDto;
@@ -68,10 +69,21 @@ public class CustomerController {
 		return "redirect:/customer/getListCustomer";
 	}
 	
-	@GetMapping("/setListCustomder")
+	@GetMapping("/setListCustomer")
 	public String setListCustomer() {
 		service.setListCustomer(ApiExplorer.getAPIData());
 		return "redirect:/customer/getListCustomer";
+	}
+
+	@GetMapping("/getCustomerApiData")
+	public void getCustomerApiData(Model model,
+			@RequestParam(value = "sido", required = false)String sido,
+			@RequestParam(value = "sigungu", required = false)String sigungu,
+			@RequestParam(value = "name", required = false)String name) {
+		System.out.println("컨트롤러 파라미터 체크 sido : " + sido);
+		System.out.println("컨트롤러 파라미터 체크 sigungu : " + sigungu);
+		System.out.println(" .컨트롤러 파라미터 체크 name: " + name);
+		model.addAttribute("list", service.getCustomerApiData(sido, sigungu, name));
 	}
 	
 }

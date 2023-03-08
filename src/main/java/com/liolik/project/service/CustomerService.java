@@ -15,4 +15,5 @@ public interface CustomerService {
 	public void editCustomer(CustomerDto cdto);	
 	public void setListCustomer(List<CustomerDto> cdto);
 	public PagingDto settingPage(Integer curPage, Integer curPageBlock);
+	public List<CustomerDto> getCustomerApiData(String sido, String sigungu, String name);
 }
