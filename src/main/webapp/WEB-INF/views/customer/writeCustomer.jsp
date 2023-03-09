@@ -33,11 +33,11 @@
 				</div>
 				<div class="field">
 					<label for="message">NAME</label>
-					<input type="text" name="CNAME">
+					<input type="text" name="CNAME" id="CNAME">
 				</div>
 				<div class="field">
 					<label for="message">EMPLOYEE</label>
-					<select name="EMPLOYEE_NAME" id="EMPLOYEE_NAME"><%-- 영업담당자 select창을 위해 Employee를 get --%> 
+					<select name="EMPLOYEE_NAME" id="EMPLOYEE_NAME" required="required"><%-- 영업담당자 select창을 위해 Employee를 get --%> 
 						<option selected="selected" value="" >영업담당자</option>
 						<c:forEach var="employeeList" items="${list}"> 
 							<option value="${employeeList.ENAME}">${employeeList.ECODE} ${employeeList.ENAME} ${employeeList.ERANK}</option>
@@ -60,11 +60,11 @@
 				</div>
 				<div class="field">
 					<label for="message">TEL</label>
-					<input type="text" name="TEL">
+					<input type="text" name="TEL" id="TEL">
 				</div>
 				<div class="field">
 					<label for="message">MEMO</label>
-					<input type="text" name="MEMO">
+					<input type="text" name="MEMO" id="MEMO">
 				</div>
 				<div class="field">
 					<label for="message">BALANCE</label>
