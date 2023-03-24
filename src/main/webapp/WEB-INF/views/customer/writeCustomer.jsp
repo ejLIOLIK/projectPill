@@ -109,7 +109,7 @@
  	  	
  	  	$('input[name=EMPLOYEE_CODE]').attr('value',dataSplit[0]);
  	  	$('input[name=EMPLOYEE_RANK]').attr('value',dataSplit[2]);
-    });
+    	});
 	
 		var mapContainer = document.getElementById('idMap'), <%-- 지도 표시 DIV --%>
 		mapOption = {

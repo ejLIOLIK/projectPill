@@ -23,7 +23,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				<div class="inner">
 					<nav>
 						<ul>
-							<li><a href="#intro">Pill Project</a></li>
+<!-- 							<li><a href="#intro">Pill Project</a></li> -->
+							<li><a href="/account/account">Pill Project</a></li>
 							<li><a href="#one">시작하기</a></li>
 							<li><a href="#two">기능 안내</a></li>
 							<li><a href="#three">개발 정보</a></li>

@@ -6,12 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.liolik.project.ApiExplorer;
 import com.liolik.project.dto.CustomerDto;
-import com.liolik.project.dto.PagingDto;
-import com.liolik.project.module.pagingModule;
 import com.liolik.project.service.CustomerService;
 
 import lombok.AllArgsConstructor;
@@ -37,7 +34,7 @@ public class CustomerController {
 	
 	@GetMapping("/writeCustomer")
 	public void writeCustomer(Model model) {	
-		model.addAttribute("list", service.getListEmployee()); // 영업담당자 select창을 위해 Employee를 get
+		model.addAttribute("list", service.getListEmployee()); // �쁺�뾽�떞�떦�옄 select李쎌쓣 �쐞�빐 Employee瑜� get
 	}
 	
 	@PostMapping("/writeCustomer")
@@ -60,7 +57,7 @@ public class CustomerController {
 	@GetMapping("/editCustomer")
 	public void editCustomer(@RequestParam("customerCode") String customerCode, Model model) {
 		model.addAttribute("read", service.readCustomer(customerCode));
-		model.addAttribute("list", service.getListEmployee()); // 영업담당자 select창을 위해 Employee를 get
+		model.addAttribute("list", service.getListEmployee()); // �쁺�뾽�떞�떦�옄 select李쎌쓣 �쐞�빐 Employee瑜� get
 	}
 	
 	@GetMapping("/deleteCustomer")
@@ -80,9 +77,6 @@ public class CustomerController {
 			@RequestParam(value = "sido", required = false)String sido,
 			@RequestParam(value = "sigungu", required = false)String sigungu,
 			@RequestParam(value = "name", required = false)String name) {
-		System.out.println("컨트롤러 파라미터 체크 sido : " + sido);
-		System.out.println("컨트롤러 파라미터 체크 sigungu : " + sigungu);
-		System.out.println(" .컨트롤러 파라미터 체크 name: " + name);
 		model.addAttribute("list", service.getCustomerApiData(sido, sigungu, name));
 	}
 	
