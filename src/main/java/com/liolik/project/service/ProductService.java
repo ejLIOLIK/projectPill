@@ -2,6 +2,7 @@ package com.liolik.project.service;
 
 import java.util.List;
 
+import com.liolik.project.dto.AccountDto;
 import com.liolik.project.dto.PagingDto;
 import com.liolik.project.dto.PillDto;
 import com.liolik.project.dto.ProductDto;
@@ -17,4 +18,5 @@ public interface ProductService {
 	public void writeProduct(ProductDto pdto);
 	public PagingDto settingPage(Integer curPage, Integer curPageBlock);
 	public PagingDto settingPage(Integer curPage, Integer curPageBlock, String productName);
+	public void stockUpdate(AccountDto dto);
 }

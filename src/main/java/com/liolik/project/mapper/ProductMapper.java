@@ -2,6 +2,7 @@ package com.liolik.project.mapper;
 
 import java.util.List;
 
+import com.liolik.project.dto.AccountDto;
 import com.liolik.project.dto.PillDto;
 import com.liolik.project.dto.ProductDto;
 
@@ -16,4 +17,6 @@ public interface ProductMapper {
 	public void writeProduct(ProductDto pdto);
 	public int getListCount();
 	public int getPillListCount(String PILLNAME);	
+	public void stockUpdatePlus(AccountDto dto);
+	public void stockUpdateMinus(AccountDto dto);
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.liolik.project.dto.AccountDto;
 import com.liolik.project.dto.PagingDto;
 import com.liolik.project.dto.PillDto;
 import com.liolik.project.dto.ProductDto;
@@ -86,6 +87,17 @@ public class ProductServiceImpl implements ProductService {
 		pdto.setTotalPageBlock(pagingModule.setTotalPageBlock(pdto.getTotalPage()));
 		
 		return pagingModule.setPaging(pdto);
+	}
+	
+	@Override
+	public void stockUpdate(AccountDto dto) {
+		
+		if("매입".equals(dto.getSTATE())) {
+			mapper.stockUpdatePlus(dto);
+		}
+		else if("매출".equals(dto.getSTATE())) {
+			mapper.stockUpdateMinus(dto);
+		}
 	}
 	
 }

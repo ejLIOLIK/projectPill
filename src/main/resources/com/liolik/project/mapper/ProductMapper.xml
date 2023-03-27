@@ -33,4 +33,11 @@
 	<update id="editProduct">
 		update PRODUCT set PILLCODE=#{PILLCODE}, PNAME=#{PNAME}, CAPACITY=#{CAPACITY}, AMOUNT=#{AMOUNT}, UNIT=#{UNIT}, PRICE=#{PRICE}, STOCK=#{STOCK} where PCODE = #{PCODE}
 	</update>
+	<update id="stockUpdatePlus">
+		update PRODUCT set STOCK = STOCK + #{STOCK} where PCODE = #{PCODE}
+	</update>
+	<update id="stockUpdateMinus">
+		update PRODUCT set STOCK = STOCK - #{STOCK} where PCODE = #{PCODE}
+	</update>
+	
 </mapper>

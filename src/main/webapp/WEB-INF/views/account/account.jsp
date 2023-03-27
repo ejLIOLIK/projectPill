@@ -9,8 +9,12 @@
 </head>
 <body>
 
-날짜 매입출 거래처이름 제품이름 수량 가격 토탈
-<form id = "accountForm">
+날짜 매입출 거래처이름 제품이름 수량 가격 토탈 <br>
+<c:forEach var="aList" items="${list}"> 
+${aList.TDATE} ${aList.STATE} ${aList.CCODE}/${aList.CUSTOMER} ${aList.PCODE}/${aList.PRODUCT} ${aList.STOCK}개 ${aList.PRICE}원 ${aList.TOTAL}원<br>
+</c:forEach>
+
+<form id = "accountForm" action="/account/write" method="get">
 
 <input type="date" id="DATE" name="DATE">
 
@@ -42,6 +46,8 @@
 
 <input type="hidden" id="CCODE" name="CCODE">
 <input type="hidden" id="PCODE" name="PCODE">
+
+<input type="submit">
 </form>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
