@@ -57,7 +57,7 @@ public class CustomerController {
 	@GetMapping("/editCustomer")
 	public void editCustomer(@RequestParam("customerCode") String customerCode, Model model) {
 		model.addAttribute("read", service.readCustomer(customerCode));
-		model.addAttribute("list", service.getListEmployee()); // �쁺�뾽�떞�떦�옄 select李쎌쓣 �쐞�빐 Employee瑜� get
+		model.addAttribute("list", service.getListEmployee()); // 영업담당자 select창을 위해 Employee를 get
 	}
 	
 	@GetMapping("/deleteCustomer")
