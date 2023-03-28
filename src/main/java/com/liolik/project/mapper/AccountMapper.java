@@ -7,4 +7,5 @@ import com.liolik.project.dto.AccountDto;
 public interface AccountMapper {
 	public List<AccountDto> getListAccount();
 	public void writeAccount(AccountDto dto);
+	public void UpdateBalance(AccountDto dto);
 }

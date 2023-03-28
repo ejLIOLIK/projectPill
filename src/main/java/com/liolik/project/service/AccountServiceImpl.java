@@ -26,6 +26,13 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void writeAccount(AccountDto dto) {
 		mapper.writeAccount(dto);
+		
+		// 정산 시 음수 처리
+		if("정산".equals(dto.getSTATE())) {
+			dto.setTOTAL(-1 * dto.getTOTAL());
+		}
+
+		mapper.UpdateBalance(dto);
 	}
 	
 }

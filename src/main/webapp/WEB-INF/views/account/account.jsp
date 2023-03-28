@@ -9,25 +9,26 @@
 </head>
 <body>
 
-날짜 매입출 거래처이름 제품이름 수량 가격 토탈 <br>
+날짜 분류 거래처이름 제품이름 수량 가격 토탈 <br>
 <c:forEach var="aList" items="${list}"> 
 ${aList.TDATE} ${aList.STATE} ${aList.CCODE}/${aList.CUSTOMER} ${aList.PCODE}/${aList.PRODUCT} ${aList.STOCK}개 ${aList.PRICE}원 ${aList.TOTAL}원<br>
 </c:forEach>
 
 <form id = "accountForm" action="/account/write" method="get">
 
-<input type="date" id="TDATE" name="TDATE" value="">
+<input type="date" id="TDATE" name="TDATE">
 
 <select id="STATE" name="STATE" >
-<option selected disabled>매입/매출</option>
+<option selected disabled>분류</option>
 <option value="매입">매입</option>
 <option value="매출">매출</option>
+<option value="정산">정산</option>
 </select>
 
 <select id="CUSTOMER" name="CUSTOMER"> 
 <option selected disabled>거래처</option>
 <c:forEach var="customerList" items="${customerList}"> 
-<option value="${customerList.CNAME}">${customerList.CCODE} ${customerList.CNAME}</option>
+<option value="${customerList.CNAME}">${customerList.CCODE} ${customerList.CNAME} ${customerList.BALANCE}원</option>
 </c:forEach>
 </select>
 
@@ -58,10 +59,38 @@ $(document).ready(function() {
 	
 	$('#TDATE').val(new Date().toISOString().slice(0, 10));
 	
+	$('#STATE').change(function(){
+		<!-- 정산 시 다른 입력창 다 비활성화, PRODUCT정보 0으로 통일하고 -->
+		<!-- TOTAL에 정산금액 입력할 수 있도록 처리 -->
+    	if($('#STATE').val()=="정산"){
+    		$('#PRODUCT').attr("disabled", true);
+    		$('#STOCK').attr("readonly", true);
+    		$('#TOTAL').attr("readonly", false);
+    		
+    		$('#PCODE').attr('value','0');
+    		$('#PRICE').attr('value','0');
+    		$('#STOCK').attr('value','0');
+    		
+    		blStock="true";
+    	}
+    	else{
+    		$('#PRODUCT').attr("disabled", false);
+    		$('#STOCK').attr("readonly", false);
+    		$('#TOTAL').attr("readonly", true);
+    		
+    		blStock="false";
+    	}
+   	});
+
 	$('#CUSTOMER').change(function(){
     	var data = $("select[id=CUSTOMER] option:selected").text(); 
     	var dataSplit = data.split(" "); <%-- 공백 잘라서 input --%>
  	  	$('#CCODE').attr('value',dataSplit[0]);
+ 	  	
+ 	  	<!-- 정산 시 BALANCE 값 활용 -->
+ 	  	if($('#STATE').val()=="정산"){
+ 	  		$('#STOCK_before').attr('value',dataSplit[2].replace("원",""));
+ 	  	}
    	});
    	
 	$('#PRODUCT').change(function(){

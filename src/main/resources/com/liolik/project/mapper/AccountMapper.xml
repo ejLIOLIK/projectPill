@@ -9,4 +9,7 @@
 	<insert id="writeAccount">
 		INSERT INTO ACCOUNT (TDATE, STATE, CCODE, CUSTOMER, PCODE, PRODUCT, STOCK, PRICE, TOTAL) value (#{TDATE}, #{STATE}, #{CCODE}, #{CUSTOMER}, #{PCODE}, #{PRODUCT}, #{STOCK}, #{PRICE}, #{TOTAL})
 	</insert>
+	<update id="UpdateBalance">
+		update CUSTOMER set BALANCE=BALANCE+#{TOTAL} where CCODE=#{CCODE}
+	</update>
 </mapper>

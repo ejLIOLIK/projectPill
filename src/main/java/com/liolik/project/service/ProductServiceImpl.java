@@ -91,7 +91,6 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Override
 	public void stockUpdate(AccountDto dto) {
-		
 		if("매입".equals(dto.getSTATE())) {
 			mapper.stockUpdatePlus(dto);
 		}
