@@ -16,7 +16,7 @@ ${aList.TDATE} ${aList.STATE} ${aList.CCODE}/${aList.CUSTOMER} ${aList.PCODE}/${
 
 <form id = "accountForm" action="/account/write" method="get">
 
-<input type="date" id="DATE" name="DATE">
+<input type="date" id="TDATE" name="TDATE" value="">
 
 <select id="STATE" name="STATE" >
 <option selected disabled>매입/매출</option>
@@ -47,14 +47,16 @@ ${aList.TDATE} ${aList.STATE} ${aList.CCODE}/${aList.CUSTOMER} ${aList.PCODE}/${
 <input type="hidden" id="CCODE" name="CCODE">
 <input type="hidden" id="PCODE" name="PCODE">
 
-<input type="submit">
+<input type="submit" value="입력">
 </form>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	
-	$('#DATE').val(new Date().toISOString().slice(0, 10));
+	var blStock = "false";
+	
+	$('#TDATE').val(new Date().toISOString().slice(0, 10));
 	
 	$('#CUSTOMER').change(function(){
     	var data = $("select[id=CUSTOMER] option:selected").text(); 
@@ -72,6 +74,26 @@ $(document).ready(function() {
 	
 	$('#STOCK').change(function(){
 		$('#TOTAL').val($('#STOCK').val() * $('#PRICE').val());
+
+		<!-- 재고 수량보다 많은 수량 매출 입력 시 -->
+		if($('#STATE').val()=="매출" && ($('#STOCK_before').val() - $('#STOCK').val()) < 0){ 
+			$('#STOCK').css('color', 'red');
+			blStock = "false";
+			console.log(blStock);
+		}
+		else{
+			$('#STOCK').css('color', 'black');
+			blStock = "true";
+			console.log(blStock);
+		}
+	});
+	
+	$('#accountForm').submit(function(event){
+		if(blStock=="false"){
+			event.preventDefault();
+			alert('재고가 부족합니다.');
+			$("#STOCK").focus();
+		}
 	});
 
 });
