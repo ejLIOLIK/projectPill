@@ -25,13 +25,15 @@
 
 <!-- RSA 암호화 파라미터 -->
 <form name="form_chk" id="form_chk" method="post">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	<input type="hidden" id="RSAModulus" name="RSAModulus" value="${publicKeyModulus}" />
 	<input type="hidden" id="RSAExponent" name="RSAExponent" value="${publicKeyExponent}" />
 </form>
 
 					<div class="split style1">
 						<section>
-							<form id="LOGIN_FORM">
+							<form id="LOGIN_FORM" action="/loginAction" method="post">
+							<input type="hidden" id="${_csrf.parameterName}" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							<div class="fields">
 								<div class="field">
 									<%-- 코드선택. --%>
@@ -44,7 +46,7 @@
 									<input type="password" name="EPW" id="EPW" required="required" autocomplete="off">
 								</div>
 								<div class="field">
-									<input type="submit" class="button primary" value="LOGIN">
+								<button class="button primary" id="loginButton">LOGIN</button>
 								</div>
 							</div>
 							</form>
@@ -78,30 +80,29 @@ $(document).ready(function() {
 		window.open("/register/getEmployeeCode","getEmployeeCode","width=400,height=550")
 	});
 	
-	$("#LOGIN_FORM").submit(function(event){
+	$("#loginButton").on("click", function(event){
 		event.preventDefault();
+		<%-- 암호화한 패스워드 넘김 --%>
+		$('#EPW').val(encryptRSA($('#EPW').val()));
 		
-			$.ajax({
-				url:'/register/login',
-				type:'post',
-				dataType : 'json',
-				data:{
-					ECODE : $("#ECODE").val(),
-					<%-- 암호화한 패스워드 넘김 --%>
-					PW : encryptRSA($('#EPW').val())},
-				success: function(data){
-					var message = data.message;
-					alert(message);
-					
-					location.replace("/register/loginGate");
-				},
-				error : function( jqXHR, textStatus, errorThrown ) {
-					alert( jqXHR.status );
-					alert( jqXHR.statusText );
-					alert( jqXHR.responseText );
-					alert( jqXHR.readyState );
-				}
-			});
+		//ECODE만 먼저 post로 컨트롤러에 한 번 넘겨줌
+		$.ajax({
+			url:'/register/login',
+			type:'post',
+			data:{
+				ECODE : $("#ECODE").val(),
+				"${_csrf.parameterName}" : "${_csrf.token}"
+			},
+			success: function(){
+				$("#LOGIN_FORM").submit();
+			},
+			error : function( jqXHR, textStatus, errorThrown ) {
+				alert( jqXHR.status ); 
+				alert( jqXHR.statusText ); 
+				alert( jqXHR.responseText );
+				alert( jqXHR.readyState ); 
+			}
+		});
 	});
 });
 

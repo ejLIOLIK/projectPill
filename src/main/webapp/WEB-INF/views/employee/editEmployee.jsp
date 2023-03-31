@@ -18,6 +18,7 @@
 	<div class="split style1">
 	<section>
 		<form action="/employee/editEmployee" method="post">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		<div class="fields">
 			<input type="hidden" name="ECODE" value="${read.ECODE}">
 			<div class="field">

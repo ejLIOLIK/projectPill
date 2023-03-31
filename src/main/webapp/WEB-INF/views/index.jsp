@@ -144,6 +144,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 							<div class="split style1">
 								<section>
 									<form method="post" action="#">
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 										<div class="fields">
 											<div class="field half">
 												<label for="name">개발기간</label>

@@ -19,6 +19,7 @@
 	
 	<%-- 페이지 정보 날리기 --%>
 	<form id="pageInfo" method="get" action="/employee/readEmployee">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	  <input type="hidden" name="curPage" value="${page.curPage}" id="curPage">
 	  <input type="hidden" name="curPageBlock" value="${page.curPageBlock}" id="curPageBlock">
 	  <input type="hidden" name="employeeCode" value="${read.ECODE}" id="curPageBlock">

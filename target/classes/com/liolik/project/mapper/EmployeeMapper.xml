@@ -27,4 +27,10 @@
 	<update id="editEmployee">
 		update EMPLOYEE set ENAME=#{ENAME}, ERANK=#{ERANK}, ETEAM=#{ETEAM} where ECODE = #{ECODE}
 	</update>
+	<insert id="setPriKey">
+		update EMPLOYEE set PRIKEY=#{PRIKEY} where ECODE = #{ECODE}
+	</insert>
+	<select id="getPriKey" resultType="String">
+		select PRIKEY from EMPLOYEE where ECODE = #{ECODE}
+	</select>
 </mapper>

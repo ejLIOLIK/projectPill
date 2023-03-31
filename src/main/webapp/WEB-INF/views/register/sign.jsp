@@ -25,6 +25,7 @@
 
 <!-- RSA 암호화 파라미터 -->
 <form name="form_chk" id="form_chk" method="post">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	<input type="hidden" id="RSAModulus" name="RSAModulus" value="${publicKeyModulus}" />
 	<input type="hidden" id="RSAExponent" name="RSAExponent" value="${publicKeyExponent}" />
 </form>
@@ -32,6 +33,7 @@
 					<div class="split style1">
 						<section>
 							<form id="REGISTER_FORM">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							<div class="fields">
 								<div class="field">
 									<%-- 코드선택. --%>
@@ -80,7 +82,7 @@ $(document).ready(function() {
 	    return rsa.encrypt(plain);
 	}
 	
-	$("input[id='ECODE']").on("focusin", function(){
+	$("#ECODE").on("focusin", function(){
 		window.open("/register/getEmployeeCode","getEmployeeCode","width=400,height=550")
 	});
 	
@@ -95,8 +97,10 @@ $(document).ready(function() {
 				dataType : 'json',
 				data:{
 					ECODE : $("#ECODE").val(),
+					"${_csrf.parameterName}" : "${_csrf.token}",
 					<%-- 암호화한 패스워드 넘김 --%>
-					PW : encryptRSA($('#EPW').val())},
+					PW : encryptRSA($('#EPW').val())
+				},
 				success: function(data){
 					<%-- ajax 비동기방식이므로 성공시 경로 지정 필요함 --%>
 					var message = data.message;

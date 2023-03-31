@@ -18,6 +18,7 @@
 	<div class="split style1">
 		<section>
 			<form action="/employee/writeEmployee" method="post">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<div class="fields">
 				<div class="field">
 					<label for="message">NAME</label>

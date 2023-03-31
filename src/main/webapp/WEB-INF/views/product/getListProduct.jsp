@@ -20,6 +20,7 @@
 				
 				<%-- 페이지 정보 날리기 --%>
 				<form id="pageInfo" method="get" action="/product/getListProduct">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				  <input type="hidden" name="curPage" value="${page.curPage}" id="curPage">
 				  <input type="hidden" name="curPageBlock" value="${page.curPageBlock}" id="curPageBlock">
 				</form>
@@ -46,6 +47,7 @@
 									<c:choose> 
 									<c:when test = "${productCodeEdit eq productList.PCODE}"> <%-- 수정 시 리스트와 같은 화면에서 수정 되도록 --%>
 									<form action="/product/editProduct" method="post">
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 									<tr>
 										<input type="hidden" name="PILLCODE" value="${productList.PILLCODE}" id="PILLCODE_EDIT">
 										<input type="hidden" name="curPage" value="${page.curPage}" id="curPage">
@@ -83,6 +85,7 @@
 								<tfoot>
 									<tr>
 									<form action="/product/writeProduct" method="post">
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 										<td style="padding:10px"><input type="text" name="PILLCODE" id="PILLCODE" readonly></td>
 										<td><input type="text" name="PNAME" id="PNAME"></td>
 										<td><input type="text" name="CAPACITY" id="CAPACITY" readonly></td>

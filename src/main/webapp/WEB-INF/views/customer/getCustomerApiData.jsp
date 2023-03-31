@@ -14,6 +14,7 @@
 <%-- CSS 시 시군구 검색을 위해서는 시도를 먼저 입력하라는 안내문 입력할 것 --%>
 
 	<form id="searchAPI">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		<input type="text" name="sidoAPI" id="sidoAPI" placeholder="시도"><br>
 		<input type="text" name="sigunguAPI" id="sigunguAPI" placeholder="시군구"><br>
 		<input type="text" name="nameAPI" id="nameAPI" placeholder="이름"><br>

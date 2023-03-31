@@ -14,4 +14,6 @@ public interface EmployeeMapper {
 	public List<CustomerDto> salesEmployee(String ECODE);
 	public int getListCount();
 	public int getSalesListCount(String ECODE);
+	public void setPriKey(EmployeeDto dto);
+	public String getPriKey(String ECODE);
 }

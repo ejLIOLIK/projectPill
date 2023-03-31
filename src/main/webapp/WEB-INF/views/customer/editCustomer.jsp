@@ -20,6 +20,7 @@
 	<section>
 		<div class="fields">
 			<form action="/customer/editCustomer" method="post">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<input type="hidden" name="CCODE" value="${read.CCODE}">
 			<div class="field">
 				<label for="message">STATE</label>

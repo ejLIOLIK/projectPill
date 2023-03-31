@@ -20,6 +20,7 @@
 				<li><a href="/customer/getListCustomer"> 거래처조회 </a></li>
 				<li><a href="/register/login"> 로그인 </a></li>
 				<li><a href="/register/sign"> 회원가입 </a></li>
+				<li><a href="#" id="logout"> 로그아웃 </a></li>
 			</ul>
 		</nav>
 	</header>
@@ -30,6 +31,19 @@
 		<!-- Main -->
 			<section id="main" class="wrapper">
 				<div class="inner">
+				
+<form id="logoutForm" action="/logoutAction" method="POST">
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+</form>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#logout').on("click", function(event){
+		event.preventDefault();
+		$('#logoutForm').submit();
+	});
+});
+</script>
 </body>
 </html>

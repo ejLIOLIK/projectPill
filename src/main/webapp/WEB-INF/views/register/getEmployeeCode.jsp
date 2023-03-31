@@ -18,11 +18,13 @@
 
 <%-- 페이지 정보 날리기 --%>
 <form id="pageInfo" method="get" action="/register/getEmployeeCode">
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
   <input type="hidden" name="curPage" value="${page.curPage}" id="curPage">
   <input type="hidden" name="curPageBlock" value="${page.curPageBlock}" id="curPageBlock">
 </form>
 	
 	<div style="text-align: right"><form action="/register/getEmployeeCode" method="get">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		<input type="text" width="50px" name="employeeName"><br>
 		<input type="submit" name="searchSubmit" class="button small" value="검색">
 	</form></div>

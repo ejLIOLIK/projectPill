@@ -19,6 +19,7 @@
 	<div class="split style1">
 		<section>
 			<form action="/pill/editPill" method="post">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<div class="fields">
 				<input type="hidden" name="PILLCODE" value="${read.PILLCODE}">
 				<div class="field">

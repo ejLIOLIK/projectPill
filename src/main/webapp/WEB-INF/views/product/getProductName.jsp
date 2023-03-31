@@ -18,12 +18,14 @@
 
 <%-- 페이지 정보 날리기 --%>
 <form id="pageInfo" method="get" action="/product/getProductName">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
   <input type="hidden" name="curPage" value="${page.curPage}" id="curPage">
   <input type="hidden" name="curPageBlock" value="${page.curPageBlock}" id="curPageBlock">
   <input type="hidden" name="blEdit" id="blEdit" value="${blEdit}">
 </form>
 
 	<div style="text-align: right"><form action="/product/getProductName" method="get">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		<input type="hidden" name="blEdit" id="blEdit" value="${blEdit}">
 <input type="text" name="productName" value="${productName}"> <br>
 <input type="submit" name="searchSubmit" value="검색">

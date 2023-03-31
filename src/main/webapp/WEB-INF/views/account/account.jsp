@@ -15,7 +15,7 @@ ${aList.TDATE} ${aList.STATE} ${aList.CCODE}/${aList.CUSTOMER} ${aList.PCODE}/${
 </c:forEach>
 
 <form id = "accountForm" action="/account/write" method="get">
-
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 <input type="date" id="TDATE" name="TDATE">
 
 <select id="STATE" name="STATE" >
