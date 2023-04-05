@@ -30,7 +30,7 @@ public class RegisterController {
 	private userService service;
 	
 	@GetMapping({"/sign", "/login"}) // 개인키, 비밀키 생성해서 넘기기
-	public void sign(HttpSession session, Model model) throws Exception {
+	public void sign(HttpSession session,  @RequestParam(value="denied" , required=false) String denied, Model model) throws Exception {
 		pwEncryptModule pwEmcrypt = new pwEncryptModule(); // RSA 객체 생성
 		
 		KeyPair keypair = pwEmcrypt.setKeyPair(); //키 생성
@@ -39,7 +39,9 @@ public class RegisterController {
 		session.setAttribute(pwEmcrypt.PRIVATE_KEY, keypair.getPrivate()); // 개인키 세션에 저장함
 		session.setMaxInactiveInterval(-1);
 		model.addAttribute(pwEmcrypt.PUBLIC_KEY_MODULUS, modExp.get(pwEmcrypt.PUBLIC_KEY_MODULUS)); // 모듈러스
-		model.addAttribute(pwEmcrypt.PUBLIC_KEY_EXPONENT, modExp.get(pwEmcrypt.PUBLIC_KEY_EXPONENT)); // 지수		
+		model.addAttribute(pwEmcrypt.PUBLIC_KEY_EXPONENT, modExp.get(pwEmcrypt.PUBLIC_KEY_EXPONENT)); // 지수	
+		model.addAttribute("denied", denied);
+		System.out.println(denied);
 	}
 	
 	@PostMapping("/sign")

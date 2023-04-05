@@ -54,8 +54,9 @@
 						<section>
 							<ul class="contact">
 								<li>
-								<h3>※ 비밀번호를 잊으셨나요?</h3>
-								<span><a href="#">미구현</a></span>
+								<div id="deniedMsg" style="display:none;"> 								
+								<h3> 로그인 후 이용하세요 </h3> 
+								</div>
 								</li>
 							</ul>
 						</section>
@@ -66,6 +67,12 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+	
+	var denied = "${denied}";
+	
+	if(denied == "true"){
+		$('#deniedMsg').css("display","block");
+	}
 	
 	function encryptRSA(plain) { // RSA 암호화 함수
 	    var rsa = new RSAKey() // JS Library

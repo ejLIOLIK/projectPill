@@ -11,14 +11,19 @@
            <http auto-config='true'  use-expressions="true">
            
            <!-- 각 페이지별 권한 설정 -->
-           <!-- permitAll : 전체  -->
-           <!-- ROLE_USER : 기본 권한  -->
+           <!-- permitAll : 전체 -->
+           <!-- ROLE_USER : 기본 권한 -->
+           <!-- hasRole('ROLE_USER') -->
            <intercept-url pattern="/" access="permitAll" />
+           <intercept-url pattern="/home" access="permitAll" />
+           <intercept-url pattern="/register/login" access="permitAll" />
+           <intercept-url pattern="/register/getEmployeeCode" access="permitAll" />
+           <intercept-url pattern="/register/sign" access="permitAll" />
            <intercept-url pattern="/resources/**" access="permitAll" />
-           <intercept-url pattern="/**" access="permitAll" />
+           <intercept-url pattern="/**" access="isAuthenticated()" />
            
            <!-- 기본 로그인 화면(차후 각 페이지에 로그인 레이어 팝업 뜨도록 수정 예정), 폼 경로 연결, 로그인 실패/성공시 핸들러 -->
-           <form-login login-page="/register/login"    
+           <form-login login-page="/register/login?denied=true"    
            		login-processing-url="/loginAction"
 				username-parameter="ECODE"         
 				password-parameter="EPW"
@@ -30,18 +35,17 @@
 			<logout invalidate-session="true" logout-url="/logoutAction" logout-success-url="/home" />
 			
 			<!-- 권한 없음 페이지 -->
-			<access-denied-handler error-page="/register/login"/>
-			
+			<access-denied-handler error-page="/register/login?denied=true"/>
            <csrf/>
            </http>
            
            <!-- 커스텀 서비스, 인코더, 핸들러 등 등록 -->
-		<authentication-manager>
-			<authentication-provider ref="secuProvider"/>			
-			<authentication-provider user-service-ref="secuService">		
-			<password-encoder ref="passwordEncoder" />
-			</authentication-provider>
-		</authentication-manager>
+			<authentication-manager>
+				<authentication-provider ref="secuProvider"/>			
+				<authentication-provider user-service-ref="secuService">		
+				<password-encoder ref="passwordEncoder" />
+				</authentication-provider>
+			</authentication-manager>
 		
 <beans:bean id="LoginSuccessHandler" class="com.liolik.project.handler.LoginSuccessHandler">
     <beans:property name="defaultUrl" value="/home"/>
