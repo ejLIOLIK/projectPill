@@ -1,5 +1,7 @@
 package com.liolik.project.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +21,10 @@ public class AccountServiceImpl implements AccountService {
 	private AccountMapper mapper;
 	
 	@Override
-	public List<AccountDto> getListAccount(){
-		return mapper.getListAccount();
+	public List<AccountDto> getListAccount(String TDATE){
+
+		TDATE = getToday(TDATE); 
+		return mapper.getListAccount(TDATE);
 	}
 	
 	@Override
@@ -35,4 +39,13 @@ public class AccountServiceImpl implements AccountService {
 		mapper.UpdateBalance(dto);
 	}
 	
+	@Override
+	public String getToday(String TDATE) {
+		if(TDATE == null) {
+			// 현재 날짜 구하기
+	        LocalDate today = LocalDate.now();
+	        TDATE = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		}
+		return TDATE;
+	}
 }

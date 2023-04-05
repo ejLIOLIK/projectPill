@@ -3,7 +3,9 @@ package com.liolik.project.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.liolik.project.dto.AccountDto;
 import com.liolik.project.service.AccountService;
@@ -24,10 +26,12 @@ public class AccountController {
 	private AccountService service;
 	
 	@GetMapping("/account")
-	public void account(Model model) {
+	public void account(Model model, @RequestParam(value = "viewDate", required = false)String viewDate) {
 		model.addAttribute("customerList", cusService.getListCustomer());
 		model.addAttribute("productList", proService.getListProduct());
-		model.addAttribute("list", service.getListAccount());
+		model.addAttribute("list", service.getListAccount(viewDate));
+		model.addAttribute("viewDate", service.getToday(viewDate));
+
 	}
 	
 	@GetMapping("/write")

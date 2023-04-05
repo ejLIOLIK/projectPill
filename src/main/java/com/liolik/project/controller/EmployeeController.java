@@ -1,7 +1,5 @@
 package com.liolik.project.controller;
 
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,10 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.liolik.project.dto.CustomerDto;
 import com.liolik.project.dto.EmployeeDto;
-import com.liolik.project.dto.PagingDto;
-import com.liolik.project.module.pagingModule;
 import com.liolik.project.service.EmployeeService;
 
 import lombok.AllArgsConstructor;

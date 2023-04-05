@@ -9,6 +9,12 @@
 </head>
 <body>
 
+<form id = "viewDateForm" action="/account/account" method="get">
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+<input type="date" id="viewDate" name="viewDate" value="${viewDate}">
+<input type="submit" value="보기">
+</form>
+
 날짜 분류 거래처이름 제품이름 수량 가격 토탈 <br>
 <c:forEach var="aList" items="${list}"> 
 ${aList.TDATE} ${aList.STATE} ${aList.CCODE}/${aList.CUSTOMER} ${aList.PCODE}/${aList.PRODUCT} ${aList.STOCK}개 ${aList.PRICE}원 ${aList.TOTAL}원<br>
@@ -16,7 +22,7 @@ ${aList.TDATE} ${aList.STATE} ${aList.CCODE}/${aList.CUSTOMER} ${aList.PCODE}/${
 
 <form id = "accountForm" action="/account/write" method="get">
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-<input type="date" id="TDATE" name="TDATE">
+<input type="date" id="TDATE" name="TDATE" value="${viewDate}">
 
 <select id="STATE" name="STATE" >
 <option selected disabled>분류</option>
@@ -56,8 +62,6 @@ ${aList.TDATE} ${aList.STATE} ${aList.CCODE}/${aList.CUSTOMER} ${aList.PCODE}/${
 $(document).ready(function() {
 	
 	var blStock = "false";
-	
-	$('#TDATE').val(new Date().toISOString().slice(0, 10));
 	
 	$('#STATE').change(function(){
 		<!-- 정산 시 다른 입력창 다 비활성화, PRODUCT정보 0으로 통일하고 -->

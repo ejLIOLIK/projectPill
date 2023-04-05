@@ -44,13 +44,11 @@ $(document).ready(function() {
 		var curPageBlock = parseInt($('#curPageBlock').val()) - 1;
         $('#curPageBlock').val(curPageBlock);
 	    $('#pageInfo').submit();
-		console.log("function : buttonbefore");
 	});
 	$("#buttonAfter").on("click",function(){
 		var curPageBlock = parseInt($('#curPageBlock').val()) + 1;
         $('#curPageBlock').val(curPageBlock);
 	    $('#pageInfo').submit();
-		console.log("function : buttonAfter");
 	});
 });
 </script>

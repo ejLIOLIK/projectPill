@@ -14,8 +14,8 @@
            <!-- permitAll : 전체  -->
            <!-- ROLE_USER : 기본 권한  -->
            <intercept-url pattern="/" access="permitAll" />
-           <intercept-url pattern="/**" access="permitAll" />
            <intercept-url pattern="/resources/**" access="permitAll" />
+           <intercept-url pattern="/**" access="permitAll" />
            
            <!-- 기본 로그인 화면(차후 각 페이지에 로그인 레이어 팝업 뜨도록 수정 예정), 폼 경로 연결, 로그인 실패/성공시 핸들러 -->
            <form-login login-page="/register/login"    
@@ -28,6 +28,10 @@
 			
 			<!-- 로그아웃 시 세션 정리, 로그아웃 경로, 로그아웃 후 화면  -->
 			<logout invalidate-session="true" logout-url="/logoutAction" logout-success-url="/home" />
+			
+			<!-- 권한 없음 페이지 -->
+			<access-denied-handler error-page="/register/login"/>
+			
            <csrf/>
            </http>
            

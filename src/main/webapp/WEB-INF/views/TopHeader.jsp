@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,9 +19,14 @@
 				<li><a href="/product/getListProduct"> 제품조회 </a></li>
 				<li><a href="/employee/getListEmployee"> 직원조회 </a></li>
 				<li><a href="/customer/getListCustomer"> 거래처조회 </a></li>
+				<li><a href="/account/account"> 매입매출 </a></li>
+				<sec:authorize access="isAnonymous()">
 				<li><a href="/register/login"> 로그인 </a></li>
 				<li><a href="/register/sign"> 회원가입 </a></li>
+				</sec:authorize>
+				<sec:authorize access="!isAnonymous()">
 				<li><a href="#" id="logout"> 로그아웃 </a></li>
+				</sec:authorize>
 			</ul>
 		</nav>
 	</header>

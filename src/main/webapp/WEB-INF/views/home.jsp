@@ -17,7 +17,8 @@
 
 			<%-- 로그인 여부 체크 후 다르게 띄울 예정 --%>
 				<h1 class="major"> Pill Project </h1> 
-				<span class="image fit"><img src="/resources/images/pic04.jpg" alt="" /></span>
+
+				<p>의약품 유통 관리업무를 위한 웹페이지, Pill Project입니다. <br />
 				
 				<sec:authorize access="isAnonymous()">
 				<p> 로그인 전입니다, </br>

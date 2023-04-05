@@ -73,7 +73,7 @@ public class getApiDateModule {
 			e.printStackTrace();
 		}
 		
-		String urlstr = "Q0="+sido+"&Q1="+sigungu+"&QN="+name+"&numOfRows=20";
+		String urlstr = "Q0="+sido+"&Q1="+sigungu+"&QN="+name+"&numOfRows=10";
 		
 		return urlstr;
 	}
@@ -83,7 +83,7 @@ public class getApiDateModule {
 		//OpenApi호출
         String urlstr = "http://apis.data.go.kr/"
                 + "B552657/ErmctInsttInfoInqireService/getParmacyListInfoInqire?"
-                + "serviceKey=kAUw1ylBlW8g3vPs2nngTWrFPce2c%2F9uTxoVXTJAnhciA3h7wbDVs1jCCd6DCqVwJ5uNUbMB3pkHx6XeOftD0g%3D%3D&" //서비스키 가림
+                + "serviceKey=" //서비스키 가림
                 + search + "&numOfRows=20";
         
         URL url = new URL(urlstr);
@@ -152,6 +152,7 @@ public class getApiDateModule {
                 	} 
                 else if(node.getNodeName().equals("dutyTel1")) { cdto.setTEL(node.getTextContent().trim()); }
                 else if(node.getNodeName().equals("dutyMapimg")) { cdto.setMEMO(node.getTextContent().trim()); }
+
             }
             
             cList.add(cdto); // 리스트에 추가
