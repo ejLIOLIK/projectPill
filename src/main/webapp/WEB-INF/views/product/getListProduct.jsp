@@ -30,14 +30,14 @@
 							<table>
 								<thead>
 									<tr>
-										<th>CODE</th>
-										<th>NAME</th>
-										<th>CAPACITY</th>
-										<th>AMOUNT</th>
-										<th>UNIT</th>
-										<th>PILL PRICE</th>
-										<th>PRODUCT PRICE</th>
-										<th>STOCK</th>
+										<th style="width: 50px;">코드</th>
+										<th>제품명</th>
+										<th>용량</th>
+										<th>규격</th>
+										<th>단위</th>
+										<th>약가</th>
+										<th>제품가</th>
+										<th>재고</th>
 										<th> </th>
 										<th> </th>
 									</tr>
@@ -52,13 +52,13 @@
 										<input type="hidden" name="PILLCODE" value="${productList.PILLCODE}" id="PILLCODE_EDIT">
 										<input type="hidden" name="curPage" value="${page.curPage}" id="curPage">
 										<input type="hidden" name="curPageBlock" value="${page.curPageBlock}" id="curPageBlock">										
-										<td><input type="text" name="PCODE" value="${productList.PCODE}" readonly></td>
+										<td><input type="text" style="width: 30px;" name="PCODE" value="${productList.PCODE}" readonly></td>
 										<td><input type="text" name="PNAME" value="${productList.PNAME}" readonly id="PNAME_EDIT"></td>
 										<td><input type="text" name="CAPACITY" value="${productList.CAPACITY}" readonly id="CAPACITY_EDIT"></td>
 										<td><input type="text" pattern="[0-9]+" name="AMOUNT" value="${productList.AMOUNT}" id="AMOUNT_EDIT"></td>
 										<td><input type="text" name="UNIT" value="${productList.UNIT}"></td>
-										<td><input type="text" pattern="[0-9]+" value="${pillPrice}" style="width:50px" id="PILL_PRICE_EDIT" readonly></td>
-										<td><input type="text" pattern="[0-9]+" name="PRICE" value="${productList.PRICE}" readonly id="PRODUCT_PRICE_EDIT"></td>
+										<td><input type="text" style="width: 140px;" pattern="[0-9]+" value="${pillPrice}" style="width:50px" id="PILL_PRICE_EDIT" readonly></td>
+										<td><input type="text" style="width: 140px;" pattern="[0-9]+" name="PRICE" value="${productList.PRICE}" readonly id="PRODUCT_PRICE_EDIT"></td>
 										<td><input type="text" pattern="[0-9]+" name="STOCK" value="${productList.STOCK}"></td>
 										<td><input type="submit" class="button small" value="수정"></td>
 										<td><button type="button" class="button small" onclick="location.href='/product/getListProduct'">취소</button></td>
@@ -72,7 +72,7 @@
 										<td>${productList.CAPACITY}	</td>
 										<td>${productList.AMOUNT}</td>
 										<td>${productList.UNIT}	</td>
-										<td>${pillPrice}</td>
+										<td> - </td>
 										<td>${productList.PRICE}</td>
 										<td>${productList.STOCK}</td>
 										<td><button type="button" class="button small" onclick="location.href='/product/getListProduct?ProductCodeEdit=${productList.PCODE}&curPage=${page.curPage}&curPageBlock=${page.curPageBlock}'"> 수정 </button></td>

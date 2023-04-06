@@ -26,10 +26,10 @@
 	</form>
 
 	<ul>
-	<li>CODE: ${read.ECODE} </li> 
-	<li>NAME: ${read.ENAME} </li>
-	<li>RANK: ${read.ERANK} </li> 
-	<li>TEAM: ${read.ETEAM} </li>
+	<li>코드: ${read.ECODE} </li> 
+	<li>이름: ${read.ENAME} </li>
+	<li>직급: ${read.ERANK} </li> 
+	<li>부서: ${read.ETEAM} </li>
 	</ul>
 	
 	<div style="text-align:right">
@@ -41,18 +41,20 @@
 
 	<c:if test="${read.ETEAM eq '영업팀'}">
 	
-		<br>
+	<hr>
+		담당 거래처
+		<pre>
 		<div class="table-wrapper">
 			<table>
 				<thead>
 					<tr>
-						<th>STATE</th>
-						<th>CODE</th>
-						<th>NAME</th>
-						<th>TEL</th>
-						<th>ADRESS</th>
-						<th>BALANCE</th>
-						<th>MEMO</th>
+						<th>분류</th>
+						<th>코드</th>
+						<th>상호명</th>
+						<th>연락처</th>
+						<th>주소</th>
+						<th>대금</th>
+						<th>메모</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -70,6 +72,7 @@
 				</tbody>
 			</table>
 		</div>
+		</pre>
 
 		<jsp:include page="../Paging.jsp">
 			<jsp:param name="pageUrlParam" value="/employee/readEmployee?curPageBlock=${page.curPageBlock}&employeeCode=${read.ECODE}&curPage="/>

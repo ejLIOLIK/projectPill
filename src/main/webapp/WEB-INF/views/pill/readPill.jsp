@@ -18,16 +18,14 @@
 	<%@include file ="../TopHeader.jsp" %>
 	
 	<ul>
-	<li>CODE: ${read.PILLCODE}</li>
-	<li>NAME: ${read.PILLNAME}</li>
-	<li>CAPACITY: ${read.CAPACITY}</li>
-	<li>COMPANY: ${read.COMPANY}</li>
-	<li>PRICE: ${read.PRICE}</li>
+	<li>코드: ${read.PILLCODE}</li>
+	<li>약품명: ${read.PILLNAME}</li>
+	<li>용량: ${read.CAPACITY}</li>
+	<li>회사: ${read.COMPANY}</li>
+	<li>약가: ${read.PRICE}</li>
 	</ul>
 
 	<div style="text-align:right">
-		<button class="button primary" id="buttonEdit">수정</button>
-		<button class="button primary" id="buttonDelete">삭제</button> 
 		<button class="button primary" id="buttonList">목록</button>
 	</div>
 
@@ -38,14 +36,14 @@
 	<table>
 		<thead>
 			<tr>
-				<th>CODE</th>
-				<th>NAME</th>
-				<th>CAPACITY</th>
-				<th>AMOUNT</th>
-				<th>UNIT</th>
-				<th>PILL PRICE</th>
-				<th>PRODUCT PRICE</th>
-				<th>STOCK</th>
+				<th>코드</th>
+				<th>제품명</th>
+				<th>용량</th>
+				<th>규격</th>
+				<th>단위</th>
+				<th>약가</th>
+				<th>제품가</th>
+				<th>재고</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -70,12 +68,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
-	$("#buttonEdit").on("click",function(){
-		location.replace("/pill/editPill?pillCode=${read.PILLCODE}");
-	});
-	$("#buttonDelete").on("click",function(){
-		location.replace("/pill/deletePill?pillCode=${read.PILLCODE}");
-	});
 	$("#buttonList").on("click",function(){
 		location.replace("/pill/getListPill");
 	});

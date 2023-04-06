@@ -16,19 +16,19 @@
 <%@include file ="../TopHeader.jsp" %>
 
 <ul>
-<li>STATE: ${read.STATE}</li>
-<li>NAME: ${read.CNAME}</li>
-<li>EMPLOYEE: ${read.EMPLOYEE_NAME}</li>
-<li>ADRESS: (${read.ADRESS_NUMBER}) 
+<li>분류: ${read.STATE}</li>
+<li>상호명: ${read.CNAME}</li>
+<li>담당: ${read.EMPLOYEE_NAME}</li>
+<li>주소: (${read.ADRESS_NUMBER}) 
  ${read.ADRESS_DORO} ${read.ADRESS_DETAIL} <br> 
  ${read.ADRESS_JIBEON} <br> 
  ${read.ADRESS_MEMO} <br> 
 <input type="hidden" id="MAP_NAME" value="${read.CNAME}">
 <input type="hidden" id="MAP_ADRESS" value="${read.ADRESS_DORO}">
 <div id="MAP" style="width:350px;height:350px;"></div> </li>
-<li>TEL: ${read.TEL}</li> 
-<li>MEMO: ${read.MEMO}</li>
-<li>BALANCE: ${read.BALANCE}</li> 
+<li>연락처: ${read.TEL}</li> 
+<li>메모: ${read.MEMO}</li>
+<li>대금: ${read.BALANCE}</li> 
 </ul>
 
 <div style="text-align:right">

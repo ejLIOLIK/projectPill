@@ -31,14 +31,14 @@
 					<table>
 						<thead>
 							<tr>
-								<th>CODE</th>
-								<th>STATE</th>
-								<th>NAME</th>
-								<th>EMPLOYEE</th>
-								<th>ADRESS</th>
-								<th>TEL</th>
-								<th>MEMO</th>
-								<th>VALANCE</th>
+								<th style="width: 30px;">코드</th>
+								<th>분류</th>
+								<th>상호명</th>
+								<th>담당</th>
+								<th style="width: 300px;">주소</th>
+								<th>연락처</th>
+								<th style="width: 200px;">메모</th>
+								<th style="width: 120px;">대금</th>
 							</tr>
 						</thead>
 						<tbody>

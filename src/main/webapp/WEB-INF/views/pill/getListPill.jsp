@@ -30,11 +30,11 @@
 						<table>
 							<thead>
 								<tr>
-									<th>CODE</th>
-									<th>NAME</th>
-									<th>COMPANY</th>
-									<th>CAPACITY</th>
-									<th>PRICE</th>
+									<th style="width: 30px;">코드</th>
+									<th>제품명</th>
+									<th>용량</th>
+									<th>회사</th>
+									<th>제품가</th>
 									<th> </th>
 									<th> </th>
 								</tr>

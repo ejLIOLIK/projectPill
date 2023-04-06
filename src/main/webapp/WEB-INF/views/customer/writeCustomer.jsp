@@ -26,18 +26,18 @@
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<div class="fields">
 				<div class="field">
-					<label for="message">STATE</label>
+					<label for="message">분류</label>
 					<select name="STATE"> 
 						<option value="매입">매입</option>
 						<option value="매출">매출</option>
 					</select>
 				</div>
 				<div class="field">
-					<label for="message">NAME</label>
+					<label for="message">상호명</label>
 					<input type="text" name="CNAME" id="CNAME">
 				</div>
 				<div class="field">
-					<label for="message">EMPLOYEE</label>
+					<label for="message">담당</label>
 					<select name="EMPLOYEE_NAME" id="EMPLOYEE_NAME" required="required"><%-- 영업담당자 select창을 위해 Employee를 get --%> 
 						<option selected="selected" value="" >영업담당자</option>
 						<c:forEach var="employeeList" items="${list}"> 
@@ -46,10 +46,10 @@
 					</select>
 					<%-- 제이쿼리에서 데이터 전송 처리 --%>
 					<input type="hidden" name="EMPLOYEE_CODE" value ="">
-					<input type="hidden" name="EMPLOYEE_RANK" valse ="">
+					<input type="hidden" name="EMPLOYEE_RANK" value ="">
 				</div>
 				<div class="field">
-					<label for="message">ADRESS</label>
+					<label for="message">주소</label>
 					<input type="text" name="ADRESS_NUMBER" id="idPostCode" placeholder="우편번호">
 					<div style="text-align:right"><input type="button" class="button primary small" onclick="DaumPostcode()" value="우편번호 찾기"></div>
 					<input type="text" name="ADRESS_DORO" id="idRoadAddress" placeholder="도로명주소">
@@ -60,15 +60,15 @@
 					<div id="idMap" style="width:300px;height:300px;margin-top:10px;display:none"></div>
 				</div>
 				<div class="field">
-					<label for="message">TEL</label>
+					<label for="message">연락처</label>
 					<input type="text" name="TEL" id="TEL">
 				</div>
 				<div class="field">
-					<label for="message">MEMO</label>
+					<label for="message">메모</label>
 					<input type="text" name="MEMO" id="MEMO">
 				</div>
 				<div class="field">
-					<label for="message">BALANCE</label>
+					<label for="message">대금</label>
 					<input type="text" pattern="[0-9]+" name="BALANCE" value="0">
 				</div>
 				<div class="field">

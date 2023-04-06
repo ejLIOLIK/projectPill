@@ -21,11 +21,11 @@
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<div class="fields">
 				<div class="field">
-					<label for="message">NAME</label>
+					<label for="message">이름</label>
 					<input type="text" name="ENAME" required="required">
 				</div>
 				<div class="field">
-					<label for="message">RANK</label>
+					<label for="message">직급</label>
 					<select name="ERANK"> 
 						<option value="사원">사원</option>
 						<option value="대리">대리</option>
@@ -34,7 +34,7 @@
 					</select>
 				</div>
 				<div class="field">
-					<label for="message">TEAM</label>
+					<label for="message">부서</label>
 					<select name="ETEAM">  
 						<option value="영업팀">영업팀</option>
 						<option value="관리팀">관리팀</option>

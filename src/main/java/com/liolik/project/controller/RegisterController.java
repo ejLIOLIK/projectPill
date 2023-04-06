@@ -41,7 +41,6 @@ public class RegisterController {
 		model.addAttribute(pwEmcrypt.PUBLIC_KEY_MODULUS, modExp.get(pwEmcrypt.PUBLIC_KEY_MODULUS)); // 모듈러스
 		model.addAttribute(pwEmcrypt.PUBLIC_KEY_EXPONENT, modExp.get(pwEmcrypt.PUBLIC_KEY_EXPONENT)); // 지수	
 		model.addAttribute("denied", denied);
-		System.out.println(denied);
 	}
 	
 	@PostMapping("/sign")

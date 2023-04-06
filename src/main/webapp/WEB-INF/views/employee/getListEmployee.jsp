@@ -30,10 +30,10 @@
 						<table>
 							<thead>
 								<tr>
-									<th>CODE</th>
-									<th>NAME</th>
-									<th>COMPANY</th>
-									<th>PRICE</th>
+									<th>코드</th>
+									<th>이름</th>
+									<th>직급</th>
+									<th>부서</th>
 								</tr>
 							</thead>
 							<tbody>
