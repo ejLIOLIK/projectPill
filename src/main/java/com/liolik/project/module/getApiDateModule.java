@@ -73,7 +73,7 @@ public class getApiDateModule {
 			e.printStackTrace();
 		}
 		
-		String urlstr = "Q0="+sido+"&Q1="+sigungu+"&QN="+name+"&numOfRows=10";
+		String urlstr = "Q0="+sido+"&Q1="+sigungu+"&QN="+name;
 		
 		return urlstr;
 	}
@@ -84,7 +84,7 @@ public class getApiDateModule {
         String urlstr = "http://apis.data.go.kr/"
                 + "B552657/ErmctInsttInfoInqireService/getParmacyListInfoInqire?"
                 + "serviceKey=" //서비스키 가림
-                + search + "&numOfRows=20";
+                + "&" + search + "&numOfRows=100";
         
         URL url = new URL(urlstr);
 

@@ -76,8 +76,12 @@ public class CustomerController {
 	public void getCustomerApiData(Model model,
 			@RequestParam(value = "sido", required = false)String sido,
 			@RequestParam(value = "sigungu", required = false)String sigungu,
-			@RequestParam(value = "name", required = false)String name) {
+			@RequestParam(value = "name", required = false)String name,
+			@RequestParam(value = "curPage", required = false)Integer curPage,
+			@RequestParam(value = "curPageBlock", required = false)Integer curPageBlock) {
 		model.addAttribute("list", service.getCustomerApiData(sido, sigungu, name));
+		model.addAttribute("page", service.settingPage(curPage, curPageBlock));
+		model.addAttribute("searchUrl", service.urlApiData(sido, sigungu, name));
 	}
 	
 }

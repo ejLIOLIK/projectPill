@@ -83,4 +83,12 @@ public class CustomerServicelmpl implements CustomerService {
 		
 		return cList;
 	}
+	
+	@Override
+	public String urlApiData(String sido, String sigungu, String name){
+		
+		String searchUrl = "sido="+sido+"&sigungu="+sigungu+"&name="+name;
+		
+		return searchUrl;
+	}
 }

@@ -65,6 +65,7 @@ public class ProductController {
 		model.addAttribute("list", service.getProductName(productName));
 		model.addAttribute("blEdit", blEdit);
 		model.addAttribute("page", service.settingPage(curPage, curPageBlock, productName));
+		model.addAttribute("productName", productName);
 	}
 	
 	@PostMapping("/writeProduct")

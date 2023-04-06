@@ -10,4 +10,5 @@ public interface RegisterMapper {
 	public void sign(EmployeeDto edto);
 	public EmployeeDto login(String ECODE);
 	public int getListCount();
+	public int getListCountSearch(String ENAME);
 }

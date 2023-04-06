@@ -52,7 +52,7 @@
 										<input type="hidden" name="PILLCODE" value="${productList.PILLCODE}" id="PILLCODE_EDIT">
 										<input type="hidden" name="curPage" value="${page.curPage}" id="curPage">
 										<input type="hidden" name="curPageBlock" value="${page.curPageBlock}" id="curPageBlock">										
-										<td><input type="text" style="width: 30px;" name="PCODE" value="${productList.PCODE}" readonly></td>
+										<td><input type="text" style="width: 30px;" name="PCODE" id="PCODE_EDIT" value="${productList.PCODE}" readonly></td>
 										<td><input type="text" name="PNAME" value="${productList.PNAME}" readonly id="PNAME_EDIT"></td>
 										<td><input type="text" name="CAPACITY" value="${productList.CAPACITY}" readonly id="CAPACITY_EDIT"></td>
 										<td><input type="text" pattern="[0-9]+" name="AMOUNT" value="${productList.AMOUNT}" id="AMOUNT_EDIT"></td>

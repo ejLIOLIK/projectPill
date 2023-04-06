@@ -17,6 +17,9 @@
 	<select id="getListCount" resultType="int">
 		SELECT count(*) from EMPLOYEE
 	</select>
+	<select id="getListCountSearch" resultType="int">
+		SELECT count(*) from EMPLOYEE where ENAME like CONCAT('%',#{ENAME},'%')
+	</select>
 	<update id="sign">
 		update EMPLOYEE set PW=#{PW} where ECODE=#{ECODE}
 	</update>

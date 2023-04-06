@@ -52,11 +52,16 @@ public class userService implements UserDetailsService {
 		mapper.sign(edto);
 	}
 	
-	public PagingDto settingPage(Integer curPage, Integer curPageBlock) {
+	public PagingDto settingPage(Integer curPage, Integer curPageBlock, String employeeName) {
+		PagingDto pdto;
+		
 		if(curPage==null) { curPage = 1;}
 		if(curPageBlock==null) { curPageBlock = 1;}
 		
-		PagingDto pdto = new PagingDto(mapper.getListCount(), curPage, curPageBlock);
+		if(employeeName==null) {
+			pdto = new PagingDto( mapper.getListCount(), curPage, curPageBlock);}
+		else {
+			pdto = new PagingDto( mapper.getListCountSearch(employeeName), curPage, curPageBlock);}
 		
 		pdto.setTotalPage(pagingModule.setTotalPage(pdto.getTotalData()));
 		pdto.setTotalPageBlock(pagingModule.setTotalPageBlock(pdto.getTotalPage()));

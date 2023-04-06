@@ -27,8 +27,8 @@
 	<div style="text-align: right"><form action="/product/getProductName" method="get">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		<input type="hidden" name="blEdit" id="blEdit" value="${blEdit}">
-<input type="text" name="productName" value="${productName}"> <br>
-<input type="submit" name="searchSubmit" value="검색">
+		<input type="text" name="productName" value="${productName}"> <br>
+		<input type="submit" name="searchSubmit" value="검색">
 	</form></div>
 	
 	CODE  NAME  CAPACITY  COMPANY  PRICE 
@@ -49,7 +49,7 @@ ${pillList.PILLCODE} ${pillList.PILLNAME} ${pillList.CAPACITY} ${pillList.COMPAN
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	function setProductData(PILLCODE, PNAME, CAPACITY, PRICE) {
-		<%--차후 가독성을 위해 제이쿼리로 수정--%>
+		
 		if("${blEdit}"!="" && "${blEdit}"=="true"){
 			opener.document.getElementById("PILLCODE_EDIT").value = PILLCODE;
 			opener.document.getElementById("PNAME_EDIT").value = PNAME;
@@ -71,7 +71,12 @@ ${pillList.PILLCODE} ${pillList.PILLNAME} ${pillList.CAPACITY} ${pillList.COMPAN
 	
 	<%-- 포커싱이 유지되는 경우 팝업창 브라우저를 닫았을 경우 계속해서 팝업이 발생함. 이에 대한 처리. --%>
 	$(window).on("beforeunload", function() { 
-		$(opener.document).find("#PILLCODE").focus(); 
+		if("${blEdit}"!="" && "${blEdit}"=="true"){
+			$(opener.document).find("#PCODE_EDIT").focus(); 
+		}
+		else{
+			$(opener.document).find("#PILLCODE").focus(); 
+		}
 	});	
 	
 	</script>

@@ -73,6 +73,7 @@ public class RegisterController {
 			@RequestParam(value = "curPageBlock", required = false)Integer curPageBlock) {
 
 		model.addAttribute("list", service.getEmployeeCode(employeeName));
-		model.addAttribute("page", service.settingPage(curPage, curPageBlock));
+		model.addAttribute("page", service.settingPage(curPage, curPageBlock, employeeName));
+		model.addAttribute("employeeName", employeeName);
 	}
 }

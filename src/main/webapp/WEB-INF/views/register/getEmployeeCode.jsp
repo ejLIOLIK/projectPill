@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>Insert title here</title>
 <meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -39,7 +38,7 @@
 </ul>
 
 	<jsp:include page="../Paging.jsp">
-		<jsp:param name="pageUrlParam" value="/register/getEmployeeCode?curPageBlock=${page.curPageBlock}&curPage="/>
+		<jsp:param name="pageUrlParam" value="/register/getEmployeeCode?employeeName=${employeeName}&curPageBlock=${page.curPageBlock}&curPage="/>
 	</jsp:include>
 	
 </div>

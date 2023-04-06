@@ -4,7 +4,7 @@ import com.liolik.project.dto.PagingDto;
 
 public class pagingModule {
 	
-	public static final int PAGE = 10; // 페이지당 게시글
+	public static final int PAGE = 3; // 페이지당 게시글
 	public static final int PAGEBLOCK = 5; // 페이징블락
 	
 	/* 전체 페이지 구하기 */

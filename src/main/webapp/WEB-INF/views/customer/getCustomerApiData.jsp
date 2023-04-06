@@ -7,25 +7,49 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css?version=${System.currentTimeMillis()}" />
+		<link rel="stylesheet" href="/resources/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="/resources/assets/css/noscript.css" /></noscript>
 </head>
-<body>
+<body class="is-preload">
+<section id="main" class="wrapper">
+<div class="inner">
+
+<%-- 페이지 정보 날리기 --%>
+<form id="pageInfo" method="get" action="/register/getEmployeeCode">
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+  <input type="hidden" name="curPage" value="${page.curPage}" id="curPage">
+  <input type="hidden" name="curPageBlock" value="${page.curPageBlock}" id="curPageBlock">
+</form>
 
 <%-- API 파라미터 특성상 시도 입력 없이 시군구 검색할 경우 검색결과가 정확하게 출력되지 않음 --%>
-<%-- CSS 시 시군구 검색을 위해서는 시도를 먼저 입력하라는 안내문 입력할 것 --%>
+<%-- 시도 필수 --%>
 
-	<form id="searchAPI">
+	<div style="text-align: right"><form id="searchAPI">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-		<input type="text" name="sidoAPI" id="sidoAPI" placeholder="시도"><br>
+		<input type="text" name="sidoAPI" id="sidoAPI" placeholder="시도" req><br>
 		<input type="text" name="sigunguAPI" id="sigunguAPI" placeholder="시군구"><br>
 		<input type="text" name="nameAPI" id="nameAPI" placeholder="이름"><br>
 		<input type="submit" class="button primary small" value="검색"><br>
-	</form>
+	</form></div>
 	
-	<c:forEach var="Data" items="${list}">
+	<ul class="alt">
+	<c:forEach var="Data" items="${list}" begin="${page.begin}" end="${page.end}">
+	<li>
 	<a href="#" class="ApiData" data-api='{"CNAME":"${Data.CNAME}","ADRESS_NUMBER":"${Data.ADRESS_NUMBER}","ADRESS_DORO":"${Data.ADRESS_DORO}","ADRESS_DETAIL":"${Data.ADRESS_DETAIL}","ADRESS_MEMO":"${Data.ADRESS_MEMO}","TEL":"${Data.TEL}","MEMO":"${Data.MEMO}"}'> 
-<%-- 	<a href="#" class="ApiData" data-api='{"CNAME":"${Data.CNAME}","idPostCode":"${Data.ADRESS_NUMBER}"}'>  --%>
 	${Data.CNAME} ${Data.ADRESS_DORO} ${Data.TEL}</a> <br>
-	</c:forEach>${Data}
+	</li>
+	</c:forEach>
+	</ul>
+	
+	<jsp:include page="../Paging.jsp">
+		<jsp:param name="pageUrlParam" value="/customer/getCustomerApiData?${searchUrl}&curPageBlock=${page.curPageBlock}&curPage="/>
+	</jsp:include>
+	
+</div>
+</section>
 	
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -57,6 +81,13 @@ $(document).ready(function() {
 });
 
 </script>
-
+<%-- 템플릿 assets --%>
+<script src="/resources/assets/js/jquery.min.js"></script>
+<script src="/resources/assets/js/jquery.scrollex.min.js"></script>
+<script src="/resources/assets/js/jquery.scrolly.min.js"></script>
+<script src="/resources/assets/js/browser.min.js"></script>
+<script src="/resources/assets/js/breakpoints.min.js"></script>
+<script src="/resources/assets/js/util.js"></script>
+<script src="/resources/assets/js/main.js"></script>
 </body>
 </html>
