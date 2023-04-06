@@ -42,11 +42,24 @@
 										<td></td>
 										<td>${aList.STATE}</td>
 										<td>${aList.CCODE}/${aList.CUSTOMER}</td>
-										<td>${aList.PCODE}/${aList.PRODUCT}</td>
-										<td>${aList.STOCK}개</td>
-										<td></td>
-										<td>${aList.PRICE}원</td>
-										<td>${aList.TOTAL}원</td>
+										
+										<c:choose>
+										<c:when test="${aList.STATE eq '정산'}">
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td>${aList.TOTAL}원</td>
+										</c:when>
+										<c:otherwise> 
+											<td>${aList.PCODE}/${aList.PRODUCT}</td>
+											<td>${aList.STOCK}개</td>
+											<td></td>
+											<td>${aList.PRICE}원</td>
+											<td>${aList.TOTAL}원</td>
+										</c:otherwise>
+										</c:choose>
+										
 									</tr>
 								</c:forEach>
 							</tbody>
