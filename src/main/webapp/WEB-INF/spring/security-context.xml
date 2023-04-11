@@ -22,7 +22,7 @@
            <intercept-url pattern="/resources/**" access="permitAll" />
            <intercept-url pattern="/**" access="isAuthenticated()" />
            
-           <!-- 기본 로그인 화면(차후 각 페이지에 로그인 레이어 팝업 뜨도록 수정 예정), 폼 경로 연결, 로그인 실패/성공시 핸들러 -->
+           <!-- 기본 로그인 화면, 폼 경로 연결, 로그인 실패/성공시 핸들러 -->
            <form-login login-page="/register/login?denied=true"    
            		login-processing-url="/loginAction"
 				username-parameter="ECODE"         

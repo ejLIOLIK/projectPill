@@ -40,7 +40,7 @@ public class ApiExplorer {
             String urlstr = "http://apis.data.go.kr/"
                     + "B552657/ErmctInsttInfoInqireService/getParmacyListInfoInqire"
                     + "?numOfRows=110" 
-                    + "&serviceKey=kAUw1ylBlW8g3vPs2nngTWrFPce2c%2F9uTxoVXTJAnhciA3h7wbDVs1jCCd6DCqVwJ5uNUbMB3pkHx6XeOftD0g%3D%3D"; //서비스키 가림
+                    + "&"; //서비스키 가림
             
             URL url = new URL(urlstr);
             HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
